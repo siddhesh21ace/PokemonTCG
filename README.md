@@ -1,2 +1,0 @@
-# PokemonTCG
-Pokemon TCG application
