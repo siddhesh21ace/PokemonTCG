@@ -3,4 +3,6 @@
  */
 module.exports = function (app) {
     require("./services/pokemon/card.service.server")(app);
+    require("./services/pokemon/pokemon.service.server")(app);
+
 };
