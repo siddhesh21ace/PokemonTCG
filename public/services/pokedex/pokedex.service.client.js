@@ -12,10 +12,15 @@
             "insertData": insertData,
             "fetchPokemons": fetchPokemons,
             "fetchAllPokemons": fetchAllPokemons,
-            "getPokemonsThumbs": getPokemonsThumbs
+            "getPokemonsThumbs": getPokemonsThumbs,
+            "fetchPokemonDetails": fetchPokemonDetails
         }
 
         return api;
+
+        function fetchPokemonDetails(pokemon){
+            return $http.get("/api/pokemon/"+pokemon);
+        }
 
         function getPokemonsThumbs(){
             return $http.get('/api/pokedex/getAllPokemons/');
