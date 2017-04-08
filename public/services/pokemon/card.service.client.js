@@ -11,7 +11,9 @@
 
         var api = {
             "getAllSets": getAllSets,
-            "getPokemonsBySet": getPokemonsBySet
+            "getPokemonsBySet": getPokemonsBySet,
+            "getAllPokemons": getAllPokemons
+
         }
         return api;
 
@@ -22,6 +24,10 @@
         
         function getPokemonsBySet(setCode) {
             return $http.get(endPoint + "setCode=" + setCode);
+        }
+        
+        function getAllPokemons() {
+            return $http.get("/api/card");
         }
     }
 })();

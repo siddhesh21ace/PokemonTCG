@@ -1,166 +1,108 @@
 /**
- * Created by Siddhesh on 4/6/2017.
+ * Created by Siddhesh on 4/8/2017.
  */
-module.exports = function (app) {
-    var Pokedex = require('pokedex-promise-v2');
-    var P = new Pokedex();
+module.exports = function (app, models) {
+    app.get("/api/pokemon", findPokemon);
+    app.get("/api/pokemon/:pokemonId", findPokemonByPokeId);
+    app.put("/api/pokemon/:pokemonId", updatePokemon);
+    app.post("/api/pokemon", createPokemon);
+    app.delete("/api/pokemon/:pokemonId", deletePokemon);
 
-    app.get("/api/type", findAllPokemons);
-    app.get("/api/pokemon/:pokemonID", findPokemonByIDorName);
+    function findPokemon(req, res) {
+        var name = req.query['name'];
+        if(name) {
+            models.pokemonModel
+                .findPokemonByName(name)
+                .then(function (response) {
+                    res.status(200).send(response);
+                }, function (error) {
+                    res.status(404).send(error);
+                });
+        } else {
+            getAllPokemons(req, res);
+        }
+    }
 
-    function findAllPokemons(req, res) {
-        P.getPokemonsList()
-            .then(function (response) {
-                res.json(response);
+    function createPokemon(req, res) {
+        var newPokemon = req.body;
+
+        models.pokemonModel
+            .findPokemonByPokeId(newPokemon.poke_id)
+            .then(function (pokemon) {
+                    if (pokemon === null) {
+                        models.pokemonModel.createPokemon(newPokemon)
+                            .then(function (pokemon) {
+                                res.json(pokemon);
+                            }, function (error) {
+                                res.status(400).send("Error occured. Please try again!");
+                                console.log(error);
+                            });
+                    } else {
+                        res.status(401).send("Pokemon already exists!");
+                    }
+                },
+                function (err) {
+                    res.status(400).send("Error occured. Please try again!");
+                    console.log(err);
+                }
+            )
+    }
+
+    function getAllPokemons(req, res) {
+        models.pokemonModel
+            .getAllPokemons()
+            .then(function (pokemons) {
+                res.json(pokemons);
             }, function (error) {
-                res.json(error);
+                res.status(404).send("No Pokemon Found: " + error);
             });
     }
 
-    function findPokemonByIDorName(req, res) {
-        var pokemonID = req.params.pokemonID;
-        var pokemon = {};
-        P.getPokemonByName(pokemonID)
-            .then(function (response) {
-                pokemon.name = response.name;
-                pokemon.weight = response.weight;
-                pokemon.height = response.height;
-                pokemon.id = response.id;
-                pokemon.order = response.order;
-                pokemon.name = response.name;
-                pokemon.base_experience = response.base_experience;
-                setPokemonTypes(pokemon, response);
-                setPokemonWeaknesses(pokemon, response);
-                setPokemonAbilities(pokemon, response);
-                setPokemonStats(pokemon, response);
-                setPokemonMoves(pokemon, response);
-                return P.getPokemonSpeciesByName(pokemon.name);
-            }, function (error) {
-                res.status(404).send(error);
-            })
-            .then(function (response) {
-                pokemon.species = {};
-                pokemon.species.habitat = response.habitat.name;
-                pokemon.species.color = response.color.name;
-                pokemon.species.shape = response.shape.name;
-                pokemon.species.evolves_from =
-                    response.evolves_from_species ?
-                        response.evolves_from_species.name :
-                        "";
+    function findPokemonByPokeId(req, res) {
+        var pokemonId = req.params['pokemonId'];
 
-                setPokemonDesc(pokemon, response);
-                setPokemonGenus(pokemon, response);
-                var split_array = response.evolution_chain.url.split("/");
-                var evoChainID = split_array[split_array.length - 2];
-                return P.getEvolutionChainById(evoChainID);
-            }, function (error) {
-                res.status(404).send(error);
-            })
-            .then(function (response) {
-                var evoChain = [];
-                var evoData = response.chain;
-                do {
-                    var evoDetails = evoData['evolution_details'][0];
-                    var split_array = evoData.species.url.split("/");
-                    var pokeID = split_array[split_array.length - 2];
-
-                    evoChain.push({
-                        "species_name": evoData.species.name,
-                        "species_id": pokeID
-                    });
-
-                    evoData = evoData['evolves_to'][0];
-                } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
-                pokemon.species.evoChain = evoChain;
+        models.pokemonModel
+            .findPokemonByPokeId(pokemonId)
+            .then(function (pokemon) {
                 res.json(pokemon);
             }, function (error) {
-                res.status(404).send(error);
+                res.status(404).send("Pokemon not found for the Poke ID : " + pokemonId + " with error " + error);
             });
     }
 
-    function setPokemonWeaknesses(pokemon, response) {
-        pokemon.weaknesses = [];
+    function updatePokemon(req, res) {
+        var pokemonId = req.params['pokemonId'];
+        var updatedPokemon = req.body;
 
-        response.types.forEach(function (obj) {
-            P.getTypeByName(obj.type.name)
-                .then(function (type) {
-                    var double_damages = type.damage_relations.double_damage_from;
-                    for (var i in double_damages) {
-                        pokemon.weaknesses.push(double_damages[i].name);
-                    }
-                }, function (error) {
-                    console.log(error);
-                })
-        });
+        models.pokemonModel
+            .updatePokemon(pokemonId, updatedPokemon)
+            .then(function (response) {
+                if (response.nModified === 1) {
+                    models.pokemonModel
+                        .findPokemonByPokeId(pokemonId)
+                        .then(function (pokemon) {
+                            res.json(pokemon);
+                        }, function () {
+                            res.sendStatus(404);
+                        })
+                }
+                else {
+                    res.status(404).send("Pokemon update failed.");
+                }
+            }, function (error) {
+                res.sendStatus(404).send("Pokemon update failed with error: " + error);
+            });
     }
 
-    function setPokemonDesc(pokemon, response) {
-        var fte = response.flavor_text_entries;
-        for (var i in fte) {
-            if (fte[i].language.name === "en") {
-                pokemon.species.description = fte[i].flavor_text;
-                break;
-            }
-        }
-    }
+    function deletePokemon(req, res) {
+        var pokemonId = req.params['pokemonId'];
 
-    function setPokemonGenus(pokemon, response) {
-        var gen = response.genera;
-        for (var i in gen) {
-            if (gen[i].language.name === "en") {
-                pokemon.species.genus = gen[i].genus;
-                break;
-            }
-        }
-    }
-
-    function setPokemonTypes(pokemon, response) {
-        pokemon.types = [];
-
-        response.types.forEach(function (obj) {
-            pokemon.types.push(obj.type.name);
-        });
-    }
-
-    function setPokemonAbilities(pokemon, response) {
-        pokemon.abilities = [];
-
-        response.abilities.forEach(function (obj) {
-            P.getAbilityByName(obj.ability.name)
-                .then(function (ability) {
-                    var effects = ability.effect_entries;
-                    for (var i in effects) {
-                        if (effects[i].language.name === "en") {
-                            pokemon.abilities.push({
-                                name: obj.ability.name,
-                                description: effects[i].short_effect
-                            })
-                            break;
-                        }
-                    }
-                }, function (error) {
-                    console.log(error);
-                })
-        });
-    }
-
-    function setPokemonStats(pokemon, response) {
-        pokemon.stats = [];
-
-        response.stats.forEach(function (obj) {
-            var stat = {
-                name: obj.stat.name,
-                base_stat: obj.base_stat
-            }
-            pokemon.stats.push(stat);
-        });
-    }
-
-    function setPokemonMoves(pokemon, response) {
-        pokemon.moves = [];
-
-        response.moves.forEach(function (obj) {
-            pokemon.moves.push(obj.move.name);
-        });
+        models.pokemonModel
+            .deletePokemon(pokemonId)
+            .then(function (response) {
+                res.status(200).send(response);
+            }, function (error) {
+                res.status(404).send(error);
+            });
     }
 }

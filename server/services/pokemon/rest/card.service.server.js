@@ -1,15 +1,30 @@
 /**
  * Created by Siddhesh on 4/5/2017.
  */
-module.exports = function (app) {
+module.exports = function (app, models) {
     const pokemon = require('pokemontcgsdk');
 
-    app.get("/api/card", findCards);
-    app.get("/api/card/:cardID", findCardById);
+    app.get("/rest/api/card", findCards);
+    app.get("/rest/api/card/:cardID", findCardById);
+
+    var types = [
+        "Colorless",
+        "Dark",
+        "Darkness",
+        "Dragon",
+        "Fairy",
+        "Fighting",
+        "Fire",
+        "Grass",
+        "Lightning",
+        "Metal",
+        "Psychic",
+        "Water"
+    ];
 
     function findCards(req, res) {
         var criteria = {
-            pageSize:1000,
+            pageSize: 1000,
             supertype: 'Pokémon'
         };
 
@@ -24,10 +39,31 @@ module.exports = function (app) {
 
         pokemon.card.where(criteria)
             .then(function (response) {
+                cleanUpData(response);
                 res.json(response);
             }, function (error) {
                 console.log(error);
             });
+    }
+
+    function isNumber(damage) {
+        if (damage === '') {
+            return false;
+        } else if(isNaN(damage)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function cleanUpData(response) {
+        response.forEach(function (card) {
+            card.attacks && card.attacks.forEach(function (attack) {
+                if(!isNumber(attack.damage)) {
+                    attack.damage = "50";
+                }
+            });
+        });
     }
 
     function findCardById(req, res) {
