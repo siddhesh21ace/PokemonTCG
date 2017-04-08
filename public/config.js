@@ -28,6 +28,14 @@
                 templateUrl: 'views/pokemon/templates/card.view.client.html',
                 controller: 'PokemonController'
             })
+            .when("/pokedex", {
+                templateUrl: 'views/pokedex/templates/pokedex.view.client.html',
+                controller: 'PokedexController'
+            })
+            .when("/pokemon-info/:pokemon", {
+                templateUrl: 'views/pokedex/templates/pokemon-info.view.client.html',
+                controller: "PokemonInfoController"
+            })
             .when("/", {
                 redirectTo: "/login"
             })

@@ -1,6 +1,5 @@
-/**
- * Created by Siddhesh on 4/5/2017.
- */
 module.exports = function (app) {
-    require("./services/pokemon/card.service.server")(app);
+    var model = require ("./model/models.server.js")();
+    require("./services/pokemon/card.service.server")(app,model);
+    require("./services/pokedex/pokedex.service.server")(app, model);
 };

@@ -1,0 +1,81 @@
+<!--<div class="container-fluid" ng-controller="PokemonInfoController as model">-->
+    <!--<div class="results col-md-12" ng-if="model.pokemon">-->
+        <!--<h1 class="panel-heading text-capitalize">{{model.pokemon.name}}</h1>-->
+        <!--<img src="{{model.pokemon.sprites.front_shiny}}"/>-->
+        <!--<h4> Abilites </h4>-->
+        <!--<ul ng-repeat="ability in model.pokemon.abilities">-->
+            <!--<li>{{ability.ability.name}}</li>-->
+        <!--</ul>-->
+        <!--<h4> Types </h4>-->
+        <!--<ul ng-repeat="type in model.pokemon.types">-->
+            <!--<li>{{type.type.name}}</li>-->
+        <!--</ul>-->
+        <!--<a ng-click="model.getMoreInfo(model.pokemon)"> Read More</a>-->
+    <!--</div>-->
+    <!--<div class="details col-md-6"></div>-->
+
+<!--</div>-->
+
+<div class="container" ng-controller="PokemonInfoController as model">
+
+    <div class="pokeName">
+        <h1 class="text-capitalize text-center">{{model.pokemon.name}} # {{model.pokemon.id}}</h1>
+    </div>
+
+    <div class="upper">
+        <div class="col-md-4" style="border: 1px;background-color: lightgoldenrodyellow">
+            <img ng-src="{{model.pokemon.img}}"
+                 class="img-responsive"/>
+            <div class="social" style="text-align:center">
+                <span><a class="like"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a></span>
+                <span><a class="addToCollection"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+            </p>
+            <div class="physicalAttribtues">
+                <h3>Physical Attributes</h3>
+                <ul>
+                    <li>Height : {{model.pokemon.height}}'</li>
+                    <li>Weight : {{model.pokemon.weight}}</li>
+                    <li>Category : </li>
+                    <li>Abilities :
+                        <ul ng-repeat="ability in model.pokemon.abilities">
+                            <li><a href="{{ability.ability.url}}">{{ability.ability.name}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="type">
+                <h3>Types</h3>
+                <ul class="list-group" ng-repeat="type in model.pokemon.types">
+                    <li class="list-group-item"><a href="{{type.type.url}}">{{type.type.name}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="weakness col-md-12">
+       <h3>Weaknesses</h3>
+    </div>
+
+    <div class="stats col-md-12">
+        <h3>Stats</h3>
+    </div>
+
+    <div class="evolution col-md-12">
+        <h3>Evolution</h3>
+        <div class="evolution-pane">
+            <a>Name</a>
+
+            <a>Number</a>
+        </div>
+    </div>
+</div>
+
+
