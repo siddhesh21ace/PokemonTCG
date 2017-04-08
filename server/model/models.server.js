@@ -1,5 +1,6 @@
 module.exports = function() {
     var mongoose = require('mongoose');
+    mongoose.Promise = require('bluebird');
 
     var connectionString = 'mongodb://localhost/PokemonTCG';
 
@@ -13,14 +14,16 @@ module.exports = function() {
 
     mongoose.connect(connectionString);
 
+    var userModel = require("./user/user.model.server")();
     var pokemonModel = require ("./pokemon/pokedex.model.server")();
 
-    var model = {
+    var models = {
+        userModel: userModel,
         pokemonModel: pokemonModel
     };
 
     pokemonModel.setModel(model);
 
-    return model;
+    return models;
 
 };

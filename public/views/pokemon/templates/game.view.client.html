@@ -1,0 +1,38 @@
+<div class="container-fluid" ng-controller="GameController as model">
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-repeat="card in model.player1.cards">
+                <div ng-class="{ 'active1' : card == model.player1.current}">
+                    <div>{{ card.isAlive }}</div>
+                    <div>{{ card.details.name }}</div>
+                    <div>{{ card.details.hp }}</div>
+                    <div ng-repeat="attack in card.details.attacks">
+                        <button ng-show="model.isNumber(attack.damage)"
+                                ng-click="model.attack1(attack.damage)"
+                                ng-disabled="!model.game.player1Turn || card != model.player1.current">
+                            {{ attack.name}}{{attack.damage}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div ng-repeat="card in model.player2.cards">
+                <div ng-class="{ 'active2' : card == model.player2.current}">
+                    <div>{{ card.isAlive }}</div>
+                    <div>{{ card.details.name }}</div>
+                    <div>{{ card.details.hp }}</div>
+                    <div ng-repeat="attack in card.details.attacks">
+                        <button ng-show="model.isNumber(attack.damage)"
+                                ng-click="model.attack2(attack.damage)"
+                                ng-disabled="model.game.player1Turn || card != model.player2.current">
+                            {{ attack.name}}{{attack.damage}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
