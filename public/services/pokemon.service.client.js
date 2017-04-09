@@ -7,7 +7,7 @@
         .service("PokemonService", pokemonService);
 
     function pokemonService($http) {
-        var endPoint = "/api/card?";
+        var endPoint = "/rest/api/card?";
         var setsURL = "https://api.pokemontcg.io/v1/sets";
 
         var api = {
@@ -20,15 +20,15 @@
         return api;
 
         function findPokemonByPokeId(pokemonID) {
-            return $http.get("/api/pokemon/" + pokemonID);
+            return $http.get("/rest/api/pokemon/" + pokemonID);
         }
 
         function getAllPokemons() {
-            return $http.get("/api/pokemon");
+            return $http.get("/rest/api/pokemon");
         }
 
         function findPokemonByName(name) {
-            return $http.get("/api/pokemon?name=" + name);
+            return $http.get("/rest/api/pokemon?name=" + name);
         }
 
         /* Testing Purpose for now */

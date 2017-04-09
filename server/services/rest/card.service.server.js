@@ -28,6 +28,7 @@ module.exports = function (app, models) {
             supertype: 'Pokémon'
         };
 
+        criteria.subtype = req.query.subtype ? req.query.subtype : "";
         criteria.setCode = req.query.setCode ? req.query.setCode : "xyp";
         criteria.types = req.query.types ? req.query.types : "";
         criteria.name = req.query.name ? req.query.name : "";

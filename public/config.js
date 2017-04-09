@@ -45,6 +45,11 @@
                 controller: 'GameController',
                 title: 'Game'
             })
+            .when("/rating", {
+                templateUrl: 'views/pokemon/templates/rating.view.client.html',
+                controller: 'RatingController',
+                title: 'Game'
+            })
             .when("/", {
                 redirectTo: "/login"
             })
@@ -58,7 +63,7 @@
                 .isLoggedIn()
                 .then(function (response) {
                         var user = response.data;
-                        if (user != '0') {
+                        if (user !== '0') {
                             deferred.resolve();
                         } else {
                             deferred.reject();

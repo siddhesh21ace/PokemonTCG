@@ -4,9 +4,7 @@
 module.exports = function (app, models) {
     app.get("/api/pokemon", findPokemon);
     app.get("/api/pokemon/:pokemonId", findPokemonByPokeId);
-    app.put("/api/pokemon/:pokemonId", updatePokemon);
     app.post("/api/pokemon", createPokemon);
-    app.delete("/api/pokemon/:pokemonId", deletePokemon);
 
     function findPokemon(req, res) {
         var name = req.query['name'];
@@ -70,39 +68,4 @@ module.exports = function (app, models) {
             });
     }
 
-    function updatePokemon(req, res) {
-        var pokemonId = req.params['pokemonId'];
-        var updatedPokemon = req.body;
-
-        models.pokemonModel
-            .updatePokemon(pokemonId, updatedPokemon)
-            .then(function (response) {
-                if (response.nModified === 1) {
-                    models.pokemonModel
-                        .findPokemonByPokeId(pokemonId)
-                        .then(function (pokemon) {
-                            res.json(pokemon);
-                        }, function () {
-                            res.sendStatus(404);
-                        })
-                }
-                else {
-                    res.status(404).send("Pokemon update failed.");
-                }
-            }, function (error) {
-                res.sendStatus(404).send("Pokemon update failed with error: " + error);
-            });
-    }
-
-    function deletePokemon(req, res) {
-        var pokemonId = req.params['pokemonId'];
-
-        models.pokemonModel
-            .deletePokemon(pokemonId)
-            .then(function (response) {
-                res.status(200).send(response);
-            }, function (error) {
-                res.status(404).send(error);
-            });
-    }
 }

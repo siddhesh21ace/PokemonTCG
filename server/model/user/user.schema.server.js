@@ -17,8 +17,8 @@ var projectUserSchema = mongoose.Schema({
     },
     role: {type: String, enum: ['ADMIN', 'PLAYER', 'GYM-LEADER'], default: 'PLAYER'},
     dateCreated: {type: Date, default: Date.now()},
-    pokemon: [{type: mongoose.Schema.Types.ObjectId, ref: 'PokemonModel'}],
-
+    games: [{type: mongoose.Schema.Types.ObjectId, ref: 'GameModel'}],
+    cards: [String]
 }, {collection: "project.user"});
 
 // projectUserSchema.index({username:1},{unique:true});
