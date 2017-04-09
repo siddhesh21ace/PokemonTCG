@@ -23,6 +23,7 @@
         vm.showActiveCardDetails2 = showActiveCardDetails2;
         vm.showActiveCardDetails1 = showActiveCardDetails1;
         vm.activeCard={};
+        vm.winner={};
 
         function isNumber(damage) {
             if (damage === '') {
@@ -66,7 +67,9 @@
                     i++;
                 }
                 vm.player1.current = vm.player1.cards[0];
+                showActiveCardDetails1(vm.player1.current);
                 vm.player2.current = vm.player2.cards[0];
+                showActiveCardDetails2(vm.player2.current);
 
                 console.log( vm.player2.cards);
 
@@ -96,8 +99,10 @@
             if (vm.player2.current.details.hp <= 0) {
                 vm.player2.current.isAlive = false;
                 vm.player2.current = getNext(vm.player2.cards, vm.player2.current);
+                showActiveCardDetails2(vm.player2.current);
                 if(!vm.player2.current) {
                     console.log("Game Over - Player 1 won");
+                    vm.winner = 1;
                 }
             } else {
                 vm.game.player1Turn = false;
@@ -111,8 +116,10 @@
             if (vm.player1.current.details.hp <= 0) {
                 vm.player1.current.isAlive = false;
                 vm.player1.current =  getNext(vm.player1.cards, vm.player1.current);
+                showActiveCardDetails1(vm.player1.current);
                 if(!vm.player1.current) {
                     console.log("Game Over - Player 2 won");
+                    vm.winner = 2;
                 }
             } else {
                 vm.game.player1Turn = true;

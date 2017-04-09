@@ -102,13 +102,85 @@
             </p>
         </div>
     </div>
-    <hr/>
+
     <div class="reviews col-md-12">
-        <h3>Comments / Reviews</h3>
+        <div class="comments-header" style="display: inline">
+            <h3>Comments / Reviews</h3>
+            <span>
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myCommentModal" >
+                    Add Review
+                </button>
+            </span>
+        </div>
         <div class="comments-pane">
-            <p ng-repeat="evo in model.pokemon.species.evoChain" style="display: inline">
-                <a href="#" title="{{evo.species_id}}">{{evo.species_name}}</a> ===>
-            </p>
+            <hr>
+            <div class="comments" ng-repeat="review in model.reviews">
+                <h3>{{review.title}}</h3>
+                <p>{{review.comment}}</p>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myCommentModal"
+                        ng-click="model.editComment(review)">
+                    Edit Comment
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="model.deleteComment(review)">
+                    Delete Comment
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Comment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input ng-model="review.title" type="text"
+                                   class="form-control" id="title" name="title"
+                                   placeholder="Enter Title"
+                                   value="{{model.activeReview.title}}"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="review">Review</label>
+                            <textarea ng-model="review.comment"
+                                      class="form-control" id="review" name="review"
+                                      placeholder="Enter Comment">{{model.activeReview.comment}}</textarea>
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="model.error">
+                            {{model.error}}
+                        </div>
+
+                        <div class="alert alert-success" ng-show="model.message">
+                            {{model.message}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <div class="form-group">
+                    <a class="btn btn-block btn-default" data-dismiss="modal">
+                        Close
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-block btn-primary" ng-click="model.addReview(model.review)">
+                        Submit Comment
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

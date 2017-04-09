@@ -7,10 +7,21 @@
         vm.like={};
         vm.like.votes= 100;
         vm.like.userVotes = 0;
+        vm.reviews =[
+            {"_id": 1, "title": "Pika Pika", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
+            {"_id": 2, "title": "Pikachu", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
+            {"_id": 3, "title": "Pika Pika1", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
+            {"_id": 4, "title": "Pika Pika2", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
+        ];
+        vm.review = {};
+        vm.activeReview={};
         vm.getColorClass = getColorClass;
         vm.getMaxStat =getMaxStat;
         vm.getIndicator =getIndicator;
         vm.likePokemon =likePokemon;
+        vm.deleteComment =deleteComment;
+        vm.editComment = editComment;
+        vm.setActiveReview = setActiveReview;
 
         function init() {
             var pokemon = $routeParams.pokemon;
@@ -43,6 +54,14 @@
 
         init();
 
+        function deleteComment(review){
+            vm.reviews.splice(review,1);
+        }
+
+        function setActiveReview(review){
+            vm.review = review;
+        }
+
         function getColorClass(type){
 
             if (type == 'grass') {
@@ -74,6 +93,18 @@
             } else {
                 vm.like.userVotes = 1;
                 vm.like.votes++;
+            }
+        }
+
+        function editComment(review){
+            vm.review = review;
+            vm.activeReview = review;
+            console.log("review ", review, vm.review);
+
+            for(r in vm.reviews){
+                if(vm.reviews[r]._id === vm.review._id){
+                    vm.reviews[r] = vm.review;
+                }
             }
         }
 

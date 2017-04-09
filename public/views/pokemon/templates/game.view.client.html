@@ -35,25 +35,41 @@
     <!--</div>-->
 
 <!--</div>-->
-<div class="container" ng-controller="GameController as model">
+<div class="container game" ng-controller="GameController as model">
+    <h1 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard1.details.name)">
+        {{ model.activeCard1.details.name }} v/s {{ model.activeCard2.details.name }}
+         | Turn : Trainer <span ng-show="model.game.player1Turn"> 1</span> <span ng-show="!model.game.player1Turn">2</span>
+    </h1>
+    <h1 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h1>
+    <h1 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Trainer 2 Win !!</h1>
     <div class="container opponent-area">
-        <div class="card-deck-opponent text-center" ng-repeat="card in model.player1.cards" style="display: inline;">
-            <img ng-src="{{card.details.imageUrl}}" width="150" height="180"
-                 ng-click="model.showActiveCardDetails1(card); model.attack1(attack.damage)"
-                 ng-disabled="!model.game.player1Turn || card != model.player1.current">
+        <div class="card-deck-opponent text-center thumbnail" >
+            <div class="image" ng-repeat="card in model.player1.cards">
+                <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
+                     ng-class="{ 'active1' : card == model.player1.current}"
+                     ng-disabled="!model.game.player1Turn || card != model.player1.current">
+            </div>
         </div>
         <hr class="text-center">
-
-        <div ng-repeat="attack in model.activeCard1.details.attacks">
-            <button ng-show="model.isNumber(attack.damage)"
-                    ng-click="model.attack2(attack.damage)">
-                {{ attack.name}}{{attack.damage}}
-            </button>
+        <div class="attacks" style="display: inline">
+            <h4 style="display: inline">Attacks   </h4>
+            <div ng-repeat="attack in model.activeCard1.details.attacks" style="display: inline">
+                <button ng-show="model.isNumber(attack.damage)"
+                        ng-click="model.attack1(attack.damage)"
+                        class="btn btn-sm btn-danger"
+                        ng-disabled="!model.game.player1Turn || model.activeCard1 != model.player1.current">
+                    {{ attack.name}} ({{attack.damage}})
+                </button>
+            </div>
         </div>
         <div class="score-opponent text-center">
-            <div>{{ model.activeCard1.isAlive }}</div>
-            <div>{{ model.activeCard1.details.name }}</div>
-            <div>{{ model.activeCard1.details.hp }}</div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="400"
+                     style="width: {{model.activeCard1.details.hp }}%; height: 20px;">
+                    {{model.activeCard1.details.hp}} Left
+                </div>
+            </div>
         </div>
     </div>
 
@@ -65,24 +81,37 @@
     <div class="container player-area text-center">
 
         <div class="score-player text-center">
-            <div>{{ model.activeCard2.isAlive }}</div>
-            <div>{{ model.activeCard2.details.name }}</div>
-            <div>{{ model.activeCard2.details.hp }}</div>
-
-            <div ng-repeat="attack in model.activeCard2.details.attacks">
-                <button ng-show="model.isNumber(attack.damage)"
-                        ng-click="model.attack2(attack.damage);model.attack2(attack.damage)">
-                    {{ attack.name}}{{attack.damage}}
-                </button>
+            <div class="activeCard2">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="400"
+                         style="width: {{model.activeCard2.details.hp}}%">
+                        {{ model.activeCard2.details.hp }} Left
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="attacks" style="display: inline">
+                <h4 style="display: inline">Attacks   </h4>
+                <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
+                    <button class="btn btn-sm btn-danger" style="display:inline"
+                            ng-show="model.isNumber(attack.damage)"
+                            ng-click="model.attack2(attack.damage);"
+                            ng-disabled="model.game.player1Turn || model.activeCard2 != model.player2.current">
+                        {{ attack.name}} ({{attack.damage}})
+                    </button>
+                </div>
             </div>
         </div>
         <hr class="text-center">
-        <div class="card-deck-player text-center" style="display: inline;" ng-repeat="card in model.player2.cards">
-            <img ng-src="{{card.details.imageUrl}}"
-                 width="150" height="180"
-                 ng-class="{ 'active2' : card == model.player2.current}"
-                 ng-click="model.showActiveCardDetails2(card)"
-                 ng-disabled="model.game.player1Turn || card != model.player2.current">
+        <div class="card-deck-player text-center thumbnail">
+            <div class="image" ng-repeat="card in model.player2.cards">
+                <img ng-src="{{card.details.imageUrl}}"
+                     width="150"
+                     height="180"
+                     ng-class="{ 'active2' : card == model.player2.current}"
+                     ng-disabled="model.game.player1Turn || card != model.player2.current">
+            </div>
         </div>
     </div>
 </div>
