@@ -11,7 +11,7 @@
 }
 .tagcloud ul li {
     float: left;
-    width: 150px;
+    width: 120px;
     margin: 0 10px 10px 0;
     padding: 0;
 }
@@ -94,6 +94,54 @@
     padding-top: 20px;
     width: 100%;
 }
+
+.playing-mat{
+    position: static;
+    background-color: transparent;
+}
+
+.center-pokeball{
+    position: relative;
+    z-index: 1000;
+}
+
+hr.center-line{
+    width: 100%;
+    margin-top: -8%;
+    z-index: 100;
+}
+
+.card-deck-player{
+    align: center;
+
+}
+
+.player-area{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.opponent-area{
+    margin-top: 50px;
+    text-align: center;
+}
+
+a .glyphicon {
+    color: gray;
+    text-decoration: none !important;
+    transition: all .5s;
+    font-size: 25px;
+}
+a .glyphicon-heart{
+     color: #e74c3c;
+    /*font-size: 50px;*/
+ }
+
+a .glyphicon-heart-empty:hover{
+     transform:scale(1.1);
+ }
+
+
 
 
 

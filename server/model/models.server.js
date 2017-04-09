@@ -22,7 +22,7 @@ module.exports = function() {
         pokemonModel: pokemonModel
     };
 
-    pokemonModel.setModel(model);
+    pokemonModel.setModel(models);
 
     return models;
 

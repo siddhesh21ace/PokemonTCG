@@ -12,58 +12,130 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input ng-model="model.user.username" type="text"
-                       class="form-control" id="username" name="username"
-                       placeholder="Username"/>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input ng-model="model.user.email" type="email"
-                       class="form-control" id="email" name="email"
-                       placeholder="Email"/>
-            </div>
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input ng-model="model.user.firstName" type="text"
-                       class="form-control" id="first-name"
-                       name="first-name" placeholder="First Name"/>
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input ng-model="model.user.lastName" type="text"
-                       class="form-control" id="last-name" name="last-name"
-                       placeholder="Last Name"/>
-            </div>
 
-            <div class="alert alert-danger" ng-show="model.error">
-                {{model.error}}
+    <div class="container">
+        <div class="userProfile">
+            <div class="userImage col-md-4">
+                <img src="../../images/placeholder-user.png" height="200" width="200" style="margin-top:20px"/>
             </div>
-
-            <div class="alert alert-success" ng-show="model.message">
-                {{model.message}}
+            <div class="userDetails col-md-8">
+                <h1>{{model.user.firstName}} {{model.user.lastName}} </h1>
+                <h3>Username: {{model.user.username}}</h3>
+                <h3>Email: {{model.user.email}}</h3>
+                <p></p>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+                    Edit Profile
+                </button>
+                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" ng-click="model.deleteUser()">
+                    Unregister
+                </button>
             </div>
-
-            <div class="form-group">
-                <a class="btn btn-block btn-primary" ng-click="model.update(model.user)">
-                    Update
-                </a>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-block btn-warning" ng-click="model.logout()">
-                    Logout
-                </a>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-block btn-danger" ng-click="model.deleteUser()">
-                    Delete
-                </a>
-            </div>
-        </form>
+        </div>
     </div>
+    <hr>
+    <div class="container">
+        <div class="userLikes col-md-12">
+            <h1>Liked Pokemons</h1>
+            <a ng-click="model.getMoreInfo(pokemon)" ng-repeat="pokemon in model.likedPokemons" class="col-md-3 text-center">
+                <img ng-src="{{pokemon.image}}">
+                <h4 class="text-center">{{pokemon.name}}#{{pokemon.id}}</h4>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="userLikes col-md-12">
+            <h1>Cards Collected</h1>
+            <br>
+            <a ng-click="" ng-repeat="card in model.collectedCards" class="col-md-3 text-center">
+                <img ng-src="{{card.imageUrl}}" style="width:90%">
+                <h4 class="text-center">{{card.name}} | HP - {{card.hp}}</h4>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input ng-model="model.user.username" type="text"
+                                       class="form-control" id="username" name="username"
+                                       placeholder="Username"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input ng-model="model.user.email" type="email"
+                                       class="form-control" id="email" name="email"
+                                       placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input ng-model="model.user.firstName" type="text"
+                                       class="form-control" id="first-name"
+                                       name="first-name" placeholder="First Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input ng-model="model.user.lastName" type="text"
+                                       class="form-control" id="last-name" name="last-name"
+                                       placeholder="Last Name"/>
+                            </div>
+
+                            <div class="alert alert-danger" ng-show="model.error">
+                                {{model.error}}
+                            </div>
+
+                            <div class="alert alert-success" ng-show="model.message">
+                                {{model.message}}
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                    <div class="form-group">
+                        <a class="btn btn-block btn-default" ng-click="model.update(model.user)" data-dismiss="modal">
+                            Close
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-block btn-primary" ng-click="model.update(model.user)">
+                            Update
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-block btn-success" ng-click="model.showPokedex(model.user)">
+                            Pokedex
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-block btn-warning" ng-click="model.logout()">
+                            Logout
+                        </a>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<a class="btn btn-block btn-danger" ng-click="model.deleteUser()">-->
+                            <!--Delete-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">

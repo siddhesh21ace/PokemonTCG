@@ -6,7 +6,7 @@
         .service("PokemonTCGService", pokemonTCGService);
 
     function pokemonTCGService($http) {
-        var endPoint = "/api/card?";
+        var endPoint = "/rest/api/card?";
         var setsURL = "https://api.pokemontcg.io/v1/sets";
 
         var api = {
@@ -27,7 +27,7 @@
         }
         
         function getAllPokemons() {
-            return $http.get("/api/card");
+            return $http.get("/rest/api/card");
         }
     }
 })();

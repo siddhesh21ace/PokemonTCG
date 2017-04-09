@@ -1,38 +1,88 @@
-<div class="container-fluid" ng-controller="GameController as model">
-    <div class="row">
-        <div class="col-sm-6">
-            <div ng-repeat="card in model.player1.cards">
-                <div ng-class="{ 'active1' : card == model.player1.current}">
-                    <div>{{ card.isAlive }}</div>
-                    <div>{{ card.details.name }}</div>
-                    <div>{{ card.details.hp }}</div>
-                    <div ng-repeat="attack in card.details.attacks">
-                        <button ng-show="model.isNumber(attack.damage)"
-                                ng-click="model.attack1(attack.damage)"
-                                ng-disabled="!model.game.player1Turn || card != model.player1.current">
-                            {{ attack.name}}{{attack.damage}}
-                        </button>
-                    </div>
-                </div>
-            </div>
+<!--<div class="container-fluid" ng-controller="GameController as model">-->
+    <!--<div class="row">-->
+        <!--<div class="col-sm-6">-->
+            <!--<div ng-repeat="card in model.player1.cards">-->
+                <!--<div ng-class="{ 'active1' : card == model.player1.current}">-->
+                    <!--<div>{{ card.isAlive }}</div>-->
+                    <!--<div>{{ card.details.name }}</div>-->
+                    <!--<div>{{ card.details.hp }}</div>-->
+                    <!--<div ng-repeat="attack in card.details.attacks">-->
+                        <!--<button ng-show="model.isNumber(attack.damage)"-->
+                                <!--ng-click="model.attack1(attack.damage)"-->
+                                <!--ng-disabled="!model.game.player1Turn || card != model.player1.current">-->
+                            <!--{{ attack.name}}{{attack.damage}}-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+            <!--<div ng-repeat="card in model.player2.cards">-->
+                <!--<div ng-class="{ 'active2' : card == model.player2.current}">-->
+                    <!--<div>{{ card.isAlive }}</div>-->
+                    <!--<div>{{ card.details.name }}</div>-->
+                    <!--<div>{{ card.details.hp }}</div>-->
+                    <!--<div ng-repeat="attack in card.details.attacks">-->
+                        <!--<button ng-show="model.isNumber(attack.damage)"-->
+                                <!--ng-click="model.attack2(attack.damage)"-->
+                                <!--ng-disabled="model.game.player1Turn || card != model.player2.current">-->
+                            <!--{{ attack.name}}{{attack.damage}}-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+<div class="container" ng-controller="GameController as model">
+    <div class="container opponent-area">
+        <div class="card-deck-opponent text-center" ng-repeat="card in model.player1.cards" style="display: inline;">
+            <img ng-src="{{card.details.imageUrl}}" width="150" height="180"
+                 ng-click="model.showActiveCardDetails1(card); model.attack1(attack.damage)"
+                 ng-disabled="!model.game.player1Turn || card != model.player1.current">
         </div>
-        <div class="col-sm-6">
-            <div ng-repeat="card in model.player2.cards">
-                <div ng-class="{ 'active2' : card == model.player2.current}">
-                    <div>{{ card.isAlive }}</div>
-                    <div>{{ card.details.name }}</div>
-                    <div>{{ card.details.hp }}</div>
-                    <div ng-repeat="attack in card.details.attacks">
-                        <button ng-show="model.isNumber(attack.damage)"
-                                ng-click="model.attack2(attack.damage)"
-                                ng-disabled="model.game.player1Turn || card != model.player2.current">
-                            {{ attack.name}}{{attack.damage}}
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <hr class="text-center">
+
+        <div ng-repeat="attack in model.activeCard1.details.attacks">
+            <button ng-show="model.isNumber(attack.damage)"
+                    ng-click="model.attack2(attack.damage)">
+                {{ attack.name}}{{attack.damage}}
+            </button>
+        </div>
+        <div class="score-opponent text-center">
+            <div>{{ model.activeCard1.isAlive }}</div>
+            <div>{{ model.activeCard1.details.name }}</div>
+            <div>{{ model.activeCard1.details.hp }}</div>
         </div>
     </div>
 
-</div>
+    <div class="container playing-mat text-center">
+        <img class="center-pokeball" ng-src="../../images/Pokeball.png" width="200" height="200">
+        <hr class="text-center center-line">
+    </div>
 
+    <div class="container player-area text-center">
+
+        <div class="score-player text-center">
+            <div>{{ model.activeCard2.isAlive }}</div>
+            <div>{{ model.activeCard2.details.name }}</div>
+            <div>{{ model.activeCard2.details.hp }}</div>
+
+            <div ng-repeat="attack in model.activeCard2.details.attacks">
+                <button ng-show="model.isNumber(attack.damage)"
+                        ng-click="model.attack2(attack.damage);model.attack2(attack.damage)">
+                    {{ attack.name}}{{attack.damage}}
+                </button>
+            </div>
+        </div>
+        <hr class="text-center">
+        <div class="card-deck-player text-center" style="display: inline;" ng-repeat="card in model.player2.cards">
+            <img ng-src="{{card.details.imageUrl}}"
+                 width="150" height="180"
+                 ng-class="{ 'active2' : card == model.player2.current}"
+                 ng-click="model.showActiveCardDetails2(card)"
+                 ng-disabled="model.game.player1Turn || card != model.player2.current">
+        </div>
+    </div>
+</div>

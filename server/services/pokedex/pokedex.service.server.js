@@ -32,7 +32,7 @@ module.exports = function (app, model) {
     function getAllPokemons(req,res){
         P.getPokemonsList() // with Promise
             .then(function(response) {
-                console.log("response ", response.results);
+                //console.log("response ", response.results);
                 res.json(response.results);
             })
             .catch(function(error) {
@@ -42,12 +42,12 @@ module.exports = function (app, model) {
     }
     function fetchPokemons(req, res){
         var str = req.params.str;
-        console.log('str '+ str);
+        //console.log('str '+ str);
 
         model.pokemonModel.fetchPokemons(str)
                     .then(
                         function(pokemons){
-                            console.log(pokemons);
+                            //console.log(pokemons);
                             res.send(pokemons);
                         },
                         function(error){
@@ -73,7 +73,7 @@ module.exports = function (app, model) {
     function getPokemonDetails(req, res){
         var name =req.params.pokemon;
 
-        console.log(name);
+       // console.log(name);
 
         P.getPokemonByName(name) // with Promise
             .then(function(response) {
@@ -95,7 +95,7 @@ module.exports = function (app, model) {
 
             P.getPokemonByName(query) // with Promise
                 .then(function(response) {
-                    console.log(response);
+                    //console.log(response);
                     res.json(response);
                 })
                 .catch(function(error) {
@@ -107,7 +107,7 @@ module.exports = function (app, model) {
             P.getEvolutionTriggerByName("level-up")
                 .then(function(response) {
                     res.json(response);
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function(error) {
                     res.sendStatus(404);
@@ -117,7 +117,7 @@ module.exports = function (app, model) {
             P.getLocationsList()
                 .then(function(response) {
                     res.send(response);
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function(error) {
                     res.sendStatus(404);
@@ -129,7 +129,7 @@ module.exports = function (app, model) {
             P.getContestTypesList()
                 .then(function(response) {
                     res.send(response);
-                    console.log(response);
+                    //console.log(response);
                 })
                 .catch(function(error) {
                     res.sendStatus(404);
@@ -140,7 +140,7 @@ module.exports = function (app, model) {
             P.getMovesList()
                 .then(function(response) {
                     res.send(response);
-                    console.log(response);
+                   // console.log(response);
                 })
                 .catch(function(error) {
                     res.sendStatus(404);

@@ -4,9 +4,13 @@
 
     function pokemonInfoController(PokeDexService, $routeParams) {
         var vm = this;
+        vm.like={};
+        vm.like.votes= 100;
+        vm.like.userVotes = 0;
         vm.getColorClass = getColorClass;
         vm.getMaxStat =getMaxStat;
         vm.getIndicator =getIndicator;
+        vm.likePokemon =likePokemon;
 
         function init() {
             var pokemon = $routeParams.pokemon;
@@ -57,6 +61,19 @@
                 return "ground";
             } else if(type == 'flying') {
                 return "flying";
+            }
+
+
+        }
+
+        function likePokemon(){
+            console.log("In like pokemon");
+            if(vm.like.userVotes == 1){
+               vm.like.userVotes = 0;
+               vm.like.votes--;
+            } else {
+                vm.like.userVotes = 1;
+                vm.like.votes++;
             }
         }
 

@@ -20,6 +20,10 @@
         vm.attack2 = attack2;
         vm.isNumber = isNumber;
 
+        vm.showActiveCardDetails2 = showActiveCardDetails2;
+        vm.showActiveCardDetails1 = showActiveCardDetails1;
+        vm.activeCard={};
+
         function isNumber(damage) {
             if (damage === '') {
                 return false;
@@ -30,6 +34,14 @@
             }
         }
 
+        function showActiveCardDetails1(card){
+            vm.activeCard1 = card;
+        }
+
+        function showActiveCardDetails2(card){
+            vm.activeCard2 = card;
+        }
+
         function init() {
             PokemonTCGService.getAllPokemons().then(function (response) {
                 vm.cards = response.data;
@@ -38,7 +50,7 @@
                 shuffle();
 
                 var i = 0;
-                while (i < 3) {
+                while (i < 5) {
                     vm.player1.cards.push({
                         "isAlive": true,
                         "details": vm.cards[i]
@@ -46,7 +58,7 @@
                     i++;
                 }
 
-                while (i < 6) {
+                while (i < 10) {
                     vm.player2.cards.push({
                         "isAlive": true,
                         "details": vm.cards[i]
@@ -55,6 +67,9 @@
                 }
                 vm.player1.current = vm.player1.cards[0];
                 vm.player2.current = vm.player2.cards[0];
+
+                console.log( vm.player2.cards);
+
             }, function (error) {
                 vm.error = error.data;
                 console.log(error);

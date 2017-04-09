@@ -1,7 +1,7 @@
 module.exports = function (app) {
-    var model = require ("./model/models.server.js")();
+    var models = require ("./model/models.server.js")();
 
-    require("./services/pokedex/pokedex.service.server")(app, model);
+    require("./services/pokedex/pokedex.service.server")(app, models);
     require("./services/pokemon/rest/card.service.server")(app, models);
     require("./services/pokemon/rest/pokemon.service.server")(app, models);
     require("./services/user.service.server")(app, models);

@@ -19,7 +19,7 @@
         return api;
 
         function fetchPokemonDetails(pokemon){
-            return $http.get("/api/pokemon/"+pokemon);
+            return $http.get("/rest/api/pokemon/"+pokemon);
         }
 
         function getPokemonsThumbs(){

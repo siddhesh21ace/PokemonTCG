@@ -40,6 +40,7 @@ module.exports = function (app, models) {
         pokemon.card.where(criteria)
             .then(function (response) {
                 cleanUpData(response);
+                console.log(response);
                 res.json(response);
             }, function (error) {
                 console.log(error);

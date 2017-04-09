@@ -1,6 +1,3 @@
-/**
- * Created by Siddhesh on 4/8/2017.
- */
 module.exports = function (app, models) {
     app.get("/api/pokemon", findPokemon);
     app.get("/api/pokemon/:pokemonId", findPokemonByPokeId);

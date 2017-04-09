@@ -9,7 +9,19 @@
             <img ng-src="{{model.pokemon.img}}"
                  class="img-responsive"/>
             <div class="social" style="text-align:center">
-                <span><a class="like"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a></span>
+                <!--<span><a class="like"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a></span>-->
+                <span>
+                    <a ng-click="model.likePokemon()">
+                        <i class="glyphicon"
+                           ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
+                           aria-hidden="true"
+                          ></i>
+                    </a>
+                     <span ng-model="like.votes"
+                           ng-if="model.like.votes > 0"
+                           style="color: black"
+                     >{{model.like.votes}} users like this Pokemon</span>
+                </span>
             </div>
         </div>
         <div class="col-md-8">
@@ -85,6 +97,15 @@
     <div class="evolution col-md-12">
         <h3>Evolution</h3>
         <div class="evolution-pane">
+            <p ng-repeat="evo in model.pokemon.species.evoChain" style="display: inline">
+                <a href="#" title="{{evo.species_id}}">{{evo.species_name}}</a> ===>
+            </p>
+        </div>
+    </div>
+    <hr/>
+    <div class="reviews col-md-12">
+        <h3>Comments / Reviews</h3>
+        <div class="comments-pane">
             <p ng-repeat="evo in model.pokemon.species.evoChain" style="display: inline">
                 <a href="#" title="{{evo.species_id}}">{{evo.species_name}}</a> ===>
             </p>
