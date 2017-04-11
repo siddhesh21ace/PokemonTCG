@@ -5,7 +5,7 @@
     angular.module("PokemonWorld")
         .controller("GameController", gameController);
 
-    function gameController(PokemonTCGService) {
+    function gameController(PokemonTCGService, $rootScope) {
         var vm = this;
         vm.player1 = {};
         vm.player2 = {};
@@ -22,6 +22,7 @@
 
         vm.showActiveCardDetails2 = showActiveCardDetails2;
         vm.showActiveCardDetails1 = showActiveCardDetails1;
+        vm.getHp = getHp;
         vm.activeCard={};
         vm.winner={};
 
@@ -132,6 +133,10 @@
                 return null;
             }
             return playerCards[nextIndex];
+        }
+
+        function getHp(stat){
+           return (stat/200) * 100;
         }
 
         /*startGame();

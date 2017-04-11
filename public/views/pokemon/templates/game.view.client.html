@@ -36,7 +36,7 @@
 
 <!--</div>-->
 <div class="container game" ng-controller="GameController as model">
-    <h1 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard1.details.name)">
+    <h1 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
         {{ model.activeCard1.details.name }} v/s {{ model.activeCard2.details.name }}
          | Turn : Trainer <span ng-show="model.game.player1Turn"> 1</span> <span ng-show="!model.game.player1Turn">2</span>
     </h1>
@@ -57,16 +57,17 @@
                 <button ng-show="model.isNumber(attack.damage)"
                         ng-click="model.attack1(attack.damage)"
                         class="btn btn-sm btn-danger"
-                        ng-disabled="!model.game.player1Turn || model.activeCard1 != model.player1.current">
+                        ng-disabled="!model.game.player1Turn || model.activeCard1 != model.player1.current || model.winner == 1">
                     {{ attack.name}} ({{attack.damage}})
                 </button>
             </div>
         </div>
         <div class="score-opponent text-center">
             <div class="progress">
-                <div class="progress-bar" role="progressbar"
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
                      aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="400"
-                     style="width: {{model.activeCard1.details.hp }}%; height: 20px;">
+                     style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
                     {{model.activeCard1.details.hp}} Left
                 </div>
             </div>
@@ -74,7 +75,7 @@
     </div>
 
     <div class="container playing-mat text-center">
-        <img class="center-pokeball" ng-src="../../images/Pokeball.png" width="200" height="200">
+        <img class="center-pokeball" ng-src="../../images/Pokeball.png" width="100" height="100">
         <hr class="text-center center-line">
     </div>
 
@@ -84,8 +85,9 @@
             <div class="activeCard2">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar"
+                         ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard2.details.hp) <= 20)};"
                          aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="400"
-                         style="width: {{model.activeCard2.details.hp}}%">
+                         style="width: {{model.getHp(model.activeCard2.details.hp)}}%">
                         {{ model.activeCard2.details.hp }} Left
                     </div>
                 </div>
@@ -97,7 +99,7 @@
                     <button class="btn btn-sm btn-danger" style="display:inline"
                             ng-show="model.isNumber(attack.damage)"
                             ng-click="model.attack2(attack.damage);"
-                            ng-disabled="model.game.player1Turn || model.activeCard2 != model.player2.current">
+                            ng-disabled="model.game.player1Turn || model.activeCard2 != model.player2.current || model.winner == 2">
                         {{ attack.name}} ({{attack.damage}})
                     </button>
                 </div>

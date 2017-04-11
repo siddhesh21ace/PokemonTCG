@@ -1,7 +1,7 @@
 module.exports = function(app){
     var mongoose = require('mongoose');
     var PokemonSchema = require("./pokedex.schema.server")();
-    var PokemonModel = mongoose.model('PokemonModel', PokemonSchema);
+    var PokeDexModel = mongoose.model('PokeDexModel', PokemonSchema);
 
     var model={};
 
@@ -19,16 +19,16 @@ module.exports = function(app){
     }
 
     function createPokemons(pokemon){
-        return PokemonModel.create(pokemon);
+        return PokeDexModel.create(pokemon);
     }
 
 
     function fetchPokemons(str){
-        return PokemonModel.find({ name : { $regex: str}});
+        return PokeDexModel.find({ name : { $regex: str}});
     }
 
     function fetchAllPokemons(){
-        return PokemonModel.find();
+        return PokeDexModel.find();
     }
 
 }

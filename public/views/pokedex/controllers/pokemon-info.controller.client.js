@@ -2,11 +2,12 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController(PokeDexService, $routeParams) {
+    function pokemonInfoController(PokeDexService, $routeParams, $rootScope) {
         var vm = this;
         vm.like={};
-        vm.like.votes= 100;
+        vm.like.votes= 100 ;
         vm.like.userVotes = 0;
+        console.log('rootUser ', $rootScope.currentUser );
         vm.reviews =[
             {"_id": 1, "title": "Pika Pika", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
             {"_id": 2, "title": "Pikachu", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
@@ -117,11 +118,7 @@
         }
 
         function getIndicator(stat){
-            if(stat >= 90){
-                return 90;
-            } else {
-                return stat;
-            }
+            return (stat/200) * 100;
         }
     }
 

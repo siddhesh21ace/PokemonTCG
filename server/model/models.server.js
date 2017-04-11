@@ -15,7 +15,7 @@ module.exports = function() {
     mongoose.connect(connectionString);
 
     var userModel = require("./user/user.model.server")();
-    var pokedexModel = require ("./pokemon/pokedex.model.server")();
+    var pokedexModel = require ("./pokedex/pokedex.model.server")();
     var pokemonModel = require("./pokemon/pokemon.model.server")();
     var likeModel = require("./like/like.model.server")();
     var gameModel = require("./game/game.model.server")();
@@ -32,7 +32,7 @@ module.exports = function() {
         cardModel: cardModel
     };
 
-    pokemonModel.setModel(models);
+    pokedexModel.setModel(models);
 
     return models;
 

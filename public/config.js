@@ -40,10 +40,13 @@
                 controller: 'PokemonController',
                 title: 'Pokemon'
             })
-            .when("/game", {
+            .when("/user/:uid/game", {
                 templateUrl: 'views/pokemon/templates/game.view.client.html',
                 controller: 'GameController',
-                title: 'Game'
+                title: 'Game',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
             })
             .when("/pokedex", {
                 templateUrl: 'views/pokedex/templates/pokedex.view.client.html',
@@ -54,42 +57,44 @@
                 templateUrl: 'views/pokedex/templates/pokemon-info.view.client.html',
                 controller: "PokemonInfoController",
                 title: 'Pokemon Details'
-                    .when("/rating", {
-                        templateUrl: 'views/pokemon/templates/rating.view.client.html',
-                        controller: 'RatingController',
-                        title: 'Game'
-                    })
-                    .when("/", {
-                        redirectTo: "/login"
-                    })
-                    .otherwise({
-                        redirectTo: "/"
-                    })
+            })
+            .when("/rating", {
+            templateUrl: 'views/pokemon/templates/rating.view.client.html',
+            controller: 'RatingController',
+            title: 'Game'
+            })
+            .when("/", {
+                redirectTo: "/login"
+            })
+            .otherwise({
+                redirectTo: "/"
             });
 
-        function isLoggedIn($q, UserService, $location) {
-            var deferred = $q.defer();
-            UserService
-                .isLoggedIn()
-                .then(function (response) {
-                        var user = response.data;
-                        if (user !== '0') {
-                            deferred.resolve();
-                        } else {
-                            deferred.reject();
-                            $location.url("/login");
-                        }
+    }
+
+    function isLoggedIn($q, UserService, $location, $rootScope) {
+        var deferred = $q.defer();
+        UserService
+            .isLoggedIn()
+            .then(function (response) {
+                $rootScope.errorMessage = null;
+                    var user = response.data;
+                    if (user !== '0') {
+                        $rootScope.currentUser =user;
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url("/login");
                     }
-                );
-            return deferred.promise;
-        }
+                }
+            );
+        return deferred.promise;
+    }
 
-        function setPageTitle($rootScope) {
-            $rootScope.$on('$routeChangeSuccess', function (event, current) {
-                $rootScope.title = current.$$route.title;
-            });
-        }
-
+    function setPageTitle($rootScope) {
+        $rootScope.$on('$routeChangeSuccess', function (event, current) {
+            $rootScope.title = current.$$route.title;
+        });
     }
 
 })();
