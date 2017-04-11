@@ -44,7 +44,7 @@ module.exports = function (app, model) {
         var str = req.params.str;
         //console.log('str '+ str);
 
-        model.pokemonModel.fetchPokemons(str)
+        model.pokedexModel.fetchPokemons(str)
                     .then(
                         function(pokemons){
                             //console.log(pokemons);
@@ -58,7 +58,7 @@ module.exports = function (app, model) {
 
 
     function fetchAllPokemons(req, res){
-        model.pokemonModel.fetchAllPokemons()
+        model.pokedexModel.fetchAllPokemons()
             .then(
                 function(pokemons){
                     res.send(pokemons);

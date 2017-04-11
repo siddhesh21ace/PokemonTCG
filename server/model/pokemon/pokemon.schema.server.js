@@ -7,7 +7,6 @@ var projectPokemonSchema = mongoose.Schema({
     poke_id: String,
     name: String,
     type: [String],
-    user: [{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
 }, {collection: "project.pokemon"});
 
 // projectPokemonSchema.index({id:1},{unique:true});

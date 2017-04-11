@@ -13,8 +13,7 @@
             "getAllSets": getAllSets,
             "getPokemonsBySet": getPokemonsBySet,
             "getAllPokemons": getAllPokemons
-
-        }
+        };
         return api;
 
         /* Testing Purpose for now */

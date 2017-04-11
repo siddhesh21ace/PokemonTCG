@@ -11,8 +11,6 @@ module.exports = function () {
         "findPokemonById": findPokemonById,
         "findPokemonByPokeId": findPokemonByPokeId,
         "findPokemonByName": findPokemonByName,
-        "deletePokemon": deletePokemon,
-        "updatePokemon": updatePokemon,
         "getAllPokemons": getAllPokemons
     };
 
@@ -36,15 +34,6 @@ module.exports = function () {
         return PokemonModel.find({"name": {
             $regex: new RegExp(name, "ig")
         }});
-    }
-
-    function deletePokemon(pokemonId) {
-        return PokemonModel.remove({"poke_id": pokemonId});
-    }
-
-    function updatePokemon(pokemonId, updatedPokemon) {
-        delete updatedPokemon._id;
-        return PokemonModel.update({"poke_id": pokemonId}, {$set: updatedPokemon});
     }
 
     function getAllPokemons() {

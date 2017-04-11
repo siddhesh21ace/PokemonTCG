@@ -47,17 +47,24 @@
             })
             .when("/pokedex", {
                 templateUrl: 'views/pokedex/templates/pokedex.view.client.html',
-                controller: 'PokedexController'
+                controller: 'PokedexController',
+                title: 'Pokedex'
             })
             .when("/pokemon-info/:pokemon", {
                 templateUrl: 'views/pokedex/templates/pokemon-info.view.client.html',
-                controller: "PokemonInfoController"
-            })
-            .when("/", {
-                redirectTo: "/login"
-            })
-            .otherwise({
-                redirectTo: "/"
+                controller: "PokemonInfoController",
+                title: 'Pokemon Details'
+                    .when("/rating", {
+                        templateUrl: 'views/pokemon/templates/rating.view.client.html',
+                        controller: 'RatingController',
+                        title: 'Game'
+                    })
+                    .when("/", {
+                        redirectTo: "/login"
+                    })
+                    .otherwise({
+                        redirectTo: "/"
+                    })
             });
 
         function isLoggedIn($q, UserService, $location) {
@@ -66,7 +73,7 @@
                 .isLoggedIn()
                 .then(function (response) {
                         var user = response.data;
-                        if (user != '0') {
+                        if (user !== '0') {
                             deferred.resolve();
                         } else {
                             deferred.reject();
@@ -76,12 +83,13 @@
                 );
             return deferred.promise;
         }
-    }
 
-    function setPageTitle($rootScope) {
-        $rootScope.$on('$routeChangeSuccess', function (event, current) {
-            $rootScope.title = current.$$route.title;
-        });
+        function setPageTitle($rootScope) {
+            $rootScope.$on('$routeChangeSuccess', function (event, current) {
+                $rootScope.title = current.$$route.title;
+            });
+        }
+
     }
 
 })();

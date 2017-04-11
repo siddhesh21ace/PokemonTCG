@@ -12,7 +12,8 @@ module.exports = function () {
         updateUser: updateUser,
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId: findUserByGoogleId,
-        getAllUsers: getAllUsers
+        getAllUsers: getAllUsers,
+        getAllPlayers: getAllPlayers
     };
 
     return api;
@@ -53,6 +54,10 @@ module.exports = function () {
 
     function getAllUsers() {
         return UserModel.find();
+    }
+
+    function getAllPlayers() {
+        return UserModel.find({"role": "PLAYER"});
     }
 
 };
