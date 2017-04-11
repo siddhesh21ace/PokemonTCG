@@ -41,7 +41,7 @@
          | Turn : Trainer <span ng-show="model.game.player1Turn"> 1</span> <span ng-show="!model.game.player1Turn">2</span>
     </h1>
     <h1 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h1>
-    <h1 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Trainer 2 Win !!</h1>
+    <h1 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Computer Win !!</h1>
     <div class="container opponent-area">
         <div class="card-deck-opponent text-center thumbnail" >
             <div class="image" ng-repeat="card in model.player1.cards">
@@ -75,7 +75,14 @@
     </div>
 
     <div class="container playing-mat text-center">
-        <img class="center-pokeball" ng-src="../../images/Pokeball.png" width="100" height="100">
+        <img class="center-pokeball" ng-src="../../images/Pokeball.png"
+             ng-show="model.goku==false"
+             width="100" height="100">
+        <img class="center-pokeball" ng-src="../../images/goku-attack.gif"
+             ng-show="model.goku==true"
+             width="200" height="200">
+        <h1 ng-show="model.goku==true">{{model.computerMessage}}</h1>
+
         <hr class="text-center center-line">
     </div>
 
@@ -99,7 +106,7 @@
                     <button class="btn btn-sm btn-danger" style="display:inline"
                             ng-show="model.isNumber(attack.damage)"
                             ng-click="model.attack2(attack.damage);"
-                            ng-disabled="model.game.player1Turn || model.activeCard2 != model.player2.current || model.winner == 2">
+                            ng-disabled="true">
                         {{ attack.name}} ({{attack.damage}})
                     </button>
                 </div>

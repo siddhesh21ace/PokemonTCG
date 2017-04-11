@@ -5,7 +5,7 @@
     angular.module("PokemonWorld")
         .controller("GameController", gameController);
 
-    function gameController(PokemonTCGService, $rootScope) {
+    function gameController(PokemonTCGService, $rootScope, $timeout) {
         var vm = this;
         vm.player1 = {};
         vm.player2 = {};
@@ -17,14 +17,16 @@
         vm.game = {};
         vm.game.player1Turn = true;
         vm.attack1 = attack1;
-        vm.attack2 = attack2;
+        //vm.attack2 = attack2;
         vm.isNumber = isNumber;
 
         vm.showActiveCardDetails2 = showActiveCardDetails2;
         vm.showActiveCardDetails1 = showActiveCardDetails1;
+        vm.getDamage = getDamage;
         vm.getHp = getHp;
         vm.activeCard={};
         vm.winner={};
+        vm.goku = false;
 
         function isNumber(damage) {
             if (damage === '') {
@@ -107,24 +109,72 @@
                 }
             } else {
                 vm.game.player1Turn = false;
+                //$timeout(vm.attack2(getDamage(vm.activeCard2.details.attacks)), 5000);
+
+                vm.goku = true;
+                vm.computerMessage= "Computer Deciding an Attack !!";
+                var attack = getDamage(vm.activeCard2.details.attacks);
+                vm.getMaxAttackDamage = attack.damage;
+                vm.selectedAttack = attack.name;
+
+                $timeout(
+                    function attack2() {
+                        var hp = vm.player1.current.details.hp;
+                        vm.computerMessage="Attack "+vm.selectedAttack+" Selected";
+                        vm.player1.current.details.hp = vm.player1.current.details.hp - vm.getMaxAttackDamage;
+
+                        if (vm.player1.current.details.hp <= 0) {
+                            vm.player1.current.isAlive = false;
+                            vm.player1.current =  getNext(vm.player1.cards, vm.player1.current);
+                            showActiveCardDetails1(vm.player1.current);
+                            if(!vm.player1.current) {
+                                console.log("Game Over - Player 2 won");
+                                vm.winner = 2;
+                            }
+
+                            var attack = getDamage(vm.activeCard2.details.attacks);
+                            vm.getMaxAttackDamage = attack.damage;
+                            vm.selectedAttack = attack.name;
+                            $timeout(attack2(), 3000);
+                        } else {
+                            $timeout(function(){
+                                vm.goku = false;
+                                vm.game.player1Turn = true;
+                            }, 1000);
+                        }
+                }, 3000);
             }
         }
 
-        function attack2(damage) {
-            var hp = vm.player1.current.details.hp;
-            vm.player1.current.details.hp = vm.player1.current.details.hp - damage;
+        // function attack2(damage) {
+        //     var hp = vm.player1.current.details.hp;
+        //     vm.player1.current.details.hp = vm.player1.current.details.hp - damage;
+        //
+        //     if (vm.player1.current.details.hp <= 0) {
+        //         vm.player1.current.isAlive = false;
+        //         vm.player1.current =  getNext(vm.player1.cards, vm.player1.current);
+        //         showActiveCardDetails1(vm.player1.current);
+        //         if(!vm.player1.current) {
+        //             console.log("Game Over - Player 2 won");
+        //             vm.winner = 2;
+        //         }
+        //         $timeout(attack2(getDamage(vm.activeCard2.details.attacks)), 2000);
+        //     } else {
+        //         vm.game.player1Turn = true;
+        //     }
+        // }
 
-            if (vm.player1.current.details.hp <= 0) {
-                vm.player1.current.isAlive = false;
-                vm.player1.current =  getNext(vm.player1.cards, vm.player1.current);
-                showActiveCardDetails1(vm.player1.current);
-                if(!vm.player1.current) {
-                    console.log("Game Over - Player 2 won");
-                    vm.winner = 2;
-                }
-            } else {
-                vm.game.player1Turn = true;
+
+        function getDamage(activePlayerAttacks){
+            var pickMaxAttack = activePlayerAttacks[0];
+
+            for(a in activePlayerAttacks){
+                if(activePlayerAttacks[a].damage > pickMaxAttack.damage)
+                    pickMaxAttack = activePlayerAttacks[a];
+
             }
+
+            return pickMaxAttack;
         }
 
         function getNext(playerCards, currentCard) {
