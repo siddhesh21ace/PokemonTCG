@@ -87,14 +87,21 @@
         }
 
         function likePokemon(){
-            console.log("In like pokemon");
-            if(vm.like.userVotes == 1){
-               vm.like.userVotes = 0;
-               vm.like.votes--;
-            } else {
-                vm.like.userVotes = 1;
-                vm.like.votes++;
+            //Check if loggedIN
+            console.log($rootScope.currentUser);
+            if($rootScope.currentUser != undefined) {
+                console.log("In like pokemon");
+                if(vm.like.userVotes == 1){
+                    vm.like.userVotes = 0;
+                    vm.like.votes--;
+                } else {
+                    vm.like.userVotes = 1;
+                    vm.like.votes++;
+                }
+            } else{
+                console.log("Need to log in");
             }
+
         }
 
         function editComment(review){

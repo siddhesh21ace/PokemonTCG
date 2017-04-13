@@ -18,6 +18,23 @@ module.exports = function (app, models) {
     app.post("/api/logout", logout);
     app.post("/api/register", register);
 
+    /*Image Upload Starts*/
+    var multer = require('multer');
+
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname+'/../../public/uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() +"."+ file.mimetype.split("/")[1]) //Appending .jpg
+        }
+    })
+
+    //var upload = multer({ dest: __dirname+'/../../public/uploads'});
+    var upload = multer({ storage: storage });
+    app.post("/api/user/upload", upload.single('file'), uploadImage);
+    /*Image Upload Ends*/
+
     app.post('/api/login', function (req, res, next) {
         passport.authenticate('local', function (err, user, info) {
             if (err) {
@@ -335,6 +352,21 @@ module.exports = function (app, models) {
         } else {
             res.json(req.user);
         }
+    }
+
+
+    function uploadImage(req, res){
+        var myFile = req.file;
+
+        var originalname = myFile.originalname;
+        var filename = myFile.filename;
+        var path = myFile.path;
+        var destination = myFile.destination;
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        //console.log(myFile);
+        res.send(myFile);
     }
 
 };

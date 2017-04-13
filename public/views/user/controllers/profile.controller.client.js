@@ -6,10 +6,14 @@
     function profileController($routeParams, UserService, $location) {
         var vm = this;
         vm.userID = $routeParams['uid'];
+        vm.user={};
         vm.update = update;
         vm.deleteUser = deleteUser;
         vm.showPokedex = showPokedex;
         vm.logout = logout;
+        vm.selectFile = selectFile;
+        vm.uploadFile = uploadFile;
+        vm.file = {};
 
         var likedPokemons = [
             {id: "001", image: "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/001.png", name: "bulbasaur"},
@@ -235,9 +239,27 @@
             }
         }
 
+        function selectFile(files){
+            //vm.user.image = vm.user;
+            vm.file = files[0];
+        };
+
         function showPokedex(user){
             console.log('In Pokedex');
             $location.url("/pokedex");
         }
+
+        function uploadFile(){
+            UserService.uploadImage(vm.file)
+                .then(
+                    function(image){
+                    vm.message = "Image "+ image.data.originalname +" was uploaded successfully";
+                    vm.user.image = "/uploads/"+image.data.filename;
+                    vm.user.url = "/uploads/"+image.data.filename;
+                },
+                function(err){
+                    vm.error = "Unable to upload file ";
+                });
+        };
     }
 })();

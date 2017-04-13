@@ -6,6 +6,7 @@ var projectUserSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     email: String,
+    url: String,
     phone: String,
     google: {
         id: String,

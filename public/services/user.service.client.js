@@ -15,7 +15,8 @@
             "isLoggedIn": isLoggedIn,
             "logout": logout,
             "findCurrentUser": findCurrentUser,
-            "register": register
+            "register": register,
+            "uploadImage": uploadImage
         };
         return api;
 
@@ -61,6 +62,18 @@
 
         function findUserById(userID) {
             return $http.get("/api/user/" + userID);
+        }
+
+        function uploadImage(file){
+            var fd = new FormData();
+            fd.append("file", file)
+            console.log(fd, file);
+            return $http.post('/api/user/upload', fd, {
+                withCredentials: true,
+                headers: {'Content-Type': undefined },
+                transformRequest: angular.identity
+            });
+
         }
     }
 })();
