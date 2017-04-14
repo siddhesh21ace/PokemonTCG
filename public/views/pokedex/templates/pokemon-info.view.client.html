@@ -11,11 +11,17 @@
             <div class="social" style="text-align:center">
                 <!--<span><a class="like"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a></span>-->
                 <span>
-                    <a ng-click="model.likePokemon()">
+                    <a ng-click="model.likePokemon()" ng-if="model.likeId === ''">
                         <i class="glyphicon"
                            ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
                            aria-hidden="true"
                           ></i>
+                    </a>
+                    <a ng-if="model.likeId !== ''" ng-click="model.unlikePokemon(model.likeId)">
+                        <i class="glyphicon"
+                           ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
+                           aria-hidden="true"
+                        ></i>
                     </a>
                      <span ng-model="like.votes"
                            ng-if="model.like.votes > 0"
@@ -106,39 +112,76 @@
     <div class="reviews col-md-12">
         <div class="comments-header" style="display: inline">
             <h3>Comments / Reviews</h3>
-            <span>
+            <!--<span>
                 <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myCommentModal" >
                     Add Review
                 </button>
-            </span>
+            </span>-->
         </div>
         <div class="comments-pane">
             <hr>
             <div class="comments" ng-repeat="review in model.reviews">
+                <h3>{{review.rating}}</h3>
                 <h3>{{review.title}}</h3>
-                <p>{{review.comment}}</p>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myCommentModal"
+                <p>{{review.description}}</p>
+                <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myCommentModal"
                         ng-click="model.editComment(review)">
                     Edit Comment
                 </button>
                 <button type="button" class="btn btn-primary btn-sm" ng-click="model.deleteComment(review)">
                     Delete Comment
-                </button>
+                </button>-->
             </div>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Write a Review:</h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input ng-model="review.title" type="text"
+                               class="form-control" id="title" name="title"
+                               placeholder="Enter Title"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Review</label>
+                        <textarea ng-model="review.description"
+                                  class="form-control" id="description" name="description"
+                                  placeholder="Enter description">
+                        </textarea>
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="model.error">
+                        {{model.error}}
+                    </div>
+
+                    <div class="alert alert-success" ng-show="model.message">
+                        {{model.message}}
+                    </div>
+
+                    <a class="btn btn-success" role="button" ng-click="model.addReview(review)">
+                        Submit
+                    </a>
+                </form>
+            </div>
+        </div>
+
     </div>
-
-
 </div>
 
+<!--
 
-
-<!-- Modal -->
+&lt;!&ndash; Modal &ndash;&gt;
 <div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">Add Comment</h4>
             </div>
             <div class="modal-body">
@@ -169,7 +212,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                &lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>&ndash;&gt;
                 <div class="form-group">
                     <a class="btn btn-block btn-default" data-dismiss="modal">
                         Close
@@ -183,6 +226,4 @@
             </div>
         </div>
     </div>
-</div>
-
-
+</div>-->

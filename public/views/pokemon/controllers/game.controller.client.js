@@ -5,8 +5,10 @@
     angular.module("PokemonWorld")
         .controller("GameController", gameController);
 
-    function gameController(PokemonTCGService, $rootScope, $timeout) {
+    function gameController(CardService, $rootScope, $timeout, $routeParams, GameService) {
         var vm = this;
+        vm.userID = $routeParams['uid'];
+
         vm.player1 = {};
         vm.player2 = {};
 
@@ -16,6 +18,12 @@
 
         vm.game = {};
         vm.game.player1Turn = true;
+        vm.game.userCards = [];
+        vm.game.botCards = [];
+        vm.game.userWon = false;
+
+        vm.gameID = 0;
+
         vm.attack1 = attack1;
         //vm.attack2 = attack2;
         vm.isNumber = isNumber;
@@ -47,7 +55,7 @@
         }
 
         function init() {
-            PokemonTCGService.getAllPokemons().then(function (response) {
+            CardService.getAllPokemons().then(function (response) {
                 vm.cards = response.data;
 
                 var total = vm.cards.length;
@@ -60,6 +68,7 @@
                         "details": vm.cards[i]
                     });
                     i++;
+                    vm.game.userCards.push(vm.cards[i].id);
                 }
 
                 while (i < 10) {
@@ -68,18 +77,31 @@
                         "details": vm.cards[i]
                     });
                     i++;
+                    vm.game.botCards.push(vm.cards[i].id);
                 }
                 vm.player1.current = vm.player1.cards[0];
                 showActiveCardDetails1(vm.player1.current);
                 vm.player2.current = vm.player2.cards[0];
                 showActiveCardDetails2(vm.player2.current);
 
-                console.log( vm.player2.cards);
+                //console.log( vm.player2.cards);
+
+                GameService.createGame(vm.userID, vm.game)
+                    .then(function (response) {
+                        vm.gameID = response.data._id;
+                    })
 
             }, function (error) {
                 vm.error = error.data;
                 console.log(error);
             });
+        }
+
+        function updateGame() {
+            GameService.updateGame(vm.gameID, vm.game)
+                .then(function (response) {
+                    console.log(response.data);
+                })
         }
 
         init();
@@ -94,6 +116,16 @@
                 vm.cards[j] = temp
             }
         }
+        
+        function giftCard() {
+            var card = {
+                "tcgID" : vm.cards[50].id
+            }
+            CardService.addCard(vm.userID, card)
+                .then(function (response) {
+                    console.log(response.data);
+                })
+        }
 
         function attack1(damage) {
             var hp = vm.player2.current.details.hp;
@@ -106,6 +138,9 @@
                 if(!vm.player2.current) {
                     console.log("Game Over - Player 1 won");
                     vm.winner = 1;
+                    vm.game.userWon = true;
+                    updateGame();
+                    giftCard();
                 }
             } else {
                 vm.game.player1Turn = false;
@@ -130,6 +165,7 @@
                             if(!vm.player1.current) {
                                 console.log("Game Over - Player 2 won");
                                 vm.winner = 2;
+                                updateGame();
                             }
 
                             var attack = getDamage(vm.activeCard2.details.attacks);
@@ -188,19 +224,6 @@
         function getHp(stat){
            return (stat/200) * 100;
         }
-
-        /*startGame();
-
-        function startGame() {
-            while (vm.game.isNotOver) {
-                if (vm.game.playerTurn) {
-                    // player's turn
-                } else {
-                    //comp's turn
-                }
-                vm.game.playerTurn = !vm.game.playerTurn;
-            }
-        }*/
 
     }
 })();

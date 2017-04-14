@@ -59,9 +59,9 @@
                 title: 'Pokemon Details'
             })
             .when("/rating", {
-            templateUrl: 'views/pokemon/templates/rating.view.client.html',
-            controller: 'RatingController',
-            title: 'Game'
+                templateUrl: 'views/pokemon/templates/rating.view.client.html',
+                controller: 'RatingController',
+                title: 'Game'
             })
             .when("/", {
                 redirectTo: "/login"
@@ -77,10 +77,10 @@
         UserService
             .isLoggedIn()
             .then(function (response) {
-                $rootScope.errorMessage = null;
+                    $rootScope.errorMessage = null;
                     var user = response.data;
                     if (user !== '0') {
-                        $rootScope.currentUser =user;
+                        $rootScope.currentUser = user;
                         deferred.resolve();
                     } else {
                         deferred.reject();

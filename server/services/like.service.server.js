@@ -6,17 +6,37 @@ module.exports = function (app, models) {
     app.post("/api/like", addLike);
     app.delete("/api/like/:likeID", undoLike);
 
-    /* models.pokemonUserRelationModel.addLike("58e92426b3d69d0d98b35c4b", "58e91532d398239caad8e4af");
-     models.pokemonUserRelationModel.addLike("58e92426b3d69d0d98b35c4b", "58e91532d398239caad8e4b0");*/
+    /*var like1 = {
+        "user_id" : "58eff76012f53118b4c1d6a3",
+        "pokemon_id" : "58e91532d398239caad8e4af"
+    };
+    var like2 = {
+        "user_id" : "58eff76012f53118b4c1d6a3",
+        "pokemon_id" : "58e91532d398239caad8e4b0"
+    };
+    var like3 = {
+        "user_id" : "58eff76012f53118b4c1d6a3",
+        "pokemon_id" : "58e91532d398239caad8e4b1"
+    };
+    models.likeModel.addLike(like1)
+        .then(function (response) {
+            console.log("Success1");
+        });
+    models.likeModel.addLike(like2)
+        .then(function (response) {
+            console.log("Success2");
+        });
+    models.likeModel.addLike(like3)
+        .then(function (response) {
+            console.log("Success3");
+        });*/
 
-    /*
-     models.pokemonUserRelationModel.updateLike({
+/*     models.pokemonUserRelationModel.updateLike({
      "user_id": "58e92426b3d69d0d98b35c4b",
      "pokemon_id": "58e91532d398239caad8e4af",
      "liked": true,
      "rating": 5
-     })
-     */
+     })*/
 
     function addLike(req, res) {
         var like = req.body;

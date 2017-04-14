@@ -1,10 +1,10 @@
 /**
  * Created by Siddhesh on 4/9/2017.
  */
-module.exports = function (app, models) {
+module.exports = function () {
     var mongoose = require("mongoose");
-    var cardSchema = require('./card.schema.server');
-    var CardModel = mongoose.model('CardModel', cardSchema);
+    var projectCardSchema = require('./card.schema.server');
+    var CardModel = mongoose.model('CardModel', projectCardSchema);
 
     var api = {
         "findAllCardsForUser": findAllCardsForUser,
@@ -13,6 +13,8 @@ module.exports = function (app, models) {
         "updateCard": updateCard,
         "deleteCard": deleteCard
     };
+
+    return api;
 
     function addCard(userId, card) {
         card._user = userId;

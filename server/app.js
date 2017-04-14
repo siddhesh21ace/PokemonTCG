@@ -9,4 +9,6 @@ module.exports = function (app) {
     require("./services/like.service.server")(app, models);
     require("./services/review.service.server")(app, models);
     require("./services/card.service.server")(app, models);
+    require("./services/game.service.server")(app, models);
+
 };

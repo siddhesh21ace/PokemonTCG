@@ -2,6 +2,7 @@
  * Created by Siddhesh on 4/8/2017.
  */
 module.exports = function (app, models) {
+    app.get("/api/review/:reviewID", findReviewByID);
     app.get("/api/review", findReviews);
     app.post("/api/review", addReview);
     app.put("/api/review/:reviewID", updateReview);
@@ -22,14 +23,49 @@ module.exports = function (app, models) {
      */
 
 /*    models.reviewModel.addReview({
-        "user_id": "58e92426b3d69d0d98b35c4b",
+        "user_id": "58eff76012f53118b4c1d6a3",
         "pokemon_id": "58e91532d398239caad8e4af",
-        "reviewText": "This is awesome!",
+        "title": "Review 1",
+        "description": "Review 1 is great!",
         "rating": 4
     })
         .then(function (response) {
             console.log(response)
+        });
+
+    models.reviewModel.addReview({
+        "user_id": "58eff76012f53118b4c1d6a3",
+        "pokemon_id": "58e91532d398239caad8e4af",
+        "title": "Review 2",
+        "description": "Review 2 sucks!",
+        "rating": 1
+    })
+        .then(function (response) {
+            console.log(response)
+        });
+
+    models.reviewModel.addReview({
+        "user_id": "58eff76012f53118b4c1d6a3",
+        "pokemon_id": "58e91532d398239caad8e4af",
+        "title": "Review 3",
+        "description": "Review 3 is average!",
+        "rating": 2.5
+    })
+        .then(function (response) {
+            console.log(response)
         });*/
+
+    function findReviewByID(req, res) {
+        var reviewID = req.params['reviewID'];
+
+        models.reviewModel
+            .findReviewByID(reviewID)
+            .then(function (review) {
+                res.json(review);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    }
 
     function updateReview(req, res) {
         var reviewID = req.params['reviewID'];

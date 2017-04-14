@@ -25,12 +25,10 @@
             }
         }
 
-
         function selectFile(files){
             //vm.user.image = vm.user;
             vm.file = files[0];
         };
-
 
         function uploadFile(){
             UserService.uploadImage(vm.file)

@@ -5,6 +5,8 @@ var mongoose = require("mongoose");
 
 var projectCardSchema = mongoose.Schema({
     _user: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
-    tcgId: String,
+    tcgID: String,
     dateCreated: {type: Date, default: Date.now()}
-});
+}, {collection: "project.card"});
+
+module.exports = projectCardSchema;

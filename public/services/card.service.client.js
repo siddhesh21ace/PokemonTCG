@@ -3,18 +3,33 @@
  */
 (function () {
     angular.module("PokemonWorld")
-        .service("PokemonTCGService", pokemonTCGService);
+        .service("CardService", cardService);
 
-    function pokemonTCGService($http) {
+    function cardService($http) {
         var endPoint = "/rest/api/card?";
         var setsURL = "https://api.pokemontcg.io/v1/sets";
 
         var api = {
             "getAllSets": getAllSets,
             "getPokemonsBySet": getPokemonsBySet,
-            "getAllPokemons": getAllPokemons
+            "getAllPokemons": getAllPokemons,
+            "findCardsByUser": findCardsByUser,
+            "findCardByTCGID": findCardByTCGID,
+            "addCard": addCard
         };
         return api;
+
+        function addCard(userID, card) {
+            return $http.post("/api/user/" + userID + "/card", card);
+        }
+
+        function findCardsByUser(userID) {
+            return $http.get("/api/user/" + userID + "/card");
+        }
+
+        function findCardByTCGID(tcgID) {
+            return $http.get("/rest/api/card/" + tcgID);
+        }
 
         /* Testing Purpose for now */
         function getAllSets() {

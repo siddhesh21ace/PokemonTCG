@@ -14,6 +14,7 @@
             "getAllSets": getAllSets,
             "getPokemonsBySet": getPokemonsBySet,
             "findPokemonByPokeId": findPokemonByPokeId,
+            "findPokemonById": findPokemonById,
             "getAllPokemons": getAllPokemons,
             "findPokemonByName": findPokemonByName,
         }
@@ -21,6 +22,10 @@
 
         function findPokemonByPokeId(pokemonID) {
             return $http.get("/rest/api/pokemon/" + pokemonID);
+        }
+
+        function findPokemonById(pokemonID) {
+            return $http.get("/api/pokemon/" + pokemonID);
         }
 
         function getAllPokemons() {

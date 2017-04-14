@@ -2,7 +2,7 @@ module.exports = function() {
     var mongoose = require('mongoose');
     mongoose.Promise = require('bluebird');
 
-    var connectionString = 'mongodb://localhost/PokemonTCG';
+    var connectionString = 'mongodb://localhost:27017/PokemonTCG';
 
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +

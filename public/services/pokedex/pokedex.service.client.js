@@ -26,7 +26,6 @@
             return $http.get('/api/pokedex/getAllPokemons/');
         }
 
-
         function fetchPokemons(str){
             return $http.get('/api/pokedex/fetchPokemons/'+str);
         }

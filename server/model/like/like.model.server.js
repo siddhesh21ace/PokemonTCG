@@ -24,9 +24,10 @@ module.exports = function () {
     }
 
     function findLikes(pokemon_id, user_id) {
-        var like = {
-            "pokemon_id": pokemon_id
-        };
+        var like = {};
+        if(pokemon_id) {
+            like.pokemon_id = pokemon_id;
+        }
         if (user_id) {
             like.user_id = user_id;
         }

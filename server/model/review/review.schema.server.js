@@ -8,7 +8,8 @@ var reviewSchema = mongoose.Schema({
     user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'},
     pokemon_id: {type: mongoose.Schema.Types.ObjectId, ref: 'PokemonModel'},
     rating: {type: Number, default: 5},
-    reviewText: {type: String},
+    title: {type: String},
+    description: {type: String},
     dateCreated: {type: Date, default: Date.now()}
 }, {collection: "project.review"});
 

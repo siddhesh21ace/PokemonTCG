@@ -2,8 +2,8 @@ module.exports = function (app, models) {
     var bcrypt = require("bcrypt-nodejs");
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
-    //var FacebookStrategy = require('passport-facebook').Strategy;
-    //var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
     passport.use(new LocalStrategy({}, localStrategy));
     passport.serializeUser(serializeUser);
@@ -52,114 +52,115 @@ module.exports = function (app, models) {
         })(req, res, next);
     });
 
-    // app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-    // app.get('/auth/facebook/callback',
-    //     passport.authenticate('facebook', {
-    //         successRedirect: '/index.html#!/user',
-    //         failureRedirect: '/index.html#!/login'
-    //     }));
-    //
-    // var facebookConfig = {
-    //     clientID: process.env.PROJECT_FACEBOOK_CLIENT_ID,
-    //     clientSecret: process.env.PROJECT_FACEBOOK_CLIENT_SECRET,
-    //     callbackURL: process.env.PROJECT_FACEBOOK_CALLBACK_URL,
-    //     //enableProof: true,
-    //     profileFields: ['id', 'displayName', 'photos', 'email']
-    // };
-    // passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/index.html#!/user',
+            failureRedirect: '/index.html#!/login'
+        }));
 
-    // function facebookStrategy(token, refreshToken, profile, done) {
-    //     models.userModel
-    //         .findUserByFacebookId(profile.id)
-    //         .then(
-    //             function (user) {
-    //                 if (user) {
-    //                     return done(null, user);
-    //                 } else {
-    //                     var names = profile.displayName.split(" ");
-    //                     var newFacebookUser = {
-    //                         lastName: names[1],
-    //                         firstName: names[0],
-    //                         email: profile.emails ? profile.emails[0].value : "",
-    //                         facebook: {
-    //                             id: profile.id,
-    //                             token: token
-    //                         }
-    //                     };
-    //                     return models.userModel.createUser(newFacebookUser);
-    //                 }
-    //             },
-    //             function (err) {
-    //                 if (err) {
-    //                     return done(err);
-    //                 }
-    //             }
-    //         )
-    //         .then(
-    //             function (user) {
-    //                 return done(null, user);
-    //             },
-    //             function (err) {
-    //                 if (err) {
-    //                     return done(err);
-    //                 }
-    //             }
-    //         );
-    // }
+    var facebookConfig = {
+        clientID: process.env.PROJECT_FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.PROJECT_FACEBOOK_CLIENT_SECRET,
+        callbackURL: process.env.PROJECT_FACEBOOK_CALLBACK_URL,
+        //enableProof: true,
+        profileFields: ['id', 'displayName', 'photos', 'email']
+    };
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        models.userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function (user) {
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var names = profile.displayName.split(" ");
+                        var newFacebookUser = {
+                            lastName: names[1],
+                            firstName: names[0],
+                            email: profile.emails ? profile.emails[0].value : "",
+                            facebook: {
+                                id: profile.id,
+                                token: token
+                            }
+                        };
+                        return models.userModel.createUser(newFacebookUser);
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
 
     /* Google Auth */
-    // app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-    // app.get('/auth/google/callback',
-    //     passport.authenticate('google', {
-    //         successRedirect: '/index.html#!/user',
-    //         failureRedirect: '/index.html#!/login'
-    //     }));
-    //
-    // var googleConfig = {
-    //     clientID: process.env.GOOGLE_CLIENT_ID,
-    //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    //     callbackURL: process.env.GOOGLE_CALLBACK_URL
-    // };
-    //
-    // passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-    //
-    // function googleStrategy(token, refreshToken, profile, done) {
-    //     models.userModel
-    //         .findUserByGoogleId(profile.id)
-    //         .then(
-    //             function (user) {
-    //                 if (user) {
-    //                     return done(null, user);
-    //                 } else {
-    //                     var newGoogleUser = {
-    //                         lastName: profile.name.familyName,
-    //                         firstName: profile.name.givenName,
-    //                         email: profile.emails[0].value,
-    //                         google: {
-    //                             id: profile.id,
-    //                             token: token
-    //                         }
-    //                     };
-    //                     return models.userModel.createUser(newGoogleUser);
-    //                 }
-    //             },
-    //             function (err) {
-    //                 if (err) {
-    //                     return done(err);
-    //                 }
-    //             }
-    //         )
-    //         .then(
-    //             function (user) {
-    //                 return done(null, user);
-    //             },
-    //             function (err) {
-    //                 if (err) {
-    //                     return done(err);
-    //                 }
-    //             }
-    //         );
-    // }
+
+    app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/index.html#!/user',
+            failureRedirect: '/index.html#!/login'
+        }));
+
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL
+    };
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        models.userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function (user) {
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var newGoogleUser = {
+                            lastName: profile.name.familyName,
+                            firstName: profile.name.givenName,
+                            email: profile.emails[0].value,
+                            google: {
+                                id: profile.id,
+                                token: token
+                            }
+                        };
+                        return models.userModel.createUser(newGoogleUser);
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
 
     function selfLoggedIn(req, res, next) {
         var loggedIn = req.isAuthenticated();

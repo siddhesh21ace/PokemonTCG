@@ -1,7 +1,19 @@
 module.exports = function (app, models) {
     app.get("/api/pokemon", findPokemon);
-    app.get("/api/pokemon/:pokemonId", findPokemonByPokeId);
+    app.get("/api/pokemon/:pokemonId", findPokemonById);
     app.post("/api/pokemon", createPokemon);
+
+    function findPokemonById(req, res) {
+        var pokemonId = req.params['pokemonId'];
+
+        models.pokemonModel
+            .findPokemonById(pokemonId)
+            .then(function (pokemon) {
+                res.json(pokemon);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    }
 
     function findPokemon(req, res) {
         var name = req.query['name'];
@@ -53,7 +65,7 @@ module.exports = function (app, models) {
             });
     }
 
-    function findPokemonByPokeId(req, res) {
+    /*function findPokemonByPokeId(req, res) {
         var pokemonId = req.params['pokemonId'];
 
         models.pokemonModel
@@ -63,6 +75,6 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.status(404).send("Pokemon not found for the Poke ID : " + pokemonId + " with error " + error);
             });
-    }
+    }*/
 
 }
