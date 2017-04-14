@@ -2,11 +2,12 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController(PokeDexService, $routeParams, $rootScope) {
+    function pokemonInfoController(PokeDexService, UserService, $routeParams, $rootScope, $location) {
         var vm = this;
         vm.like={};
         vm.like.votes= 100 ;
         vm.like.userVotes = 0;
+
         console.log('rootUser ', $rootScope.currentUser );
         vm.reviews =[
             {"_id": 1, "title": "Pika Pika", "comment":"pika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pikapika pika pika pika"},
@@ -23,6 +24,8 @@
         vm.deleteComment =deleteComment;
         vm.editComment = editComment;
         vm.setActiveReview = setActiveReview;
+        vm.isLoggedInUser = isLoggedInUser;
+        vm.getMoreInfo = getMoreInfo;
 
         function init() {
             var pokemon = $routeParams.pokemon;
@@ -32,6 +35,30 @@
                 .then(function (response) {
                     console.log(response);
                     vm.pokemon = response.data;
+
+                    var evoChain = vm.pokemon.species.evoChain;
+
+                    for(e in evoChain){
+                        var urlA = "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/";
+                        var id = evoChain[e].species_id;
+
+                        if (id.toString().length == 1) {
+                            id = "00" + id;
+                        } else if (id.toString().length == 2) {
+                            id = "0" + id;
+                        }
+
+                        var imgUrl = urlA + id + ".png";
+
+                        evoChain[e].img = imgUrl;
+                        evoChain[e].name = evoChain[e].species_name;
+                        evoChain[e].species_id = evoChain[e].species_id;
+
+                    }
+
+                    vm.pokemon.species.evoChain = evoChain;
+
+
                     var urlA = "http://assets.pokemon.com/assets/cms2/img/pokedex/full/";
                     var id = response.data.id;
 
@@ -51,9 +78,29 @@
                     vm.error = "Result Not found"
                     console.log("Error" + error);
                 })
+
+
+            UserService.findCurrentUser()
+                .then(function (response) {
+                    vm.user = response.data;
+                    console.log(vm.user);
+                });
         }
 
         init();
+
+        function isLoggedInUser() {
+            if(vm.user)
+                return true;
+            else
+                return false;
+        }
+
+        function getMoreInfo(data) {
+            console.log(data);
+            $location.url('/pokemon-info/'+data);
+
+        }
 
         function deleteComment(review){
             vm.reviews.splice(review,1);
@@ -75,12 +122,22 @@
                 return "bug";
             } else if(type == 'fire'){
                 return "fire";
+            } else if(type == 'water'){
+                return "water";
             } else if(type == 'ice'){
                 return "ice";
             } else if(type == 'ground') {
                 return "ground";
             } else if(type == 'flying') {
                 return "flying";
+            } else if(type == 'electric'){
+                return "electric";
+            } else if(type == 'rock') {
+                return "rock";
+            } else if(type == 'fighting') {
+                return "fighting";
+            } else if(type == 'normal') {
+                return "normal";
             }
 
 
@@ -88,9 +145,9 @@
 
         function likePokemon(){
             //Check if loggedIN
-            console.log($rootScope.currentUser);
-            if($rootScope.currentUser != undefined) {
-                console.log("In like pokemon");
+            //console.log($rootScope.currentUser);
+            if(vm.user) {
+                //console.log("In like pokemon");
                 if(vm.like.userVotes == 1){
                     vm.like.userVotes = 0;
                     vm.like.votes--;

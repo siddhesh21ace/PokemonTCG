@@ -40,6 +40,12 @@ body{
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+.tagcloud ul li a.moves{
+    background-color: #98ccff;
+    color: black;
+}
+
 .tagcloud ul li a:hover {
     background-color: #3498db;
     border: 1px solid #3498db;
@@ -77,7 +83,32 @@ body{
 }
 .ice{
     background-color: whitesmoke;
+    color: black;
 }
+
+.fighting{
+    background-color: saddlebrown;
+    color: white;
+}
+.rock{
+    background-color: tomato;
+    color: black;
+}
+.electric{
+    background-color: darkorange;
+    color: black;
+}
+.normal{
+    background-color: blanchedalmond;
+    color: black;
+}
+.water{
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+
 
 .vertical {
     display: inline-block;
@@ -93,10 +124,20 @@ body{
     box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
 }
 
+/*.progressContainer{*/
+    /*height: 150px;*/
+    /*margin-top: 40px;*/
+    /*padding-top: 20px;*/
+    /*width: 100%;*/
+/*}*/
+
+.progress{
+    height: 15px;
+}
 .progressContainer{
-    height: 150px;
-    margin-top: 40px;
-    padding-top: 20px;
+    /*height: 150px;*/
+    /*margin-top: 40px;*/
+    padding-top: 5px;
     width: 100%;
 }
 
@@ -132,7 +173,7 @@ hr.center-line{
 }
 
 a .glyphicon {
-    color: gray;
+    color: white;
     text-decoration: none !important;
     transition: all .5s;
     font-size: 25px;
@@ -241,15 +282,12 @@ img {
 .pokemon-thumb{
     background-color: white;
     background-color: rgba(255,255,255,.2);
-    padding:2px;
-    margin: 10px 20px;
+    /*padding:2px;*/
+    /*margin: 10px 20px;*/
 }
 
 .pokemon-thumb:hover{
     transform: matrix(1.0, 0, 0, 1, 0, 0);
-}
-
-.pokemon-thumb-img{
 }
 
 .pokemon-thumb-name{
@@ -351,4 +389,80 @@ figure:hover img{
     margin:1px;
     color: #9CDC18;
     font-size: 16px;
+}
+
+
+.like {
+    position: relative;
+    display: inline-block;
+}
+
+.like .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -50px;
+    left: 0%;
+}
+
+.like .tooltiptextComment {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 100%;
+}
+
+.like .tooltipabilities {
+    visibility: hidden;
+    width: 300px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 100%;
+}
+
+
+.like:hover .tooltiptextComment {
+    visibility: visible;
+}
+
+.like:hover .tooltiptext {
+    visibility: visible;
+}
+
+.like:hover .tooltipabilities {
+    visibility: visible;
+}
+
+.pokemon-info-image{
+    border: 1px;
+    background-color: rgba(50,50,50,.2);
+}
+
+.pokemon-info-likes{
+    color: white;
 }
