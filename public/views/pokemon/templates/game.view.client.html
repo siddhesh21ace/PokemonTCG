@@ -77,8 +77,8 @@
              <!--ng-show="model.goku==false"-->
              <!--width="100" height="100">-->
         <h3 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
-            {{ model.activeCard1.details.name }} v/s {{ model.activeCard2.details.name }}
-            | Turn : Trainer <span ng-show="model.game.player1Turn"> 1</span> <span ng-show="!model.game.player1Turn">2</span>
+            {{ model.activeCard1.details.name }}  v/s  {{ model.activeCard2.details.name }}
+            | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn">Computer's Turn</span>
         </h3>
         <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
         <h3 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Computer Win !!</h3>
@@ -141,6 +141,7 @@
                 </div>
                 <!--Body-->
                 <div class="modal-body">
+                    <h5 class="text-center"><i>Wait for the game to load...</i></h5>
                     <h4 class="text-center"><u>Rules of the Game</u></h4>
                     <hr>
                     <ul type="i" class="text-center">
