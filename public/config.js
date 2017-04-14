@@ -45,7 +45,7 @@
                 controller: 'PokemonController',
                 title: 'Pokémon'
             })
-            .when("/user/:uid/game", {
+            .when("/game", {
                 templateUrl: 'views/pokemon/templates/game.view.client.html',
                 controller: 'GameController',
                 title: 'Game',

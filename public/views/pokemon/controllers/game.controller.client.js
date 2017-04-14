@@ -1,11 +1,11 @@
-/**
- * Created by Siddhesh on 4/7/2017.
- */
 (function () {
     angular.module("PokemonWorld")
         .controller("GameController", gameController);
 
-    function gameController(PokemonTCGService, $rootScope, $timeout) {
+    function gameController(PokemonTCGService, $timeout, $location, $route) {
+        // $(".game").css("transform", "scale(0.8)");
+        // $(".game").css("msTransform", "scale(0.8)");
+        // $(".game").css("webkitTransform", "scale(0.8)");
         var vm = this;
         vm.player1 = {};
         vm.player2 = {};
@@ -15,6 +15,7 @@
         vm.cards = [];
 
         vm.game = {};
+        vm.game.state = 0;
         vm.game.player1Turn = true;
         vm.attack1 = attack1;
         //vm.attack2 = attack2;
@@ -24,6 +25,9 @@
         vm.showActiveCardDetails1 = showActiveCardDetails1;
         vm.getDamage = getDamage;
         vm.getHp = getHp;
+        vm.startGame = startGame;
+        vm.startNewGame = startNewGame;
+
         vm.activeCard={};
         vm.winner={};
         vm.goku = false;
@@ -47,6 +51,17 @@
         }
 
         function init() {
+            $('#myModal').modal({ show: false});
+            $('#myModal1').modal({ show: false});
+
+            $('#myModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            })
+
+
+
+
             PokemonTCGService.getAllPokemons().then(function (response) {
                 vm.cards = response.data;
 
@@ -69,13 +84,14 @@
                     });
                     i++;
                 }
+
                 vm.player1.current = vm.player1.cards[0];
                 showActiveCardDetails1(vm.player1.current);
                 vm.player2.current = vm.player2.cards[0];
                 showActiveCardDetails2(vm.player2.current);
 
                 console.log( vm.player2.cards);
-
+                $('#myModal').modal('show');
             }, function (error) {
                 vm.error = error.data;
                 console.log(error);
@@ -83,6 +99,21 @@
         }
 
         init();
+
+        function startGame(){
+            console.log('IN Start Game', vm.game.state);
+            vm.game.state = 1;
+            console.log('After state change', vm.game.state);
+            $("#myModal").modal('hide');
+        }
+
+        function startNewGame(){
+            console.log('IN start New Game');
+            $("#myModal1").modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $route.reload();
+        }
 
         function shuffle() {
             var i = 0, j = 0, temp = null;
@@ -106,6 +137,8 @@
                 if(!vm.player2.current) {
                     console.log("Game Over - Player 1 won");
                     vm.winner = 1;
+                    vm.game.state =2;
+                    $('#myModal1').modal('show');
                 }
             } else {
                 vm.game.player1Turn = false;
@@ -130,6 +163,8 @@
                             if(!vm.player1.current) {
                                 console.log("Game Over - Player 2 won");
                                 vm.winner = 2;
+                                vm.game.state =2;
+                                $('#myModal1').modal('show');
                             }
 
                             var attack = getDamage(vm.activeCard2.details.attacks);
