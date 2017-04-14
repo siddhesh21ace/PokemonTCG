@@ -275,9 +275,6 @@ img {
     color: white;
 }
 
-.login-form, .register-form{
-   margin-top: 10%;
-}
 
 .pokemon-thumb{
     background-color: white;
@@ -465,4 +462,24 @@ figure:hover img{
 
 .pokemon-info-likes{
     color: white;
+}
+
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+
+.card{
+    background-color: rgba(50,50,50,.2);
+}
+
+.jumbotron {
+    background-color: rgba(50,50,50,.2);
+}
+
+.footer-links{
+
 }

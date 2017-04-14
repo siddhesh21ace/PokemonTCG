@@ -9,6 +9,11 @@
 
     function configuration($routeProvider) {
         $routeProvider
+            .when("/", {
+                templateUrl: 'views/landing-page/templates/home.view.client.html',
+                controller: 'HomeController',
+                title: 'Home'
+            })
             .when("/login", {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'LoginController',
@@ -38,7 +43,7 @@
             .when("/pokemon", {
                 templateUrl: 'views/pokemon/templates/card.view.client.html',
                 controller: 'PokemonController',
-                title: 'Pokemon'
+                title: 'Pokémon'
             })
             .when("/user/:uid/game", {
                 templateUrl: 'views/pokemon/templates/game.view.client.html',
@@ -51,21 +56,21 @@
             .when("/pokedex", {
                 templateUrl: 'views/pokedex/templates/pokedex.view.client.html',
                 controller: 'PokedexController',
-                title: 'Pokedex'
+                title: 'Pokédex'
             })
             .when("/pokemon-info/:pokemon", {
                 templateUrl: 'views/pokedex/templates/pokemon-info.view.client.html',
                 controller: "PokemonInfoController",
-                title: 'Pokemon Details'
+                title: 'Pokémon Details'
             })
             .when("/rating", {
             templateUrl: 'views/pokemon/templates/rating.view.client.html',
             controller: 'RatingController',
             title: 'Game'
             })
-            .when("/", {
-                redirectTo: "/login"
-            })
+            // .when("/", {
+            //     redirectTo: "/login"
+            // })
             .otherwise({
                 redirectTo: "/"
             });

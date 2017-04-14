@@ -24,8 +24,8 @@ input{
 }
 
 .list-group-item {
-    border: none !important;
-    padding: 10px 0 !important;
+    /*border: none !important;*/
+    /*padding: 10px 0 !important;*/
 }
 
 .no-margin {
