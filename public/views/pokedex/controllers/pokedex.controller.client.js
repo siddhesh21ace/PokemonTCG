@@ -11,6 +11,10 @@
         vm.fetchPokemons =fetchPokemons;
         vm.selectPokemon = selectPokemon;
         vm.loadMore = loadMore;
+        vm.resetResult = resetResult;
+        vm.pokemon={}
+        vm.searchResults ={};
+        vm.searchResults.name= "";
        // vm.listData = listData;
 
         vm.selectedPokemon="";
@@ -24,10 +28,16 @@
 
         vm.loadMore = "Loading More Data .....";
 
+        function resetResult(){
+            vm.searchResults ={};
+            vm.searchResults.name= "";
+        }
+
         function init() {
             var matches=[];
             var pokemons=[];
             var display=[];
+            console.log(vm.searchResults);
 
             console.log("In Pokedex controller");
 
@@ -36,7 +46,7 @@
                     pokemons=allPokemons.data;
                     console.log(pokemons.length);
 
-                    for(var i = 0; i < pokemons.length; i++) {
+                    for(var i = 0; i < 721; i++) {
                         var pokemon = {}
                         var url= pokemons[i].url;
                         var urlA = "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/";
@@ -68,11 +78,18 @@
 
                     var allPokemons = response.data;
 
+                    var j=0;
                     for(p in allPokemons){
+
                         var pokemon={};
                         pokemon.name= allPokemons[p].name;
                         pokemon.url = allPokemons[p].url;
-                        matches.push(pokemon);
+                        if(j<721){
+                            matches.push(pokemon);
+                            j++;
+                        }
+
+
                     }
                 }, function (error) {
                     vm.error= "Result Not found"

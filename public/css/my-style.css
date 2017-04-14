@@ -1,3 +1,8 @@
+body{
+    color: white;
+    background: #424242 url("/images/body_bg.png");
+    font-family: Roboto,sans-serif;
+}
 .angucomplete-dropdown {
     overflow-y: auto;
     max-height: 200px;
@@ -217,7 +222,133 @@ img {
     margin-top: 21px;
 }
 
+.register-btn{
+    background: #009688;
+    border-color: #009688;
+    color: white;
+}
 
+.login-btn{
+    background: #03A9F4;
+    border-color: #03A9F4;
+    color: white;
+}
 
+.login-form, .register-form{
+   margin-top: 10%;
+}
 
+.pokemon-thumb{
+    background-color: white;
+    background-color: rgba(255,255,255,.2);
+    padding:2px;
+    margin: 10px 20px;
+}
 
+.pokemon-thumb:hover{
+    transform: matrix(1.0, 0, 0, 1, 0, 0);
+}
+
+.pokemon-thumb-img{
+}
+
+.pokemon-thumb-name{
+    text-transform: capitalize;
+}
+
+.details{
+    margin-top: 20px;
+}
+
+*, *::before, *::after{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+figure{
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    /*border: 5px solid #fff;*/
+    box-shadow: 0 0 5px #ddd;
+    margin: 1em;
+}
+
+figcaption{
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    display: table;
+    font-size: 20px;
+    font-color: white;
+}
+
+figcaption div{
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    top: 20px;
+    opacity: 0;
+    color: black;
+    text-transform: uppercase;
+}
+
+figcaption div:after{
+    position: absolute;
+    content: "";
+    left: 0; right: 0;
+    bottom: 40%;
+    text-align: center;
+    margin: auto;
+    width: 0%;
+    height: 2px;
+    background: #2c3e50;
+}
+
+figure img{
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+figure:hover figcaption{
+    background: rgba(255,255,255,0.3);
+}
+
+figcaption:hover div{
+    opacity: 1;
+    top: 0;
+}
+
+figcaption:hover div:after{
+    width: 50%;
+}
+
+figure:hover img{
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+}
+
+.angucomplete-dropdown {
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.angucomplete-row{
+    background: rgba(255,255,255,0.2);
+    padding: 5px;
+    margin:1px;
+    color: #9CDC18;
+    font-size: 16px;
+}
