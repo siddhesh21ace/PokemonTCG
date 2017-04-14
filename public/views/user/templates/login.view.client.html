@@ -1,7 +1,7 @@
-<div class="container col-md-8 col-md-offset-2 login-form" ng-controller="LoginController as model">
-    <ng-include src="'../views/includes/header-login.view.client.html'"></ng-include>
-        <form name="loginForm" novalidate>
-            <h1>Login</h1>
+<div ng-controller="LoginController as model" class="container-fluid">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+        <form name="loginForm" novalidate class="container loginForm">
+            <h1 class="text-center">Login</h1>
             <hr>
             <div class="form-group">
                 <label for="username" class="sr-only">Username</label>

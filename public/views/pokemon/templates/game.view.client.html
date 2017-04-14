@@ -35,7 +35,7 @@
     <!--</div>-->
 
 <!--</div>-->
-<div class="container game" ng-controller="GameController as model">
+<div class="game" ng-controller="GameController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
     <div class="container opponent-area">
         <div class="card-deck-opponent text-center thumbnail" >
@@ -44,7 +44,8 @@
                      width="150"
                      height="180"
                      ng-class="{ 'active2' : card == model.player2.current}"
-                     ng-disabled="model.game.player1Turn || card != model.player2.current">
+                     ng-disabled="model.game.player1Turn || card != model.player2.current"
+                     class="player-cards">
             </div>
         </div>
         <hr class="text-center">
@@ -59,13 +60,13 @@
                 </button>
             </div>
         </div>
-        <div class="score-opponent text-center">
+        <div class="score-opponent">
+            <div class="col-md-3">Remaining HP ({{ model.activeCard2.details.hp }})</div>
             <div class="progress">
-                <div class="progress-bar" role="progressbar"
+                <div class="progress-bar col-md-9" role="progressbar"
                      ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard2.details.hp) <= 20)};"
-                     aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="400"
+                     aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="300"
                      style="width: {{model.getHp(model.activeCard2.details.hp)}}%">
-                    {{ model.activeCard2.details.hp }} Left
                 </div>
             </div>
         </div>
@@ -91,14 +92,14 @@
 
         <div class="score-player text-center">
             <div class="activeCard2">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar"
-                         ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
-                         aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="400"
-                         style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
-                        {{model.activeCard1.details.hp}} Left
+                <div class="col-md-3">Remaining HP ({{ model.activeCard1.details.hp }})</div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
+                             ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
+                             aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
+                             style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
+                        </div>
                     </div>
-                </div>
                 <br>
             </div>
             <div class="attacks" style="display: inline">
@@ -152,6 +153,7 @@
                     </ul>
                     <hr>
                     <h5 class="text-center"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
+                    <h5 class="text-center"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">

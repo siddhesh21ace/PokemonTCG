@@ -1,6 +1,6 @@
-<div class="container" ng-controller="PokedexController as model">
+<div ng-controller="PokedexController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
-    <div>
+    <div class="container" >
         <div class="alert alert-danger text-center" ng-if="model.error">
             <p>{{model.error}}</p>
         </div>

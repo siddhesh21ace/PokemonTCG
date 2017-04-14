@@ -168,8 +168,10 @@ hr.center-line{
 }
 
 .opponent-area{
-    margin-top: 20px;
+    margin-top: 80px;
     text-align: center;
+    position: relative;
+    z-index: 1000;
 }
 
 a .glyphicon {
@@ -242,11 +244,11 @@ img {
 }
 
 .image:hover img {
-    -webkit-transform:scale(2.25); /* Safari and Chrome */
-    -moz-transform:scale(2.25); /* Firefox */
-    -ms-transform:scale(2.25); /* IE 9 */
-    -o-transform:scale(2.25); /* Opera */
-    transform:scale(2.25);
+    -webkit-transform:scale(2.00); /* Safari and Chrome */
+    -moz-transform:scale(2.00); /* Firefox */
+    -ms-transform:scale(2.00); /* IE 9 */
+    -o-transform:scale(2.00); /* Opera */
+    transform:scale(2.00);
 }
 
 /*Thumbnails end*/
@@ -257,6 +259,11 @@ img {
 
 .score-opponent{
     margin-top: 10px;
+}
+
+.player-cards{
+    position: relative;
+    z-index: 1000;
 }
 
 .score-player{
@@ -273,6 +280,17 @@ img {
     background: #03A9F4;
     border-color: #03A9F4;
     color: white;
+    height: 58px;
+}
+
+.form-control{
+    color: #9CDC18;
+}
+
+.loginForm{
+    margin-top: 50px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 
@@ -506,15 +524,33 @@ header,
 }
 
 .footer{
-    /*width: 100%;*/
-    /*padding-left: 0px;*/
-    /*padding-right: 0px;*/
-    bottom:0;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
+.registerForm{
+    padding-bottom: 50px;
+}
+
+.register-form{
+    height: inherit;
+}
+
+.userProfile{
+    margin-top: 60px;
+}
+
+body{
+    height: inherit;
+}
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 768px) {
+
+    .know-more-footer{
+        display:none;
+    }
 
     figure{
         width: 100%;
