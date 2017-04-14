@@ -292,7 +292,7 @@ img {
 }
 
 .details{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 *, *::before, *::after{
@@ -375,9 +375,23 @@ figure:hover img{
     transform: scale3d(1.2, 1.2, 1);
 }
 
+#searchPokemon_value{
+    color: #9CDC18;
+}
+
+.angucomplete-holder {
+    position: relative;
+    color: #9CDC18;
+}
+
 .angucomplete-dropdown {
     overflow-y: auto;
     max-height: 200px;
+    color: #9CDC18;
+}
+
+.angucomplete-input-not-empty{
+    color: #9CDC18;
 }
 
 .angucomplete-row{
@@ -388,6 +402,14 @@ figure:hover img{
     font-size: 16px;
 }
 
+.angucomplete-searching {
+    color: #9CDC18;
+    font-size: 14px;
+}
+
+.angucomplete-description {
+    font-size: 14px;
+}
 
 .like {
     position: relative;
@@ -471,7 +493,6 @@ header,
     height: 100%;
 }
 
-
 .card{
     background-color: rgba(50,50,50,.2);
 }
@@ -483,3 +504,78 @@ header,
 .footer-links{
 
 }
+
+.footer{
+    /*width: 100%;*/
+    /*padding-left: 0px;*/
+    /*padding-right: 0px;*/
+    bottom:0;
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 768px) {
+
+    figure{
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        /*border: 5px solid #fff;*/
+        box-shadow: 0 0 5px #ddd;
+        margin: 1em 0em;
+    }
+
+    figcaption{
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        text-align: center;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        display: table;
+        font-size: 20px;
+        font-color: white;
+    }
+
+    figcaption div {
+        display: table-cell;
+        vertical-align: text-top;
+        position: relative;
+        top: 5px;
+        opacity: 1;
+        color: black;
+        text-align: center;
+    }
+
+    figcaption:hover div {
+        opacity: 1;
+        top: 0px;
+    }
+
+    figcaption div:after{
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 40%;
+        text-align: center;
+        margin: auto;
+        width: 0%;
+        height: 2px;
+    }
+
+    figcaption:hover div:after{
+        display:none;
+        background: transparent;
+    }
+
+    figure:hover img{
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        transform: scale3d(1.2, 1.2, 1);
+    }
+
+
+}
+

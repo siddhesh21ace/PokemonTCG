@@ -87,6 +87,7 @@
     <script type="text/javascript" src="services/user.service.client.js"></script>
 
     <!-- controllers -->
+    <script type="text/javascript" src="views/includes/header.controller.client.js"></script>
     <script type="text/javascript" src="views/landing-page/controllers/home.controller.client.js"></script>
     <script type="text/javascript" src="views/pokemon/controllers/card.controller.client.js"></script>
     <script type="text/javascript" src="views/user/controllers/login.controller.client.js"></script>
@@ -110,89 +111,6 @@
     <![endif]-->
 </head>
 <body>
-<div class="header">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Pokémon TCG</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/#!/game">About</a></li>
-                    <li><a href="/#!/game">Play Game</a></li>
-                    <li><a href="/#!/pokedex">Pokédex</a></li>
-                    <li><a href="/#!/gymBattles">Gym Battles</a></li>
-                    <li><a href="/#!/login">Login</a></li>
-                    <li><a href="/#!/register">Sign Up</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-</div>
 <div ng-view></div>
-
-<div class="footer col-md-12">
-
-    <!--Footer-->
-    <footer class="page-footer center-on-small-only">
-
-        <!--Footer Links-->
-        <div class="container-fluid">
-            <div class="row">
-
-                <!--First column-->
-                <div class="col-md-6">
-                    <h5 class="title">Wanna know more about Pokémons?</h5>
-                    <p>This project was inspired by the following API's and Websites</p>
-                </div>
-                <!--/.First column-->
-
-                <!--Second column-->
-                <div class="col-md-3">
-                    <h5 class="title">Websites</h5>
-                    <ul>
-                        <li><a href="http://www.pokemon.com/us/">Pokémon USA</a></li>
-                        <li><a href="http://www.pokemon.com/us/pokemon-tcg/play-online/">Poké TCG</a></li>
-
-                    </ul>
-                </div>
-
-                <div class="col-md-3">
-                    <h5 class="title">API</h5>
-                    <ul>
-                        <li><a href="https://pokemontcg.io/">Pokémon TCG API</a></li>
-                        <li><a href="https://pokeapi.co/">Poké API</a></li>
-                    </ul>
-                </div>
-                <!--/.Second column-->
-            </div>
-        </div>
-        <!--/.Footer Links-->
-
-        <!--Copyright-->
-        <div class="footer-copyright">
-            <div class="container-fluid">
-                © 2017 Copyright <a href="#"> Pokémon TCG </a>
-
-            </div>
-        </div>
-        <!--/.Copyright-->
-
-    </footer>
-    <!--/.Footer-->
-
-<!-- end -->
 </body>
 </html>

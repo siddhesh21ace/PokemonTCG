@@ -2,7 +2,7 @@
     angular.module('PokemonWorld')
         .controller("PokedexController", pokedexController);
 
-    function pokedexController(PokeDexService, $location) {
+    function pokedexController(PokeDexService, UserService, $location) {
         var vm = this;
 
         vm.getResults = getResults;
@@ -71,6 +71,10 @@
                 });
             console.log(display);
            vm.pokemonThumbs = display;
+            UserService.findCurrentUser()
+                .then(function (response) {
+                    vm.user = response.data;
+                });
 
             PokeDexService.fetchAllPokemons()
                 .then(function (response) {

@@ -1,11 +1,11 @@
 <div class="container"
      ng-controller="PokemonInfoController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
 
     <div class="pokeName">
         <h1 class="text-capitalize text-center">{{model.pokemon.name}} # {{model.pokemon.id}}</h1>
     </div>
     <hr>
-
     <div class="upper">
         <div class="col-md-4 pokemon-info-image">
             <img ng-src="{{model.pokemon.img}}"
@@ -149,7 +149,7 @@
         </div>
     </div>
 
-
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 
 

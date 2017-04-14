@@ -1,5 +1,5 @@
-
-    <div class="container col-md-8 col-md-offset-2 login-form" ng-controller="LoginController as model">
+<div class="container col-md-8 col-md-offset-2 login-form" ng-controller="LoginController as model">
+    <ng-include src="'../views/includes/header-login.view.client.html'"></ng-include>
         <form name="loginForm" novalidate>
             <h1>Login</h1>
             <hr>
@@ -49,5 +49,6 @@
                 </a>
             </div>
         </form>
-    </div>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
+</div>
 

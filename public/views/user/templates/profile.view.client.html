@@ -1,5 +1,6 @@
-<div class="view-container profile-page" ng-controller="ProfileController as model">
+<div class="container" ng-controller="ProfileController as model">
     <div class="container">
+        <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
         <div class="userProfile">
             <div class="userImage col-md-4">
                 <img src="{{model.user.url}}" height="200" width="200" style="margin-top:20px"/>
@@ -42,6 +43,7 @@
             </a>
         </div>
     </div>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,11 +122,11 @@
                             Update
                         </a>
                     </div>
-                    <div class="form-group">
-                        <a class="btn btn-block btn-warning" ng-click="model.showPokedex(model.user)">
-                            Pokedex
-                        </a>
-                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<a class="btn btn-block btn-warning" ng-click="model.showPokedex(model.user)">-->
+                            <!--Pokedex-->
+                        <!--</a>-->
+                    <!--</div>-->
                     <div class="form-group">
                         <a class="btn btn-block btn-default" ng-click="model.update(model.user)" data-dismiss="modal">
                             Close

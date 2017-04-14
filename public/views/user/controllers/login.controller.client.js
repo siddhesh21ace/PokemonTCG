@@ -7,6 +7,17 @@
         var vm = this;
         vm.login = login;
 
+        function init() {
+            UserService.findCurrentUser()
+                .then(function (response) {
+                    vm.user = response.data;
+                });
+
+        }
+
+        init();
+
+
         function login(user) {
             if (user) {
                 UserService.login(user)

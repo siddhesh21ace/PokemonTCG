@@ -1,5 +1,5 @@
-<div class="container" ng-controller="HomeController">
-
+<div class="container" ng-controller="HomeController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
     <div class="content">
         <div class="jumbotron">
             <h1>Pokémon TCG</h1>
@@ -100,5 +100,5 @@
             </div>
         </div>
     </div>
-    </div>
+<ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
