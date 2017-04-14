@@ -1,3 +1,11 @@
+body{
+    color: black;
+    background-color: #CFD8DC;
+    font-family: Roboto,sans-serif;
+}
+input{
+    border:black;
+}
 .form-group {
     margin-bottom: 8px;
 }
@@ -16,8 +24,8 @@
 }
 
 .list-group-item {
-    border: none !important;
-    padding: 10px 0 !important;
+    /*border: none !important;*/
+    /*padding: 10px 0 !important;*/
 }
 
 .no-margin {

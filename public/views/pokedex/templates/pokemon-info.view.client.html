@@ -1,21 +1,28 @@
-<div class="container" ng-controller="PokemonInfoController as model">
+<div class="container"
+     ng-controller="PokemonInfoController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
 
     <div class="pokeName">
         <h1 class="text-capitalize text-center">{{model.pokemon.name}} # {{model.pokemon.id}}</h1>
     </div>
-
+    <hr>
     <div class="upper">
-        <div class="col-md-4" style="border: 1px;background-color: lightgoldenrodyellow">
+        <div class="col-md-4 pokemon-info-image">
             <img ng-src="{{model.pokemon.img}}"
                  class="img-responsive"/>
             <div class="social" style="text-align:center">
-                <!--<span><a class="like"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a></span>-->
                 <span>
-                    <a ng-click="model.likePokemon()" ng-if="model.likeId === ''">
+ <!--                   <a ng-click="model.likePokemon()" ng-if="model.likeId === ''">-->
+                    <a ng-click="model.likePokemon()"
+                       title="Like Pokemon"
+                       ng-disabled="model.isLoggedInUser()==false"
+                       class="likeButton like">
                         <i class="glyphicon"
                            ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
                            aria-hidden="true"
                           ></i>
+                        <span class="tooltiptext">Like Pokemon
+                        <span ng-show="model.isLoggedInUser()==false"> | Login Required</span></span>
                     </a>
                     <a ng-if="model.likeId !== ''" ng-click="model.unlikePokemon(model.likeId)">
                         <i class="glyphicon"
@@ -25,8 +32,8 @@
                     </a>
                      <span ng-model="like.votes"
                            ng-if="model.like.votes > 0"
-                           style="color: black"
-                     >{{model.like.votes}} users like this Pokemon</span>
+                           class="pokemon-info-likes"
+                     ><h5 style="display: inline">{{model.like.votes}} users like this Pokemon</h5></span>
                 </span>
             </div>
         </div>
@@ -45,7 +52,10 @@
                     <li>Shape : {{model.pokemon.species.shape}}</li>
                     <li>Abilities :
                         <ul ng-repeat="ability in model.pokemon.abilities">
-                            <li><a href="#" title="{{ability.description}}">{{ability.name}}</a></li>
+                            <li class="like">
+                                <a title="{{ability.description}}">{{ability.name}}</a>
+                                <span class="tooltipabilities">{{ability.description}}</span>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -65,7 +75,7 @@
        <h3>Weaknesses</h3>
         <div class="tagcloud">
             <ul>
-                <li ng-repeat="weakness in model.pokemon.weaknesses">
+                <li ng-repeat="weakness in model.pokemon.weaknesses track by $index">
                     <a href="#" class="{{model.getColorClass(weakness)}}">
                         {{weakness}}
                     </a>
@@ -76,13 +86,13 @@
     </div>
     <div class="stats col-md-12">
         <h3>Stats</h3>
-        <div class="progressContainer">
-            <div class="progress vertical" ng-repeat="stat in model.pokemon.stats">
-                <div class="progress-bar progress-bar-info" role="progressbar"
+        <div class="progressContainer" ng-repeat="stat in model.pokemon.stats">
+            <h6 class="col-md-3" style="text-transform: capitalize;margin:0;">{{stat.name}}  ({{stat.base_stat}})</h6>
+            <div class="progress">
+                <div class="progress-bar progress-bar-info col-md-9" role="progressbar"
                      aria-valuemin="0" aria-valuemax="{{stat.base_stat}}"
                      style="width:{{model.getIndicator(stat.base_stat)}}%"
                      aria-valuenow="{{stat.base_stat}}">
-                    {{stat.name}}
                 </div>
             </div>
         </div>
@@ -92,7 +102,7 @@
         <div class="tagcloud">
             <ul>
                 <li ng-repeat="move in model.pokemon.moves">
-                    <a href="#">{{move}}</a>
+                    <a href="#" class="moves">{{move}}</a>
                 </li>
             </ul>
 
@@ -103,20 +113,22 @@
     <div class="evolution col-md-12">
         <h3>Evolution</h3>
         <div class="evolution-pane">
-            <p ng-repeat="evo in model.pokemon.species.evoChain" style="display: inline">
-                <a href="#" title="{{evo.species_id}}">{{evo.species_name}}</a> ===>
-            </p>
+            <figure ng-repeat="evo in model.pokemon.species.evoChain" class="col-md-3 pokemon-thumb"
+                    ng-click="model.getMoreInfo(evo.species_name)">
+                    <img ng-src="{{evo.img}}"
+                         class="img-responsive pokemon-thumb-img"
+                         style="padding:16px"/>
+                <figcaption>
+                    <div class="text-center pokemon-thumb-name">{{evo.species_name}}#{{evo.species_id}}</div>
+                </figcaption>
+                    <!--<h5 title="{{evo.species_id}}" class="text-center ">{{evo.species_name}}</h5>-->
+            </figure>
         </div>
     </div>
 
     <div class="reviews col-md-12">
         <div class="comments-header" style="display: inline">
             <h3>Comments / Reviews</h3>
-            <!--<span>
-                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myCommentModal" >
-                    Add Review
-                </button>
-            </span>-->
         </div>
         <div class="comments-pane">
             <hr>
@@ -124,13 +136,6 @@
                 <h3>{{review.rating}}</h3>
                 <h3>{{review.title}}</h3>
                 <p>{{review.description}}</p>
-                <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myCommentModal"
-                        ng-click="model.editComment(review)">
-                    Edit Comment
-                </button>
-                <button type="button" class="btn btn-primary btn-sm" ng-click="model.deleteComment(review)">
-                    Delete Comment
-                </button>-->
             </div>
         </div>
 
@@ -170,6 +175,7 @@
         </div>
 
     </div>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 
 <!--

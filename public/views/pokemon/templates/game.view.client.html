@@ -35,78 +35,80 @@
     <!--</div>-->
 
 <!--</div>-->
-<div class="container game" ng-controller="GameController as model">
-    <h1 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
-        {{ model.activeCard1.details.name }} v/s {{ model.activeCard2.details.name }}
-         | Turn : Trainer <span ng-show="model.game.player1Turn"> 1</span> <span ng-show="!model.game.player1Turn">2</span>
-    </h1>
-    <h1 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h1>
-    <h1 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Computer Win !!</h1>
+<div class="game" ng-controller="GameController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
     <div class="container opponent-area">
         <div class="card-deck-opponent text-center thumbnail" >
-            <div class="image" ng-repeat="card in model.player1.cards">
-                <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
-                     ng-class="{ 'active1' : card == model.player1.current}"
-                     ng-disabled="!model.game.player1Turn || card != model.player1.current">
+            <div class="image" ng-repeat="card in model.player2.cards">
+                <img ng-src="{{card.details.imageUrl}}"
+                     width="150"
+                     height="180"
+                     ng-class="{ 'active2' : card == model.player2.current}"
+                     ng-disabled="model.game.player1Turn || card != model.player2.current"
+                     class="player-cards">
             </div>
         </div>
         <hr class="text-center">
         <div class="attacks" style="display: inline">
             <h4 style="display: inline">Attacks   </h4>
-            <div ng-repeat="attack in model.activeCard1.details.attacks" style="display: inline">
-                <button ng-show="model.isNumber(attack.damage)"
-                        ng-click="model.attack1(attack.damage)"
-                        class="btn btn-sm btn-danger"
-                        ng-disabled="!model.game.player1Turn || model.activeCard1 != model.player1.current || model.winner == 1">
+            <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
+                <button class="btn btn-sm btn-danger" style="display:inline"
+                        ng-show="model.isNumber(attack.damage)"
+                        ng-click="model.attack2(attack.damage);"
+                        ng-disabled="true">
                     {{ attack.name}} ({{attack.damage}})
                 </button>
             </div>
         </div>
-        <div class="score-opponent text-center">
+        <div class="score-opponent">
+            <div class="col-md-3">Remaining HP ({{ model.activeCard2.details.hp }})</div>
             <div class="progress">
-                <div class="progress-bar progress-bar-success" role="progressbar"
-                     ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
-                     aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="400"
-                     style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
-                    {{model.activeCard1.details.hp}} Left
+                <div class="progress-bar col-md-9" role="progressbar"
+                     ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard2.details.hp) <= 20)};"
+                     aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="300"
+                     style="width: {{model.getHp(model.activeCard2.details.hp)}}%">
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container playing-mat text-center">
-        <img class="center-pokeball" ng-src="../../images/Pokeball.png"
-             ng-show="model.goku==false"
-             width="100" height="100">
-        <img class="center-pokeball" ng-src="../../images/goku-attack.gif"
-             ng-show="model.goku==true"
-             width="200" height="200">
-        <h1 ng-show="model.goku==true">{{model.computerMessage}}</h1>
-
-        <hr class="text-center center-line">
+        <!--<img class="center-pokeball" ng-src="../../images/Pokeball.png"-->
+             <!--ng-show="model.goku==false"-->
+             <!--width="100" height="100">-->
+        <h3 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
+            {{ model.activeCard1.details.name }}  v/s  {{ model.activeCard2.details.name }}
+            | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn">Computer's Turn</span>
+        </h3>
+        <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
+        <h3 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Computer Win !!</h3>
+        <!--<img class="center-pokeball" ng-src="../../images/goku-attack.gif"-->
+             <!--ng-show="model.goku==true"-->
+             <!--width="200" height="200">-->
+        <h3 ng-show="model.goku==true">{{model.computerMessage}}</h3>
     </div>
 
     <div class="container player-area text-center">
 
         <div class="score-player text-center">
             <div class="activeCard2">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                         ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard2.details.hp) <= 20)};"
-                         aria-valuenow="{{ model.activeCard2.details.hp }}" aria-valuemin="0" aria-valuemax="400"
-                         style="width: {{model.getHp(model.activeCard2.details.hp)}}%">
-                        {{ model.activeCard2.details.hp }} Left
+                <div class="col-md-3">Remaining HP ({{ model.activeCard1.details.hp }})</div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
+                             ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
+                             aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
+                             style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
+                        </div>
                     </div>
-                </div>
                 <br>
             </div>
             <div class="attacks" style="display: inline">
                 <h4 style="display: inline">Attacks   </h4>
-                <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
-                    <button class="btn btn-sm btn-danger" style="display:inline"
-                            ng-show="model.isNumber(attack.damage)"
-                            ng-click="model.attack2(attack.damage);"
-                            ng-disabled="true">
+                <div ng-repeat="attack in model.activeCard1.details.attacks" style="display: inline">
+                    <button ng-show="model.isNumber(attack.damage)"
+                            ng-click="model.attack1(attack.damage)"
+                            class="btn btn-sm btn-danger"
+                            ng-disabled="!model.game.player1Turn || model.activeCard1 != model.player1.current || model.winner == 1">
                         {{ attack.name}} ({{attack.damage}})
                     </button>
                 </div>
@@ -114,13 +116,88 @@
         </div>
         <hr class="text-center">
         <div class="card-deck-player text-center thumbnail">
-            <div class="image" ng-repeat="card in model.player2.cards">
-                <img ng-src="{{card.details.imageUrl}}"
-                     width="150"
-                     height="180"
-                     ng-class="{ 'active2' : card == model.player2.current}"
-                     ng-disabled="model.game.player1Turn || card != model.player2.current">
+            <div class="image" ng-repeat="card in model.player1.cards">
+                <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
+                ng-class="{ 'active1' : card == model.player1.current}"
+                ng-disabled="!model.game.player1Turn || card != model.player1.current">
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+    <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">-->
+        <!--Launch demo modal-->
+    <!--</button>-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title w-100" id="myModalLabel">Pokémon TCG : Before you Start Playing..</h3>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <h5 class="text-center"><i>Wait for the game to load...</i></h5>
+                    <h4 class="text-center"><u>Rules of the Game</u></h4>
+                    <hr>
+                    <ul type="i" class="text-center">
+                        <li><h5><b>Attack!</b> - Select the best possible attack you can</h5></li>
+                        <li><h5><b>Wait!</b> - Wait for "Computer" to finish its attack</h5></li>
+                        <li><h5><b>HP Matters!</b> - Keep an eye on your Pokemon's HP (Hit Points)</h5></li>
+                        <li><h5>Once a Pokemon dies, the next one will start attacking.</h5></li>
+                        <li><h5>If you kill your opponent's pokemon, you start the next attack!</h5></li>
+                        <li><h5>The Person with cards remaining/ Pokemon's alive wins !!!</h5></li>
+                    </ul>
+                    <hr>
+                    <h5 class="text-center"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
+                    <h5 class="text-center"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="model.startGame()">Start Game</button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- /.Live preview-->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title w-100" id="myModalTitle">Pokémon TCG : Game Over!!!!</h3>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <h4 class="text-center"><u><span ng-show="model.winner == 2">Computer Wins !</span></u>
+                        <span ng-show="model.winner == 1">You Win!</span></h4>
+                    <hr>
+                    <div class="text-center">
+                        <img ng-src="https://images.pokemontcg.io/xyp/XY124.png">
+                        <h1>For being a great player the above card has been added to your collection.</h1>
+                    </div>
+                    <hr>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="model.startNewGame()">Play New Game</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- /.Live preview-->
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>

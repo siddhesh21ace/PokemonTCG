@@ -1,3 +1,8 @@
+body{
+    color: white;
+    background: #424242 url("/images/body_bg.png");
+    font-family: Roboto,sans-serif;
+}
 .angucomplete-dropdown {
     overflow-y: auto;
     max-height: 200px;
@@ -35,6 +40,12 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+.tagcloud ul li a.moves{
+    background-color: #98ccff;
+    color: black;
+}
+
 .tagcloud ul li a:hover {
     background-color: #3498db;
     border: 1px solid #3498db;
@@ -72,7 +83,32 @@
 }
 .ice{
     background-color: whitesmoke;
+    color: black;
 }
+
+.fighting{
+    background-color: saddlebrown;
+    color: white;
+}
+.rock{
+    background-color: tomato;
+    color: black;
+}
+.electric{
+    background-color: darkorange;
+    color: black;
+}
+.normal{
+    background-color: blanchedalmond;
+    color: black;
+}
+.water{
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+
 
 .vertical {
     display: inline-block;
@@ -88,10 +124,20 @@
     box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
 }
 
+/*.progressContainer{*/
+    /*height: 150px;*/
+    /*margin-top: 40px;*/
+    /*padding-top: 20px;*/
+    /*width: 100%;*/
+/*}*/
+
+.progress{
+    height: 15px;
+}
 .progressContainer{
-    height: 150px;
-    margin-top: 40px;
-    padding-top: 20px;
+    /*height: 150px;*/
+    /*margin-top: 40px;*/
+    padding-top: 5px;
     width: 100%;
 }
 
@@ -117,17 +163,19 @@ hr.center-line{
 }
 
 .player-area{
-    margin-top: 60px;
+    margin-top: 20px;
     text-align: center;
 }
 
 .opponent-area{
-    margin-top: 50px;
+    margin-top: 80px;
     text-align: center;
+    position: relative;
+    z-index: 1000;
 }
 
 a .glyphicon {
-    color: gray;
+    color: white;
     text-decoration: none !important;
     transition: all .5s;
     font-size: 25px;
@@ -196,28 +244,374 @@ img {
 }
 
 .image:hover img {
-    -webkit-transform:scale(2.25); /* Safari and Chrome */
-    -moz-transform:scale(2.25); /* Firefox */
-    -ms-transform:scale(2.25); /* IE 9 */
-    -o-transform:scale(2.25); /* Opera */
-    transform:scale(2.25);
+    -webkit-transform:scale(2.00); /* Safari and Chrome */
+    -moz-transform:scale(2.00); /* Firefox */
+    -ms-transform:scale(2.00); /* IE 9 */
+    -o-transform:scale(2.00); /* Opera */
+    transform:scale(2.00);
 }
 
 /*Thumbnails end*/
 
 .game {
-    margin-top: 50px;
+    /*margin-top: 50px;*/
 }
 
 .score-opponent{
     margin-top: 10px;
 }
 
+.player-cards{
+    position: relative;
+    z-index: 1000;
+}
+
 .score-player{
     margin-top: 21px;
 }
 
+.register-btn{
+    background: #009688;
+    border-color: #009688;
+    color: white;
+}
+
+.login-btn{
+    background: #03A9F4;
+    border-color: #03A9F4;
+    color: white;
+    height: 58px;
+}
+
+.form-control{
+    color: #9CDC18;
+}
+
+.loginForm{
+    margin-top: 50px;
+    height: auto;
+    margin-bottom: 20px;
+}
 
 
+.pokemon-thumb{
+    background-color: white;
+    background-color: rgba(255,255,255,.2);
+    /*padding:2px;*/
+    /*margin: 10px 20px;*/
+}
 
+.pokemon-thumb:hover{
+    transform: matrix(1.0, 0, 0, 1, 0, 0);
+}
+
+.pokemon-thumb-name{
+    text-transform: capitalize;
+}
+
+.details{
+    margin-top: 40px;
+}
+
+*, *::before, *::after{
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+figure{
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    /*border: 5px solid #fff;*/
+    box-shadow: 0 0 5px #ddd;
+    margin: 1em;
+}
+
+figcaption{
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    display: table;
+    font-size: 20px;
+    font-color: white;
+}
+
+figcaption div{
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    top: 20px;
+    opacity: 0;
+    color: black;
+    text-transform: uppercase;
+}
+
+figcaption div:after{
+    position: absolute;
+    content: "";
+    left: 0; right: 0;
+    bottom: 40%;
+    text-align: center;
+    margin: auto;
+    width: 0%;
+    height: 2px;
+    background: #2c3e50;
+}
+
+figure img{
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+figure:hover figcaption{
+    background: rgba(255,255,255,0.3);
+}
+
+figcaption:hover div{
+    opacity: 1;
+    top: 0;
+}
+
+figcaption:hover div:after{
+    width: 50%;
+}
+
+figure:hover img{
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+}
+
+#searchPokemon_value{
+    color: #9CDC18;
+}
+
+.angucomplete-holder {
+    position: relative;
+    color: #9CDC18;
+}
+
+.angucomplete-dropdown {
+    overflow-y: auto;
+    max-height: 200px;
+    color: #9CDC18;
+}
+
+.angucomplete-input-not-empty{
+    color: #9CDC18;
+}
+
+.angucomplete-row{
+    background: rgba(255,255,255,0.2);
+    padding: 5px;
+    margin:1px;
+    color: #9CDC18;
+    font-size: 16px;
+}
+
+.angucomplete-searching {
+    color: #9CDC18;
+    font-size: 14px;
+}
+
+.angucomplete-description {
+    font-size: 14px;
+}
+
+.like {
+    position: relative;
+    display: inline-block;
+}
+
+.like .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -50px;
+    left: 0%;
+}
+
+.like .tooltiptextComment {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 100%;
+}
+
+.like .tooltipabilities {
+    visibility: hidden;
+    width: 300px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 100%;
+}
+
+
+.like:hover .tooltiptextComment {
+    visibility: visible;
+}
+
+.like:hover .tooltiptext {
+    visibility: visible;
+}
+
+.like:hover .tooltipabilities {
+    visibility: visible;
+}
+
+.pokemon-info-image{
+    border: 1px;
+    background-color: rgba(50,50,50,.2);
+}
+
+.pokemon-info-likes{
+    color: white;
+}
+
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+.card{
+    background-color: rgba(50,50,50,.2);
+}
+
+.jumbotron {
+    background-color: rgba(50,50,50,.2);
+}
+
+.footer-links{
+
+}
+
+.footer{
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.registerForm{
+    padding-bottom: 50px;
+}
+
+.register-form{
+    height: inherit;
+}
+
+.userProfile{
+    margin-top: 60px;
+}
+
+body{
+    height: inherit;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 768px) {
+
+    .know-more-footer{
+        display:none;
+    }
+
+    figure{
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        /*border: 5px solid #fff;*/
+        box-shadow: 0 0 5px #ddd;
+        margin: 1em 0em;
+    }
+
+    figcaption{
+        position: absolute;
+        left: 0; right: 0;
+        top: 0; bottom: 0;
+        text-align: center;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        display: table;
+        font-size: 20px;
+        font-color: white;
+    }
+
+    figcaption div {
+        display: table-cell;
+        vertical-align: text-top;
+        position: relative;
+        top: 5px;
+        opacity: 1;
+        color: black;
+        text-align: center;
+    }
+
+    figcaption:hover div {
+        opacity: 1;
+        top: 0px;
+    }
+
+    figcaption div:after{
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 40%;
+        text-align: center;
+        margin: auto;
+        width: 0%;
+        height: 2px;
+    }
+
+    figcaption:hover div:after{
+        display:none;
+        background: transparent;
+    }
+
+    figure:hover img{
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        transform: scale3d(1.2, 1.2, 1);
+    }
+
+
+}
 

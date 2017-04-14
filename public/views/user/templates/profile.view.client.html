@@ -1,19 +1,7 @@
-<div class="view-container profile-page" ng-controller="ProfileController as model">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-text pull-right no-right-margin">
-                <a class="navbar-link" ng-click="model.update(model.user)">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#!/user/{{model.userID}}">Profile</a>
-            </div>
-        </div>
-    </nav>
+<div ng-controller="ProfileController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+    <div class="userProfile container">
 
-    <div class="container">
-        <div class="userProfile">
             <div class="userImage col-md-4">
                 <img src="{{model.user.url}}" height="200" width="200" style="margin-top:20px"/>
             </div>
@@ -32,7 +20,6 @@
                     Logout
                 </button>
             </div>
-        </div>
     </div>
 
     <hr>
@@ -61,6 +48,7 @@
             </a>
         </div>
     </div>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -98,13 +86,12 @@
                                        placeholder="Last Name"/>
                             </div>
                             <div class="form-group">
-                                <label for="url">URL</label>
-                                <input type="text"
+                                <!--<label for="url">URL</label>-->
+                                <input type="hidden"
                                        ng-model="model.user.url"
                                        class="form-control" id="url" name="url"
                                        placeholder="Enter URL"
-                                       value="model.user.url"
-                                       required>
+                                       value="model.user.url">
 
                                 <div class="error"
                                      ng-if="newWidgetForm.$submitted && newWidgetForm.url.$invalid">Enter URL</div>
@@ -139,11 +126,6 @@
                             Update
                         </a>
                     </div>
-<!--                    <div class="form-group">
-                        <a class="btn btn-block btn-warning" href="#!/pokedex">
-                            Pokedex
-                        </a>
-                    </div>-->
                     <div class="form-group">
                         <a class="btn btn-block btn-default" ng-click="model.update(model.user)" data-dismiss="modal">
                             Close
@@ -153,14 +135,4 @@
             </div>
         </div>
     </div>
-
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-text pull-right no-right-margin">
-                <a class="navbar-link" href="#!/user/{{model.userID}}">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </div>
-        </div>
-    </nav>
 </div>

@@ -1,82 +1,47 @@
-<div class="container-fluid" ng-controller="PokedexController as model">
-    <div>
+<div ng-controller="PokedexController as model">
+    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+    <div class="container" >
         <div class="alert alert-danger text-center" ng-if="model.error">
             <p>{{model.error}}</p>
         </div>
-        <!--<form novalidate name="searchPokedex">-->
-            <!--<select name="select" ng-model="pokedex.category" class="form-control">-->
-                <!--<option value="pokemon" selected>Pokemon</option>-->
-                <!--<option value="evolution">Evolution</option>-->
-                <!--<option value="Location">Location</option>-->
-                <!--<option value="contest">Contests</option>-->
-                <!--<option value="moves">Moves</option>-->
-            <!--</select>-->
-            <!--<input type="text"-->
-                   <!--name="search"-->
-                   <!--placeholder="Enter Search Term"-->
-                   <!--class="form-control"-->
-                   <!--ng-model="pokedex.search"-->
-                   <!--required>-->
-
-
-            <!--{{model.matches}}-->
-
-            <!--<div ng-if="searchPokedex.search.$invalid && searchPokedex.$submitted" style="color: indianred"> Enter a search term</div>-->
-            <!--<button type="submit"-->
-                    <!--class="form-control btn-success btn-block"-->
-                    <!--ng-click="model.getResults(pokedex.search, pokedex.category)"-->
-                    <!--style="margin-top: 10px;">Search Pokedex</button>-->
-            <!--<button type="submit"-->
-                    <!--class="form-control btn-success btn-block"-->
-                    <!--ng-click="model.fetchPokemons(pokedex.search)"-->
-                    <!--style="margin-top: 10px;">Search Pokedex</button>-->
-
-            <!--<button type="submit"-->
-            <!--class="form-control btn-success btn-block"-->
-            <!--ng-click="model.insertData()"-->
-            <!--style="margin-top: 10px;">Insert Data</button>-->
-        <!--</form>-->
-
         <h1 class="text-center">Pokedex | Search Pokemon</h1>
-        <angucomplete-alt
-                id="ex2"
-                placeholder="Search Pokemon"
-                local-data="model.matches"
-                selected-object="model.selectPokemon"
-                minlength="2"
-                text-searching="Searching for Pokemons..."
-                text-no-results="No Pokemon Found."
-                search-fields='name'
-                title-field='name'
-                input-class="form-control form-control-small"
-                match-class="highlight"
-                required/>
-    </div>
-
-    <div class="results col-md-6" ng-if="model.searchResults">
-        <h1 class="panel-heading text-capitalize">{{model.searchResults.name}}</h1>
-        <img ng-src="{{model.searchResults.img}}"/>
-        <h4> Abilites </h4>
-        <ul ng-repeat="ability in model.searchResults.abilities">
-            <li>{{ability.ability.name}}</li>
-        </ul>
-        <h4> Types </h4>
-        <ul ng-repeat="type in model.searchResults.types">
-            <li>{{type.type.name}}</li>
-        </ul>
-        <!--{{model.searchResults}}-->
-        <a ng-click="model.getMoreInfo(model.searchResults)"> Read More</a>
-    </div>
-    <div class="details col-md-12 text-center">
-       <!-- <div infinite-scroll="model.loadMore()" infinite-scroll-distance="20" ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">-->
-        <div ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">
-            <a ng-click="model.getMoreInfo(pokemon)">
-                <img ng-src="{{pokemon.image}}">
-                <h4 class="text-center">{{pokemon.name}}#{{pokemon.id}}</h4>
-            </a>
+        <div class="md-form">
+            <angucomplete-alt
+                    id="searchPokemon"
+                    name="searchPokemon"
+                    placeholder="Search Pokemon"
+                    local-data="model.matches"
+                    selected-object="model.selectPokemon"
+                    minlength="2"
+                    text-searching="Searching for Pokemons..."
+                    text-no-results="No Pokemon Found."
+                    search-fields='name'
+                    title-field='name'
+                    input-class="form-control form-control-small"
+                    input-changed="model.resetResult"
+                    match-class="highlight"
+                    required
+                    class="col-md-12 form-control"
+                    style="color: #9CDC18;"></angucomplete-alt>
         </div>
+
+
+        <!--<div class="md-form">-->
+            <!--<input type="text" id="form1" class="form-control">-->
+            <!--<label for="form1" class="">Example label</label>-->
+        <!--</div>-->
+
     </div>
-
-
+    <!--<div ng-show="model.pokemonThumbs.length == 0"><img src="../../../images/Pokeball-1-loader.gif"></div>-->
+    <div class="details col-md-12 col-md-offset-1 text-center">
+       <!-- <div infinite-scroll="model.loadMore()" infinite-scroll-distance="20" ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">-->
+        <figure ng-repeat="pokemon in model.pokemonThumbs"
+                ng-show="model.searchResults.name == '' || model.searchResults.name == pokemon.name || searchStr.$valid"
+                class="col-md-3 text-center pokemon-thumb" ng-click="model.getMoreInfo(pokemon)">
+            <img ng-src="{{pokemon.image}}" class="pokemon-thumb-img">
+            <figcaption><div class="text-center pokemon-thumb-name">{{pokemon.name}}#{{pokemon.id}}</div></figcaption>
+        </figure>
+    </div>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 

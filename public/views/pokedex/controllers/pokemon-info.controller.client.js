@@ -3,6 +3,7 @@
         .controller("PokemonInfoController", pokemonInfoController);
 
     function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService) {
+        //   function pokemonInfoController(PokeDexService, UserService, $routeParams, $rootScope, $location) {
         var vm = this;
         vm.like = {};
         vm.like.votes = 100;
@@ -22,13 +23,15 @@
         vm.deleteComment = deleteComment;
         vm.editComment = editComment;
         vm.setActiveReview = setActiveReview;
+        vm.isLoggedInUser = isLoggedInUser;
+        vm.getMoreInfo = getMoreInfo;
 
         vm.addReview = addReview;
 
         function addReview(review) {
             if (review) {
-/*                review.user_id = vm.userID;
-                review.pokemon_id = vm.pokemon_id;*/
+                /*                review.user_id = vm.userID;
+                 review.pokemon_id = vm.pokemon_id;*/
 
                 review.user_id = "58eff76012f53118b4c1d6a3";
                 review.pokemon_id = "58e91532d398239caad8e4af";
@@ -54,6 +57,30 @@
                 .then(function (response) {
                     console.log(response);
                     vm.pokemon = response.data;
+
+                    var evoChain = vm.pokemon.species.evoChain;
+
+                    for (e in evoChain) {
+                        var urlA = "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/";
+                        var id = evoChain[e].species_id;
+
+                        if (id.toString().length == 1) {
+                            id = "00" + id;
+                        } else if (id.toString().length == 2) {
+                            id = "0" + id;
+                        }
+
+                        var imgUrl = urlA + id + ".png";
+
+                        evoChain[e].img = imgUrl;
+                        evoChain[e].name = evoChain[e].species_name;
+                        evoChain[e].species_id = evoChain[e].species_id;
+
+                    }
+
+                    vm.pokemon.species.evoChain = evoChain;
+
+
                     var urlA = "http://assets.pokemon.com/assets/cms2/img/pokedex/full/";
                     var id = response.data.id;
 
@@ -74,6 +101,13 @@
                     vm.error = "Result Not found"
                     console.log("Error" + error);
                 })
+
+
+            UserService.findCurrentUser()
+                .then(function (response) {
+                    vm.user = response.data;
+                    console.log(vm.user);
+                });
         }
 
         init();
@@ -83,99 +117,134 @@
                 .then(function (response) {
                     vm.reviews = response.data;
                 });
-        }
+            function isLoggedInUser() {
+                if (vm.user)
+                    return true;
+                else
+                    return false;
+            }
 
-        function deleteComment(review) {
-            vm.reviews.splice(review, 1);
-        }
+            function getMoreInfo(data) {
+                console.log(data);
+                $location.url('/pokemon-info/' + data);
 
-        function setActiveReview(review) {
-            vm.review = review;
-        }
+            }
 
-        function editComment(review) {
-            vm.review = review;
-            vm.activeReview = review;
-            console.log("review ", review, vm.review);
+            function deleteComment(review) {
+                vm.reviews.splice(review, 1);
+            }
 
-            for (r in vm.reviews) {
-                if (vm.reviews[r]._id === vm.review._id) {
-                    vm.reviews[r] = vm.review;
+            function deleteComment(review) {
+                vm.reviews.splice(review, 1);
+            }
+
+            function setActiveReview(review) {
+                vm.review = review;
+            }
+
+            function editComment(review) {
+                vm.review = review;
+                vm.activeReview = review;
+                console.log("review ", review, vm.review);
+
+                for (r in vm.reviews) {
+                    if (vm.reviews[r]._id === vm.review._id) {
+                        vm.reviews[r] = vm.review;
+                    }
                 }
             }
-        }
 
-        /* Extras */
-
-        function getColorClass(type) {
-            if (type == 'grass') {
-                return "grass";
-            } else if (type == 'poison') {
-                return "poison";
-            } else if (type == 'psychic') {
-                return "psychic";
-            } else if (type == 'bug') {
-                return "bug";
-            } else if (type == 'fire') {
-                return "fire";
-            } else if (type == 'ice') {
-                return "ice";
-            } else if (type == 'ground') {
-                return "ground";
-            } else if (type == 'flying') {
-                return "flying";
+            /* Extras */
+            function getColorClass(type) {
+                if (type == 'grass') {
+                    return "grass";
+                } else if (type == 'poison') {
+                    return "poison";
+                } else if (type == 'psychic') {
+                    return "psychic";
+                } else if (type == 'bug') {
+                    return "bug";
+                } else if (type == 'fire') {
+                    return "fire";
+                } else if (type == 'ice') {
+                } else if (type == 'water') {
+                    return "water";
+                } else if (type == 'ice') {
+                    return "ice";
+                } else if (type == 'ground') {
+                    return "ground";
+                } else if (type == 'flying') {
+                    return "flying";
+                } else if (type == 'electric') {
+                    return "electric";
+                } else if (type == 'rock') {
+                    return "rock";
+                } else if (type == 'fighting') {
+                    return "fighting";
+                } else if (type == 'normal') {
+                    return "normal";
+                }
             }
-        }
 
-        function likePokemon() {
-            var like = {
-                "user_id" : "58eff76012f53118b4c1d6a3",
-                "pokemon_id" : "58e91532d398239caad8e4af"
+            function likePokemon() {
+                var like = {
+                    "user_id": "58eff76012f53118b4c1d6a3",
+                    "pokemon_id": "58e91532d398239caad8e4af"
+                }
+                LikeService.addLike(like)
+                    .then(function (response) {
+                        console.log(response.data);
+                        vm.likeId = response.data._id;
+                    }, function (error) {
+                        console.log(error);
+                    });
+                /*//Check if loggedIN
+                 console.log($rootScope.currentUser);
+                 if ($rootScope.currentUser != undefined) {
+                 console.log("In like pokemon");
+                 if (vm.like.userVotes == 1) {
+                 =======
+                 function likePokemon(){
+                 //Check if loggedIN
+                 //console.log($rootScope.currentUser);
+                 if(vm.user) {
+                 //console.log("In like pokemon");
+                 if(vm.like.userVotes == 1){
+                 >>>>>>> origin/tcg-integrated
+                 vm.like.userVotes = 0;
+                 vm.like.votes--;
+                 } else {
+                 vm.like.userVotes = 1;
+                 vm.like.votes++;
+                 }
+                 } else {
+                 console.log("Need to log in");
+                 }*/
             }
-            LikeService.addLike(like)
-                .then(function (response) {
-                    console.log(response.data);
-                    vm.likeId = response.data._id;
-                }, function (error) {
-                    console.log(error);
-                });
-            /*//Check if loggedIN
-            console.log($rootScope.currentUser);
-            if ($rootScope.currentUser != undefined) {
-                console.log("In like pokemon");
-                if (vm.like.userVotes == 1) {
-                    vm.like.userVotes = 0;
-                    vm.like.votes--;
+
+            function unlikePokemon(likeId) {
+                LikeService.undoLike(likeId)
+                    .then(function (response) {
+                        console.log(response);
+                        vm.likeId = "";
+                    }, function (error) {
+                        console.log(error);
+                    })
+            }
+
+            function getMaxStat(stat) {
+                if (stat >= 100) {
+                    return 150;
                 } else {
-                    vm.like.userVotes = 1;
-                    vm.like.votes++;
+                    return 120;
                 }
-            } else {
-                console.log("Need to log in");
-            }*/
-        }
-        
-        function unlikePokemon(likeId) {
-            LikeService.undoLike(likeId)
-                .then(function (response) {
-                    console.log(response);
-                    vm.likeId = "";
-                }, function (error) {
-                    console.log(error);
-                })
-        }
+            }
 
-        function getMaxStat(stat) {
-            if (stat >= 100) {
-                return 150;
-            } else {
-                return 120;
+            function getIndicator(stat) {
+                return (stat / 200) * 100;
             }
         }
 
-        function getIndicator(stat) {
-            return (stat / 200) * 100;
-        }
     }
 
 })();
