@@ -5,29 +5,11 @@ module.exports = function (app, model) {
     var Pokedex = require('pokedex-promise-v2');
     var P = new Pokedex();
 
-
     app.post("/api/pokedex/getPokedexSearch/", getPokedexSearch);
     app.get('/api/pokedex/getPokemonDetails/:pokemon', getPokemonDetails);
-    //app.post('/api/pokedex/insertData', insertPokemonData);
     app.get('/api/pokedex/fetchPokemons/:str', fetchPokemons);
     app.get('/api/pokedex/fetchAllPokemons/',fetchAllPokemons);
     app.get('/api/pokedex/getAllPokemons/', getAllPokemons);
-
-    // function insertPokemonData(req, res){
-    //
-    //     for(p in pokemons){
-    //         model.pokemonModel.createPokemons(pokemons[p])
-    //             .then(
-    //                 function(user){
-    //                     res.send(200);
-    //                 },
-    //                 function(error){
-    //                     res.sendStatus(400);
-    //                 }
-    //             )
-    //     }
-    // }
-    //
 
     function getAllPokemons(req,res){
         P.getPokemonsList() // with Promise

@@ -4,7 +4,7 @@
 module.exports = function (app, models) {
     app.get("/api/like", findLikes);
     app.post("/api/like", addLike);
-    app.delete("/api/like/:likeID", undoLike);
+    app.delete("/api/like", undoLike);
 
     /*var like1 = {
         "user_id" : "58eff76012f53118b4c1d6a3",
@@ -51,9 +51,10 @@ module.exports = function (app, models) {
     }
 
     function undoLike(req, res) {
-        var likeID = req.params['likeID'];
+        var pokemon_id = req.query.pokemon_id;
+        var user_id = req.query.user_id;
 
-        models.likeModel.deleteLike(likeID)
+        models.likeModel.deleteLike(pokemon_id, user_id)
             .then(function (response) {
                 if (response.result.n === 1 && response.result.ok === 1) {
                     res.sendStatus(200);

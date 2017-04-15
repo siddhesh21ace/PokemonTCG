@@ -10,9 +10,27 @@
         <div class="col-md-4 pokemon-info-image">
             <img ng-src="{{model.pokemon.img}}"
                  class="img-responsive"/>
+
             <div class="social" style="text-align:center">
+                <span ng-show="model.user._id">
+                    <a ng-click="detailsControllerModel.likeMovie()"
+                       ng-hide="detailsControllerModel.isLiked">
+                        <i class="fa fa-thumbs-o-up orange"></i>
+                    </a>
+                    <a href="" ng-click="detailsControllerModel.undoLikeMovie()"
+                       ng-show="detailsControllerModel.isLiked" class="ng-hide">
+                        <i class="fa fa-thumbs-up green"></i>
+                    </a>
+                </span>
+                <span ng-show="!user._id">
+                    <a data-toggle="tooltip" data-placement="top" title=""
+                       ng-disabled="!user._id" data-original-title="Please login to like!" disabled="disabled">
+                        <i class="fa fa-thumbs-o-up orange"></i>
+                    </a>
+                </span>
+
+
                 <span>
- <!--                   <a ng-click="model.likePokemon()" ng-if="model.likeId === ''">-->
                     <a ng-click="model.likePokemon()"
                        title="Like Pokemon"
                        ng-disabled="model.isLoggedInUser()==false"
@@ -20,7 +38,7 @@
                         <i class="glyphicon"
                            ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
                            aria-hidden="true"
-                          ></i>
+                        ></i>
                         <span class="tooltiptext">Like Pokemon
                         <span ng-show="model.isLoggedInUser()==false"> | Login Required</span></span>
                     </a>
@@ -30,16 +48,17 @@
                            aria-hidden="true"
                         ></i>
                     </a>
-                     <span ng-model="like.votes"
+                     <!--<span ng-model="like.votes"
                            ng-if="model.like.votes > 0"
-                           class="pokemon-info-likes"
-                     ><h5 style="display: inline">{{model.like.votes}} users like this Pokemon</h5></span>
+                           class="pokemon-info-likes">
+                         <h5 style="display: inline">{{model.like.votes}} users like this Pokemon</h5>
+                     </span>-->
                 </span>
             </div>
         </div>
         <div class="col-md-8">
             <h4 class="description">
-               {{model.pokemon.species.description}}
+                {{model.pokemon.species.description}}
             </h4>
             <div class="physicalAttribtues">
                 <h3>Physical Attributes</h3>
@@ -72,7 +91,7 @@
     </div>
 
     <div class="weakness col-md-12">
-       <h3>Weaknesses</h3>
+        <h3>Weaknesses</h3>
         <div class="tagcloud">
             <ul>
                 <li ng-repeat="weakness in model.pokemon.weaknesses track by $index">
@@ -81,13 +100,13 @@
                     </a>
                 </li>
             </ul>
-
         </div>
     </div>
+
     <div class="stats col-md-12">
         <h3>Stats</h3>
         <div class="progressContainer" ng-repeat="stat in model.pokemon.stats">
-            <h6 class="col-md-3" style="text-transform: capitalize;margin:0;">{{stat.name}}  ({{stat.base_stat}})</h6>
+            <h6 class="col-md-3" style="text-transform: capitalize;margin:0;">{{stat.name}} ({{stat.base_stat}})</h6>
             <div class="progress">
                 <div class="progress-bar progress-bar-info col-md-9" role="progressbar"
                      aria-valuemin="0" aria-valuemax="{{stat.base_stat}}"
@@ -97,6 +116,7 @@
             </div>
         </div>
     </div>
+
     <div class="moves col-md-12">
         <h3>Moves</h3>
         <div class="tagcloud">
@@ -107,7 +127,6 @@
             </ul>
 
         </div>
-
     </div>
 
     <div class="evolution col-md-12">
@@ -115,20 +134,19 @@
         <div class="evolution-pane">
             <figure ng-repeat="evo in model.pokemon.species.evoChain" class="col-md-3 pokemon-thumb"
                     ng-click="model.getMoreInfo(evo.species_name)">
-                    <img ng-src="{{evo.img}}"
-                         class="img-responsive pokemon-thumb-img"
-                         style="padding:16px"/>
+                <img ng-src="{{evo.img}}"
+                     class="img-responsive pokemon-thumb-img"
+                     style="padding:16px"/>
                 <figcaption>
                     <div class="text-center pokemon-thumb-name">{{evo.species_name}}#{{evo.species_id}}</div>
                 </figcaption>
-                    <!--<h5 title="{{evo.species_id}}" class="text-center ">{{evo.species_name}}</h5>-->
             </figure>
         </div>
     </div>
 
     <div class="reviews col-md-12">
         <div class="comments-header" style="display: inline">
-            <h3>Comments / Reviews</h3>
+            <h3>Comments/Reviews</h3>
         </div>
         <div class="comments-pane">
             <hr>
@@ -155,7 +173,7 @@
                         <label for="description">Review</label>
                         <textarea ng-model="review.description"
                                   class="form-control" id="description" name="description"
-                                  placeholder="Enter description">
+                                  placeholder="Enter Description">
                         </textarea>
                     </div>
 
@@ -173,63 +191,6 @@
                 </form>
             </div>
         </div>
-
     </div>
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
-
-<!--
-
-&lt;!&ndash; Modal &ndash;&gt;
-<div class="modal fade" id="myCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Add Comment</h4>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <form>
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input ng-model="review.title" type="text"
-                                   class="form-control" id="title" name="title"
-                                   placeholder="Enter Title"
-                                   value="{{model.activeReview.title}}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="review">Review</label>
-                            <textarea ng-model="review.comment"
-                                      class="form-control" id="review" name="review"
-                                      placeholder="Enter Comment">{{model.activeReview.comment}}</textarea>
-                        </div>
-
-                        <div class="alert alert-danger" ng-show="model.error">
-                            {{model.error}}
-                        </div>
-
-                        <div class="alert alert-success" ng-show="model.message">
-                            {{model.message}}
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                &lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>&ndash;&gt;
-                <div class="form-group">
-                    <a class="btn btn-block btn-default" data-dismiss="modal">
-                        Close
-                    </a>
-                </div>
-                <div class="form-group">
-                    <a class="btn btn-block btn-primary" ng-click="model.addReview(model.review)">
-                        Submit Comment
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->

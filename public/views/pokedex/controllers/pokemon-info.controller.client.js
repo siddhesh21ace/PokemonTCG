@@ -2,17 +2,17 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService) {
+    function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService) {
         //   function pokemonInfoController(PokeDexService, UserService, $routeParams, $rootScope, $location) {
         var vm = this;
         vm.like = {};
         vm.like.votes = 100;
         vm.like.userVotes = 0;
-        console.log('rootUser ', $rootScope.currentUser);
         vm.reviews = [];
         vm.review = {};
         vm.activeReview = {};
         vm.likeId = "";
+        vm.user = {};
 
         vm.getColorClass = getColorClass;
         vm.getMaxStat = getMaxStat;
@@ -27,6 +27,7 @@
         vm.getMoreInfo = getMoreInfo;
 
         vm.addReview = addReview;
+        vm.isPokemonLiked = isPokemonLiked;
 
         function addReview(review) {
             if (review) {
@@ -106,7 +107,6 @@
             UserService.findCurrentUser()
                 .then(function (response) {
                     vm.user = response.data;
-                    console.log(vm.user);
                 });
         }
 
@@ -117,134 +117,128 @@
                 .then(function (response) {
                     vm.reviews = response.data;
                 });
-            function isLoggedInUser() {
-                if (vm.user)
-                    return true;
-                else
-                    return false;
-            }
+        }
 
-            function getMoreInfo(data) {
-                console.log(data);
-                $location.url('/pokemon-info/' + data);
+        function isLoggedInUser() {
+            if (vm.user)
+                return true;
+            else
+                return false;
+        }
 
-            }
+        function getMoreInfo(data) {
+            console.log(data);
+            $location.url('/pokemon-info/' + data);
 
-            function deleteComment(review) {
-                vm.reviews.splice(review, 1);
-            }
+        }
 
-            function deleteComment(review) {
-                vm.reviews.splice(review, 1);
-            }
+        function deleteComment(review) {
+            vm.reviews.splice(review, 1);
+        }
 
-            function setActiveReview(review) {
-                vm.review = review;
-            }
+        function deleteComment(review) {
+            vm.reviews.splice(review, 1);
+        }
 
-            function editComment(review) {
-                vm.review = review;
-                vm.activeReview = review;
-                console.log("review ", review, vm.review);
+        function setActiveReview(review) {
+            vm.review = review;
+        }
 
-                for (r in vm.reviews) {
-                    if (vm.reviews[r]._id === vm.review._id) {
-                        vm.reviews[r] = vm.review;
-                    }
+        function editComment(review) {
+            vm.review = review;
+            vm.activeReview = review;
+            console.log("review ", review, vm.review);
+
+            for (r in vm.reviews) {
+                if (vm.reviews[r]._id === vm.review._id) {
+                    vm.reviews[r] = vm.review;
                 }
-            }
-
-            /* Extras */
-            function getColorClass(type) {
-                if (type == 'grass') {
-                    return "grass";
-                } else if (type == 'poison') {
-                    return "poison";
-                } else if (type == 'psychic') {
-                    return "psychic";
-                } else if (type == 'bug') {
-                    return "bug";
-                } else if (type == 'fire') {
-                    return "fire";
-                } else if (type == 'ice') {
-                } else if (type == 'water') {
-                    return "water";
-                } else if (type == 'ice') {
-                    return "ice";
-                } else if (type == 'ground') {
-                    return "ground";
-                } else if (type == 'flying') {
-                    return "flying";
-                } else if (type == 'electric') {
-                    return "electric";
-                } else if (type == 'rock') {
-                    return "rock";
-                } else if (type == 'fighting') {
-                    return "fighting";
-                } else if (type == 'normal') {
-                    return "normal";
-                }
-            }
-
-            function likePokemon() {
-                var like = {
-                    "user_id": "58eff76012f53118b4c1d6a3",
-                    "pokemon_id": "58e91532d398239caad8e4af"
-                }
-                LikeService.addLike(like)
-                    .then(function (response) {
-                        console.log(response.data);
-                        vm.likeId = response.data._id;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                /*//Check if loggedIN
-                 console.log($rootScope.currentUser);
-                 if ($rootScope.currentUser != undefined) {
-                 console.log("In like pokemon");
-                 if (vm.like.userVotes == 1) {
-                 =======
-                 function likePokemon(){
-                 //Check if loggedIN
-                 //console.log($rootScope.currentUser);
-                 if(vm.user) {
-                 //console.log("In like pokemon");
-                 if(vm.like.userVotes == 1){
-                 >>>>>>> origin/tcg-integrated
-                 vm.like.userVotes = 0;
-                 vm.like.votes--;
-                 } else {
-                 vm.like.userVotes = 1;
-                 vm.like.votes++;
-                 }
-                 } else {
-                 console.log("Need to log in");
-                 }*/
-            }
-
-            function unlikePokemon(likeId) {
-                LikeService.undoLike(likeId)
-                    .then(function (response) {
-                        console.log(response);
-                        vm.likeId = "";
-                    }, function (error) {
-                        console.log(error);
-                    })
-            }
-
-            function getMaxStat(stat) {
-                if (stat >= 100) {
-                    return 150;
-                } else {
-                    return 120;
-                }
-            }
-
-            function getIndicator(stat) {
-                return (stat / 200) * 100;
             }
         }
 
+        /* Extras */
+        function getColorClass(type) {
+            if (type == 'grass') {
+                return "grass";
+            } else if (type == 'poison') {
+                return "poison";
+            } else if (type == 'psychic') {
+                return "psychic";
+            } else if (type == 'bug') {
+                return "bug";
+            } else if (type == 'fire') {
+                return "fire";
+            } else if (type == 'ice') {
+            } else if (type == 'water') {
+                return "water";
+            } else if (type == 'ice') {
+                return "ice";
+            } else if (type == 'ground') {
+                return "ground";
+            } else if (type == 'flying') {
+                return "flying";
+            } else if (type == 'electric') {
+                return "electric";
+            } else if (type == 'rock') {
+                return "rock";
+            } else if (type == 'fighting') {
+                return "fighting";
+            } else if (type == 'normal') {
+                return "normal";
+            }
+        }
+
+        function likePokemon() {
+            var like = {
+                "user_id": vm.user._id,
+                "pokemon_id": "58e91532d398239caad8e4af"
+            };
+
+            LikeService.addLike(like)
+                .then(function (response) {
+                    console.log(response.data);
+                    vm.isLiked = true;
+                }, function (error) {
+                    console.log(error);
+                });
+        }
+
+        function unlikePokemon() {
+            LikeService.undoLike(vm.user._id, vm.pokemon._id)
+                .then(function (response) {
+                    console.log(response);
+                    vm.isLiked = false;
+                }, function (error) {
+                    console.log(error);
+                })
+        }
+
+        function isPokemonLiked() {
+            LikeService
+                .isPokemonLiked(vm.user._id, vm.pokemon._id)
+                .then(function (response) {
+                    var liked = response.data;
+                    if (liked) {
+                        console.log(liked);
+                        vm.isLiked = true;
+                    }
+                    else {
+                        vm.isLiked = false;
+                    }
+                });
+        }
+
+        function getMaxStat(stat) {
+            if (stat >= 100) {
+                return 150;
+            } else {
+                return 120;
+            }
+        }
+
+        function getIndicator(stat) {
+            return (stat / 200) * 100;
+        }
     }
 
 })();

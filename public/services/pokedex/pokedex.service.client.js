@@ -14,31 +14,31 @@
             "fetchAllPokemons": fetchAllPokemons,
             "getPokemonsThumbs": getPokemonsThumbs,
             "fetchPokemonDetails": fetchPokemonDetails
-        }
+        };
 
         return api;
 
-        function fetchPokemonDetails(pokemon){
-            return $http.get("/rest/api/pokemon/"+pokemon);
+        function fetchPokemonDetails(pokemon) {
+            return $http.get("/rest/api/pokemon/" + pokemon);
         }
 
-        function getPokemonsThumbs(){
+        function getPokemonsThumbs() {
             return $http.get('/api/pokedex/getAllPokemons/');
         }
 
-        function fetchPokemons(str){
-            return $http.get('/api/pokedex/fetchPokemons/'+str);
+        function fetchPokemons(str) {
+            return $http.get('/api/pokedex/fetchPokemons/' + str);
         }
 
-        function fetchAllPokemons(){
+        function fetchAllPokemons() {
             return $http.get('/api/pokedex/fetchAllPokemons/');
         }
 
-        function insertData(){
+        function insertData() {
             return $http.post('/api/pokedex/insertData/');
         }
 
-        function getPokedexSearchResults(query, category){
+        function getPokedexSearchResults(query, category) {
 
             var pokedex = {
                 query: query,
@@ -48,9 +48,9 @@
             return $http.post('/api/pokedex/getPokedexSearch/', pokedex);
         }
 
-        function getPokemonDetails(pokemon){
+        function getPokemonDetails(pokemon) {
 
-            return $http.get('/api/pokedex/getPokemonDetails/'+pokemon);
+            return $http.get('/api/pokedex/getPokemonDetails/' + pokemon);
         }
 
 

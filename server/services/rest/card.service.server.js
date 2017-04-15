@@ -51,7 +51,7 @@ module.exports = function (app, models) {
     function isNumber(damage) {
         if (damage === '') {
             return false;
-        } else if(isNaN(damage)) {
+        } else if (isNaN(damage)) {
             return false;
         } else {
             return true;
@@ -61,7 +61,7 @@ module.exports = function (app, models) {
     function cleanUpData(response) {
         response.forEach(function (card) {
             card.attacks && card.attacks.forEach(function (attack) {
-                if(!isNumber(attack.damage)) {
+                if (!isNumber(attack.damage)) {
                     attack.damage = "50";
                 }
             });

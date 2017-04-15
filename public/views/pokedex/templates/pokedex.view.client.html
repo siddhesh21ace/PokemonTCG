@@ -1,6 +1,6 @@
 <div ng-controller="PokedexController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
-    <div class="container" >
+    <div class="container">
         <div class="alert alert-danger text-center" ng-if="model.error">
             <p>{{model.error}}</p>
         </div>
@@ -26,20 +26,17 @@
         </div>
 
 
-        <!--<div class="md-form">-->
-            <!--<input type="text" id="form1" class="form-control">-->
-            <!--<label for="form1" class="">Example label</label>-->
-        <!--</div>-->
-
     </div>
     <!--<div ng-show="model.pokemonThumbs.length == 0"><img src="../../../images/Pokeball-1-loader.gif"></div>-->
     <div class="details col-md-12 col-md-offset-1 text-center">
-       <!-- <div infinite-scroll="model.loadMore()" infinite-scroll-distance="20" ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">-->
+        <!-- <div infinite-scroll="model.loadMore()" infinite-scroll-distance="20" ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">-->
         <figure ng-repeat="pokemon in model.pokemonThumbs"
                 ng-show="model.searchResults.name == '' || model.searchResults.name == pokemon.name || searchStr.$valid"
                 class="col-md-3 text-center pokemon-thumb" ng-click="model.getMoreInfo(pokemon)">
             <img ng-src="{{pokemon.image}}" class="pokemon-thumb-img">
-            <figcaption><div class="text-center pokemon-thumb-name">{{pokemon.name}}#{{pokemon.id}}</div></figcaption>
+            <figcaption>
+                <div class="text-center pokemon-thumb-name">{{pokemon.name}}#{{pokemon.id}}</div>
+            </figcaption>
         </figure>
     </div>
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>

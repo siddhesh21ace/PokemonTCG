@@ -19,8 +19,8 @@ module.exports = function () {
         return LikeModel.create(like);
     }
 
-    function deleteLike(likeID) {
-        return LikeModel.remove({"_id": likeID});
+    function deleteLike(pokemon_id, user_id) {
+        return LikeModel.remove({"user_id": user_id, "pokemon_id": pokemon_id});
     }
 
     function findLikes(pokemon_id, user_id) {
@@ -34,10 +34,5 @@ module.exports = function () {
         return LikeModel
             .find(like);
     }
-
-    /*    function addLike(userId, pokemonId) {
-     PokeUserRelationModel.create({"pokemon_id": pokemonId, "user_id": userId});
-     console.log("Done");
-     }*/
 
 };

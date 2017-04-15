@@ -9,7 +9,8 @@
         var api = {
             "findLikedPokemonsByUser": findLikedPokemonsByUser,
             "addLike": addLike,
-            "undoLike": undoLike
+            "undoLike": undoLike,
+            "isPokemonLiked": isPokemonLiked
         };
         return api;
 
@@ -21,8 +22,12 @@
             return $http.post("/api/like", like);
         }
 
-        function undoLike(likeId) {
-            return $http.delete("/api/like/" +  likeId);
+        function undoLike(userID, pokemonID) {
+            return $http.delete("/api/like?user_id=" + userID + "&pokemon_id=" + pokemonID);
+        }
+
+        function isPokemonLiked(userID, pokemonID) {
+            return $http.get("/api/like?user_id=" + userID + "&pokemon_id=" + pokemonID);
         }
     }
 })();

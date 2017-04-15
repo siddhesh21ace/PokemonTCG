@@ -186,7 +186,7 @@ module.exports = function (app, models) {
                 res.json(error);
             });
     }
-    
+
     function findPokemonsByTypeIDorName(req, res) {
         var typeID = req.params.typeID;
         P.getTypeByName(typeID)
