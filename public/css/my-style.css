@@ -220,28 +220,51 @@ img {
 
 .image {
     display: inline;
+    z-index: 1050;
 }
 
-.image img {
+.image img.active2 {
     -webkit-transition: all 1s ease; /* Safari and Chrome */
     -moz-transition: all 1s ease; /* Firefox */
     -o-transition: all 1s ease; /* IE 9 */
     -ms-transition: all 1s ease; /* Opera */
     transition: all 1s ease;
+    z-index: 1050;
 }
 
-.image:hover img {
+.image:hover img.active2 {
     -webkit-transform:scale(2.00); /* Safari and Chrome */
     -moz-transform:scale(2.00); /* Firefox */
     -ms-transform:scale(2.00); /* IE 9 */
     -o-transform:scale(2.00); /* Opera */
     transform:scale(2.00);
+    z-index: 1050;
+}
+
+
+.image img.active1 {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -o-transition: all 1s ease; /* IE 9 */
+    -ms-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+    z-index: 1050;
+}
+
+.image:hover img.active1 {
+    -webkit-transform:scale(2.00); /* Safari and Chrome */
+    -moz-transform:scale(2.00); /* Firefox */
+    -ms-transform:scale(2.00); /* IE 9 */
+    -o-transform:scale(2.00); /* Opera */
+    transform:scale(2.00);
+    z-index: 1050;
 }
 
 /*Thumbnails end*/
 
-.game {
-    /*margin-top: 50px;*/
+.game{
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .score-opponent{
@@ -250,7 +273,7 @@ img {
 
 .player-cards{
     position: relative;
-    z-index: 1000;
+    /*z-index: 1000;*/
 }
 
 .score-player{
@@ -535,6 +558,27 @@ body{
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 768px) {
 
+    .navbar{
+        z-index: 1030;
+    }
+
+    body,html{
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    .game{
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .modal-backdrop{
+        max-width: 100%;
+    }
+
+    .local, .google, .facebook {
+        margin-top: 10px;
+    }
+
     .know-more-footer{
         display:none;
     }
@@ -643,4 +687,17 @@ ul li {
 
 h6{
     color: white;
+}
+
+
+.ps-info-game{
+    color: #9CDC18;
+}
+
+.hp-remaining{
+    color: yellow;
+}
+
+.non-active-card{
+    opacity: 0.3;
 }

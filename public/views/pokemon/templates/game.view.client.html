@@ -1,40 +1,3 @@
-<!--<div class="container-fluid" ng-controller="GameController as model">-->
-    <!--<div class="row">-->
-        <!--<div class="col-sm-6">-->
-            <!--<div ng-repeat="card in model.player1.cards">-->
-                <!--<div ng-class="{ 'active1' : card == model.player1.current}">-->
-                    <!--<div>{{ card.isAlive }}</div>-->
-                    <!--<div>{{ card.details.name }}</div>-->
-                    <!--<div>{{ card.details.hp }}</div>-->
-                    <!--<div ng-repeat="attack in card.details.attacks">-->
-                        <!--<button ng-show="model.isNumber(attack.damage)"-->
-                                <!--ng-click="model.attack1(attack.damage)"-->
-                                <!--ng-disabled="!model.game.player1Turn || card != model.player1.current">-->
-                            <!--{{ attack.name}}{{attack.damage}}-->
-                        <!--</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-sm-6">-->
-            <!--<div ng-repeat="card in model.player2.cards">-->
-                <!--<div ng-class="{ 'active2' : card == model.player2.current}">-->
-                    <!--<div>{{ card.isAlive }}</div>-->
-                    <!--<div>{{ card.details.name }}</div>-->
-                    <!--<div>{{ card.details.hp }}</div>-->
-                    <!--<div ng-repeat="attack in card.details.attacks">-->
-                        <!--<button ng-show="model.isNumber(attack.damage)"-->
-                                <!--ng-click="model.attack2(attack.damage)"-->
-                                <!--ng-disabled="model.game.player1Turn || card != model.player2.current">-->
-                            <!--{{ attack.name}}{{attack.damage}}-->
-                        <!--</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
 <div class="game" ng-controller="GameController as model">
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
     <div class="container opponent-area">
@@ -43,7 +6,7 @@
                 <img ng-src="{{card.details.imageUrl}}"
                      width="150"
                      height="180"
-                     ng-class="{ 'active2' : card == model.player2.current}"
+                     ng-class="{ 'active2' : card == model.player2.current, 'non-active-card': card != model.player2.current}"
                      ng-disabled="model.game.player1Turn || card != model.player2.current"
                      class="player-cards">
             </div>
@@ -64,7 +27,7 @@
             </div>
         </div>
         <div class="score-opponent">
-            <div class="col-md-3">Remaining HP ({{ model.activeCard2.details.hp }})</div>
+            <div class="col-md-3 hp-remaining">Remaining HP ({{ model.activeCard2.details.hp }})</div>
             <div class="progress">
                 <div class="progress-bar col-md-9" role="progressbar"
                      ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard2.details.hp) <= 20)};"
@@ -76,35 +39,28 @@
     </div>
 
     <div class="container playing-mat text-center">
-        <!--<img class="center-pokeball" ng-src="../../images/Pokeball.png"-->
-             <!--ng-show="model.goku==false"-->
-             <!--width="100" height="100">-->
         <h3 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
             {{ model.activeCard1.details.name }}  v/s  <span ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
             | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn" style="color: indianred">Computer's Turn</span>
         </h3>
         <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
         <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">{{model.activeCard2.details.name}} & Computer Win !!</h3>
-        <!--<img class="center-pokeball" ng-src="../../images/goku-attack.gif"-->
-             <!--ng-show="model.goku==true"-->
-             <!--width="200" height="200">-->
         <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">{{model.computerMessage}}</h3>
     </div>
 
     <div class="container player-area text-center">
-
         <div class="score-player text-center">
-            <div class="activeCard2">
-                <div class="col-md-3">Remaining HP ({{ model.activeCard1.details.hp }})</div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
-                             ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
-                             aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
-                             style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
-                        </div>
+            <!--<div class="activeCard2">-->
+            <div class="col-md-3 hp-remaining">Remaining HP ({{ model.activeCard1.details.hp }})</div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
+                         ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
+                         aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
+                         style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
                     </div>
-                <br>
-            </div>
+                </div>
+                <!--<br>-->
+            <!--</div>-->
             <div class="col-md-4"><h4 style="color: #9CDC18;">Your Cards</h4></div>
             <div class="attacks col-md-8" style="display: inline">
                 <h4 style="display: inline">Attacks   </h4>
@@ -122,7 +78,7 @@
         <div class="card-deck-player text-center thumbnail">
             <div class="image" ng-repeat="card in model.player1.cards">
                 <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
-                ng-class="{ 'active1' : card == model.player1.current}"
+                ng-class="{ 'active1' : card == model.player1.current, 'non-active-card': card != model.player1.current}"
                 ng-disabled="!model.game.player1Turn || card != model.player1.current">
             </div>
         </div>
@@ -145,20 +101,26 @@
                 </div>
                 <!--Body-->
                 <div class="modal-body">
-                    <h5 class="text-center"><i>Wait for the game to load...</i></h5>
-                    <h4 class="text-center"><u>Rules of the Game</u></h4>
+                    <h5 class="text-center ps-info-game"><i>Wait for the game to load...</i></h5>
+                    <h4 class="text-center ps-info-game"><u>Rules of the Game</u></h4>
+                    <hr class="separator">
+                    <h4>The screen is divided into two parts:</h4>
+                    <h4>The top half represents the Computers cards and its attacks. The bottom half of the screen is
+                        belongs to you and your cards.</h4>
                     <hr class="separator">
                     <ul type="i" class="text-center">
-                        <li><h5><b>Attack!</b> - Select the best possible attack you can</h5></li>
-                        <li><h5><b>Wait!</b> - Wait for "Computer" to finish its attack</h5></li>
-                        <li><h5><b>HP Matters!</b> - Keep an eye on your Pokemon's HP (Hit Points)</h5></li>
-                        <li><h5>Once a Pokemon dies, the next one will start attacking.</h5></li>
-                        <li><h5>If you kill your opponent's pokemon, you start the next attack!</h5></li>
-                        <li><h5>The Person with cards remaining/ Pokemon's alive wins !!!</h5></li>
+                        <li><b>Attack!</b> - Select the best possible attack you can</li>
+                        <li><b>Wait!</b> - Wait for "Computer" to finish its attack/li>
+                        <li><b>HP Matters!</b> - Keep an eye on your Pokemon's HP (Hit Points)</li>
+                        <li>Once a Pokemon dies, the next one will start attacking.</li>
+                        <li>If you kill your opponent's pokemon, you start the next attack!</li>
+                        <li>The Person with cards remaining/ Pokemon's alive wins !!!</li>
+                        <li>Click "Start Game" to begin playing</li>
                     </ul>
                     <hr class="separator">
-                    <h5 class="text-center"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
-                    <h5 class="text-center"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
+                    <h5 class="text-center ps-info-game"><b>BEST VIEWED ON A DESKTOP COMPUTER</b></h5>
+                    <h5 class="text-center ps-info-game"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
+                    <h5 class="text-center ps-info-game"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">

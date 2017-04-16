@@ -71,7 +71,7 @@
                         A Pokémon gets knocked off if it's HP falls below 0.</p>
                     <p>The player wins when all if the opponents Pokémons are knocked off. A card is gifted to the winner and added to his profile.</p>
                     <div style="margin-top: 50px;">
-                        <a href="#" class="btn btn-default">Rules</a> <a href="/#!/game/" class="btn btn-default">Play Game</a>
+                        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Rules</a> <a href="/#!/game/" class="btn btn-default">Play Game</a>
                     </div>
                 </div>
             </div>
@@ -133,7 +133,54 @@
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title w-100" id="myModalLabel">Rules of the Game</h3>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <h4>The screen is divided into two parts:</h4>
+                <h4>The top most area represents the Computers cards and its attacks. The bottom portion of the screen is
+                 belongs to you and your cards.</h4>
+                <hr class="separator">
+                <ul type="i" class="text-center">
+                    <li><b>Attack!</b> - Select the best possible attack you can</li>
+                    <li><b>Wait!</b> - Wait for "Computer" to finish its attack/li>
+                    <li><b>HP Matters!</b> - Keep an eye on your Pokemon's HP (Hit Points)</li>
+                    <li>Once a Pokemon dies, the next one will start attacking.</li>
+                    <li>If you kill your opponent's pokemon, you start the next attack!</li>
+                    <li>The Person with cards remaining/ Pokemon's alive wins !!!</li>
+                    <li>Click "Play Game" to navigate to the game and start playing</li>
+                </ul>
+                <hr class="separator">
+                <h5 class="text-center ps-info-game"><b>BEST VIEWED ON A DESKTOP COMPUTER</b></h5>
+                <h5 class="text-center ps-info-game"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
+                <h5 class="text-center ps-info-game"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
 <!-- Javascript Ends================================================== -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.6/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script>
     var theater = theaterJS();
 

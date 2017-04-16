@@ -15,7 +15,7 @@ h1 strong {
 }
 h2 {
 	text-transform: uppercase;
-	line-height: 20px;
+	line-height: 35px;
 	font-weight: 600;
 	margin: 0;
 	color: #555;
@@ -33,7 +33,7 @@ h4 {
 h5 {
 	text-transform: uppercase;
 	font-weight: 700;
-	line-height: 20px;
+	line-height: 30px;
 }
 p {
 	font-size: 14px;
@@ -566,6 +566,7 @@ label {
 	font-size: 12px;
 	font-weight: 400;
 	font-family: 'Open Sans', sans-serif;
+	font-family: 'Electrolize', sans-serif;
 	float: left;
 }
 #contact .form-control {
@@ -650,24 +651,48 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 
 @media (max-width: 768px) {
-.hover-bg .hover-text {
+
+	#intro{
+		padding: 140px 0;
+	}
+
+
+	.hover-bg .hover-text {
 	padding: 20%;
 }
 
 #intro .btn-default{
-	margin-top: 199px;
+	margin-top: 80px;
 }
+
+	.navbar-fixed-top, .navbar-fixed-bottom{
+		z-index:2000;
+	}
+
 
 }
 
 @media (max-width: 640px) {
+#intro{
+	padding: 140px 0;
+}
+
 #intro .intro-body H1 {
 	font-size: 5em;
 }
+	.navbar-fixed-top, .navbar-fixed-bottom{
+		z-index:2000;
+	}
+
 }
 
 .testimonials p{
 	font-size: 16px;
+}
+
+
+.navbar-fixed-top, .navbar-fixed-bottom{
+	z-index:1000;
 }
 
 

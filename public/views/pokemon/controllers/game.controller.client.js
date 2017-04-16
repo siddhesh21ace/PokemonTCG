@@ -64,10 +64,6 @@
             CardService.getAllPokemons().then(function (response) {
             $('#myModal').modal({ show: false});
             $('#myModal1').modal({ show: false});
-            $('#myModal').modal({
-                backdrop: 'static',
-                keyboard: false
-            })
                 vm.cards = response.data;
 
                 var total = vm.cards.length;
@@ -103,6 +99,10 @@
                     });
 
                 $('#myModal').modal('show');
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
             }, function (error) {
                 vm.error = error.data;
                 console.log(error);
