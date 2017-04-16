@@ -144,6 +144,7 @@ body{
 .playing-mat{
     position: static;
     background-color: transparent;
+    height: 75px;
 }
 
 .center-pokeball{
@@ -258,7 +259,7 @@ img {
 }
 
 .score-opponent{
-    margin-top: 10px;
+    margin-top: 80px;
 }
 
 .player-cards{
@@ -280,11 +281,11 @@ img {
     background: #03A9F4;
     border-color: #03A9F4;
     color: white;
-    height: 58px;
+    /*height: 58px;*/
 }
 
 .form-control{
-    color: #9CDC18;
+    color: black;
 }
 
 .loginForm{
@@ -615,3 +616,33 @@ body{
 
 }
 
+.userDetails h1,h3{
+    color: #9CDC18;
+}
+
+hr.separator{
+
+    border: 0;
+    border-top: 1px solid #464545;
+    height: 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background: #E75926;
+    /*margin: 0 auto;*/
+    margin-top: 21px;
+    margin-bottom: 21px;
+
+}
+
+h4{
+    color: #9CDC18;
+}
+
+a{
+    color: #0ce3ac;
+}
+
+.warning{
+    color: red;
+}

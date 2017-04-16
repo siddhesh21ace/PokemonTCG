@@ -36,7 +36,7 @@
 
 <!--</div>-->
 <div class="game" ng-controller="GameController as model">
-    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
     <div class="container opponent-area">
         <div class="card-deck-opponent text-center thumbnail" >
             <div class="image" ng-repeat="card in model.player2.cards">
@@ -48,16 +48,19 @@
                      class="player-cards">
             </div>
         </div>
-        <hr class="text-center">
-        <div class="attacks" style="display: inline">
-            <h4 style="display: inline">Attacks   </h4>
-            <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
-                <button class="btn btn-sm btn-danger" style="display:inline"
-                        ng-show="model.isNumber(attack.damage)"
-                        ng-click="model.attack2(attack.damage);"
-                        ng-disabled="true">
-                    {{ attack.name}} ({{attack.damage}})
-                </button>
+        <hr class="separator">
+        <div class="attacks col-md-12" style="display: inline">
+            <div class="col-md-4"><h4 style="color: Red">Computer's Cards</h4></div>
+            <div class="col-md-8">
+                <h4 style="display: inline"><span ng-class="{'warning': model.activeCard2.details.name}">Attacks</span></h4>
+                <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
+                    <button class="btn btn-sm btn-danger" style="display:inline"
+                            ng-show="model.isNumber(attack.damage)"
+                            ng-click="model.attack2(attack.damage);"
+                            ng-disabled="true">
+                        {{ attack.name}} ({{attack.damage}})
+                    </button>
+                </div>
             </div>
         </div>
         <div class="score-opponent">
@@ -77,15 +80,15 @@
              <!--ng-show="model.goku==false"-->
              <!--width="100" height="100">-->
         <h3 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
-            {{ model.activeCard1.details.name }}  v/s  {{ model.activeCard2.details.name }}
-            | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn">Computer's Turn</span>
+            {{ model.activeCard1.details.name }}  v/s  <span ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
+            | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn" style="color: indianred">Computer's Turn</span>
         </h3>
         <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
-        <h3 ng-show="model.winner==2" class="text-center">{{model.activeCard2.details.name}} & Computer Win !!</h3>
+        <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">{{model.activeCard2.details.name}} & Computer Win !!</h3>
         <!--<img class="center-pokeball" ng-src="../../images/goku-attack.gif"-->
              <!--ng-show="model.goku==true"-->
              <!--width="200" height="200">-->
-        <h3 ng-show="model.goku==true">{{model.computerMessage}}</h3>
+        <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">{{model.computerMessage}}</h3>
     </div>
 
     <div class="container player-area text-center">
@@ -102,7 +105,8 @@
                     </div>
                 <br>
             </div>
-            <div class="attacks" style="display: inline">
+            <div class="col-md-4"><h4 style="color: #9CDC18;">Your Cards</h4></div>
+            <div class="attacks col-md-8" style="display: inline">
                 <h4 style="display: inline">Attacks   </h4>
                 <div ng-repeat="attack in model.activeCard1.details.attacks" style="display: inline">
                     <button ng-show="model.isNumber(attack.damage)"
@@ -114,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <hr class="text-center">
+        <hr class="separator">
         <div class="card-deck-player text-center thumbnail">
             <div class="image" ng-repeat="card in model.player1.cards">
                 <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
@@ -143,7 +147,7 @@
                 <div class="modal-body">
                     <h5 class="text-center"><i>Wait for the game to load...</i></h5>
                     <h4 class="text-center"><u>Rules of the Game</u></h4>
-                    <hr>
+                    <hr class="separator">
                     <ul type="i" class="text-center">
                         <li><h5><b>Attack!</b> - Select the best possible attack you can</h5></li>
                         <li><h5><b>Wait!</b> - Wait for "Computer" to finish its attack</h5></li>
@@ -152,7 +156,7 @@
                         <li><h5>If you kill your opponent's pokemon, you start the next attack!</h5></li>
                         <li><h5>The Person with cards remaining/ Pokemon's alive wins !!!</h5></li>
                     </ul>
-                    <hr>
+                    <hr class="separator">
                     <h5 class="text-center"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
                     <h5 class="text-center"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
                 </div>
@@ -182,12 +186,12 @@
                 <div class="modal-body">
                     <h4 class="text-center"><u><span ng-show="model.winner == 2">Computer Wins !</span></u>
                         <span ng-show="model.winner == 1">You Win!</span></h4>
-                    <hr>
-                    <div class="text-center">
-                        <img ng-src="https://images.pokemontcg.io/xyp/XY124.png">
-                        <h1>For being a great player the above card has been added to your collection.</h1>
+                    <hr class="separator">
+                    <div class="text-center" ng-show="model.winner == 1">
+                        <img ng-src="{{model.url}}" style="width: 150px; height: 200px;">
+                        <h4>For being a great player the above card has been added to your collection.</h4>
                     </div>
-                    <hr>
+                    <hr class="separator">
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">

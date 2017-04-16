@@ -1,6 +1,6 @@
 <div class="container"
      ng-controller="PokemonInfoController as model">
-    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
 
     <div class="pokeName">
         <h1 class="text-capitalize text-center">{{model.pokemon.name}} # {{model.pokemon.id}}</h1>
@@ -57,7 +57,8 @@
                                 <ng-rating ng-model="model.avgRating"
                                            editable="false"
                                            show-grade="true"
-                                           starsCount="5">
+                                           starsCount="5"
+                                style="color: #9CDC18;">
                                     </ng-rating>
                         </span>
                     </li>
@@ -135,7 +136,6 @@
         <div class="comments-pane">
             <hr>
             <div class="comments" ng-repeat="review in model.reviews">
-                <h3>{{review.rating}}</h3>
                 <span class="h5">
                     <ng-rating ng-model="review.rating"
                                editable="false"
@@ -143,7 +143,7 @@
                     </ng-rating>
                 </span>
                 <h3>{{review.title}}</h3>
-                <p>{{review.description}}</p>
+                <p style="color: white">{{review.description}}</p>
             </div>
         </div>
 

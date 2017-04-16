@@ -148,6 +148,9 @@
             var card = {
                 "tcgID" : vm.cards[50].id
             }
+            console.log(vm.cards[50]);
+            vm.url = vm.cards[50].imageUrlHiRes;
+
             CardService.addCard(vm.user._id, card)
                 .then(function (response) {
                     console.log(response.data);

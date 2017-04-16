@@ -1,104 +1,270 @@
-<div class="container" ng-controller="HomeController as model">
+<div ng-controller="HomeController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
-    <div class="content">
-        <div class="jumbotron">
-            <h1>Pokémon TCG</h1>
-            <p>Pokémon TCG can be played after you log in.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-        </div>
-        <div class="feature-cards col-md-12">
-            <!--Card-->
-            <div class="card col-md-4">
+    <div id="intro" class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h1><span class="brand-heading">Pokémon World</span></h1>
+                        <p class="intro-text" style="height: 20px;"><span id="vader" class="theatre-text"></span></p>
+                        <a href="#about" class="btn btn-default page-scroll">Gotta Catch 'Em All</a>
 
-                <!--Card image-->
-                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
-                <!--/.Card image-->
-
-                <!--Card content-->
-                <div class="card-block">
-                    <!--Title-->
-                    <h4 class="card-title">Pokémon TCG</h4>
-                    <!--Text-->
-                    <p class="card-text">Play the popular trading card game based on your favorite series - Pokémon.</p>
-                    <a href="#" class="btn btn-primary">Play</a>
+                    </div>
                 </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-
-            <!--Card-->
-            <div class="card col-md-4">
-
-                <!--Card image-->
-                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
-                <!--/.Card image-->
-
-                <!--Card content-->
-                <div class="card-block">
-                    <!--Title-->
-                    <h4 class="card-title">Pokédex</h4>
-                    <!--Text-->
-                    <p class="card-text">Know about every Pokémon you come across. Be a better Pokémon Trainer</p>
-                    <a href="#" class="btn btn-primary">Open Pokédex</a>
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-
-            <!--Card-->
-            <div class="card col-md-4">
-
-                <!--Card image-->
-                <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">
-                <!--/.Card image-->
-
-                <!--Card content-->
-                <div class="card-block">
-                    <!--Title-->
-                    <h4 class="card-title">Gym Battles</h4>
-                    <!--Text-->
-                    <p class="card-text">Challenge Gym Masters and get a chance to be a Gym master!</p>
-                    <a href="#" class="btn btn-primary">Battle it out!</a>
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-        </div>
-        <div class="feature-stats col-md-12">
-            <div class="col-md-4">
-                <h3>Featured Players</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">Ash</li>
-                    <li class="list-group-item">Brock</li>
-                    <li class="list-group-item">Joey</li>
-                    <li class="list-group-item">Ross</li>
-                    <li class="list-group-item">Master Roshi</li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h3>Featured Pokemons</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">Pikachu</li>
-                    <li class="list-group-item">Bulbasaur</li>
-                    <li class="list-group-item">Gyarados</li>
-                    <li class="list-group-item">Mewto</li>
-                    <li class="list-group-item">Weedle</li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h3>Featured Gyms</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">Pewter Gym</li>
-                    <li class="list-group-item">erulean Gym</li>
-                    <li class="list-group-item">Vermilion Gym</li>
-                    <li class="list-group-item">Celadon Gym</li>
-                    <li class="list-group-item">Saffron Gym</li>
-                </ul>
             </div>
         </div>
     </div>
-<ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
+    <!-- About Section -->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="section-title text-center center">
+                <h2>About Pokémon World</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><img src="img/pika-card.png" class="img-responsive"></div>
+                <div class="col-md-4">
+                    <div class="about-text">
+                        <h4>What is Pokémon World ?</h4>
+                        <p><b><i>Pokémon World</i></b> is our attempt to emulate the hugely popular Pokémon Universe on the web. We are fan boys of
+                            the franchise and this is our tribute to it. We created this as a final project for CS5610 course and do not intend to use it
+                            for commercial purposes</p>
+                        <p>Original plan includes creation of the Pokémon Trading Card Game which emulates Pokémon fights between two trainers.
+                            We also created a Pokédex module which emulates the Pokédex from the game.</p>
+                        <p>Future Scope: We intend to implement Gym Battles and two-player mode.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-text">
+                        <h4>Inspirations for this project</h4>
+                        <p>We would like to thank <b><i><a href="https://en.wikipedia.org/wiki/Satoshi_Tajiri">Satoshi Tajiri</a></i></b> - creator of the franchise
+                            without which our childhood's would not have been so interesting.</p>
+                        <p>This project could not have been possible without the existence of some amazing API's. We have tremendous gratitude
+                            for creators of these API's and keeping it open for educational purposes.<p>
+
+                        <p><a href="https://pokemontcg.io/">Pokémon TCG API</a> :  Provides information on cards and sets</p>
+
+                        <p><a href="http://pokeapi.co/">Poké API:</a> PokéAPI is primarily an educational tool and is free and open to use.
+                            It provides all data related to the franchise and is well documented.</p>
+                        <p><a href="http://www.pokemon.com/us/">Pokémon website</a>: We were heavily inspired by Pokémon's original website.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services Section -->
+    <div id="services" class="text-center services">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Pokémon Trading Card Game (TCG)</h2>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <div class="services-text">
+                    <h4 style="color: yellow">Play the Game!</h4>
+                    <p>
+                        <b><i>Pokémon Trading Card Game</i></b>
+                        is our attempt to create a web version of the hugely popular Pokémon Trading Card Game using MEAN Stack.</p>
+                    <p>The basic game play remains similar to the original game. Players assume the role of a Pokémon trainer and use their Pokémon to battle their opponents.
+                        In our game the opponent is the computer which makes its moves automatically.</p>
+                    <p>To keep the game fair, the cards are assigned at random. Every attack reduces the Hit Points(HP) of the opponents Pokémon.
+                        A Pokémon gets knocked off if it's HP falls below 0.</p>
+                    <p>The player wins when all if the opponents Pokémons are knocked off. A card is gifted to the winner and added to his profile.</p>
+                    <div style="margin-top: 50px;">
+                        <a href="#" class="btn btn-default">Rules</a> <a href="/#!/game/" class="btn btn-default">Play Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div id="works" style="color:black;" class="works">
+        <div class="container"> <!-- Container -->
+            <div class="section-title text-center center">
+                <h2>Pokédex</h2>
+                <hr>
+                <div class="clearfix"></div>
+                <p>Find everything about every Pokemon</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><img src="img/pokedex.gif" class="img-responsive"></div>
+                <div class="col-md-6 col-md-offset-1">
+                    <div class="about-text">
+                        <h4>What is Pokédex?</h4>
+                        <p><b><i>Pokédex</i></b> The Pokédex is an electronic device designed to catalogue and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series.
+                            The name Pokédex is a neologism including "Pokémon" (which itself is a portmanteau of "pocket" and "monster") and "index". The Japanese name is simply "Pokémon Encyclopedia", and it can feature every Pokémon on it,
+                            depending on the Pokédex.</p>
+                        <p>Every Pokémon trainer has a Pokédex inorder to identify Pokémon they come across in their quest to cath 'em all.</p>
+                    </div>
+                    <a href="/#!/pokedex" class="btn btn-default">Explore Pokédex</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonials Section -->
+    <div id="testimonials" class="text-center testimonials">
+        <div class="container">
+            <div class="section-title center">
+                <h2>Gym & Gym Battles</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="row testimonials" style="font-size: 16px;">
+                        <div class="col-sm-12">
+                            <blockquote><i class="fa fa-quote-left"></i>
+                                <p>A Gym is a place where Pokémon Trainers go to train their Pokémon. Just like real-life gymnasiums, where one can go to work out and build physical strength, Pokémon Gyms are places where Trainers can go to sharpen their battling skills and where their Pokémon can go to gain experience.
+                                    Often specializing in a particular type, Gyms create an environment which allows Trainers to test both their skills and Pokémon against those of others. </p>
+                                <p>The most powerful Trainer in a given Gym is called the Gym Leader, who is revered by both the lower-ranking members of the Gym and local fans.</p>
+                                <p>We are working on bringing this feature to Pokémon World very soon.</p>
+                                <div class="clients-name">
+                                    <h4><strong>Coming Soon..</strong></h4>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
+    <!--<ng-include src="'../views/includes/header.view.client.html'"></ng-include>-->
+    <!--<div class="content">-->
+        <!--<div class="jumbotron">-->
+            <!--<h1>Pokémon TCG</h1>-->
+            <!--<p>Pokémon TCG can be played after you log in.</p>-->
+            <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
+        <!--</div>-->
+        <!--<div class="feature-cards col-md-12">-->
+            <!--&lt;!&ndash;Card&ndash;&gt;-->
+            <!--<div class="card col-md-4">-->
+
+                <!--&lt;!&ndash;Card image&ndash;&gt;-->
+                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
+                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
+
+                <!--&lt;!&ndash;Card content&ndash;&gt;-->
+                <!--<div class="card-block">-->
+                    <!--&lt;!&ndash;Title&ndash;&gt;-->
+                    <!--<h4 class="card-title">Pokémon TCG</h4>-->
+                    <!--&lt;!&ndash;Text&ndash;&gt;-->
+                    <!--<p class="card-text">Play the popular trading card game based on your favorite series - Pokémon.</p>-->
+                    <!--<a href="#" class="btn btn-primary">Play</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
+
+            <!--&lt;!&ndash;Card&ndash;&gt;-->
+            <!--<div class="card col-md-4">-->
+
+                <!--&lt;!&ndash;Card image&ndash;&gt;-->
+                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
+                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
+
+                <!--&lt;!&ndash;Card content&ndash;&gt;-->
+                <!--<div class="card-block">-->
+                    <!--&lt;!&ndash;Title&ndash;&gt;-->
+                    <!--<h4 class="card-title">Pokédex</h4>-->
+                    <!--&lt;!&ndash;Text&ndash;&gt;-->
+                    <!--<p class="card-text">Know about every Pokémon you come across. Be a better Pokémon Trainer</p>-->
+                    <!--<a href="#" class="btn btn-primary">Open Pokédex</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
+
+            <!--&lt;!&ndash;Card&ndash;&gt;-->
+            <!--<div class="card col-md-4">-->
+
+                <!--&lt;!&ndash;Card image&ndash;&gt;-->
+                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
+                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
+
+                <!--&lt;!&ndash;Card content&ndash;&gt;-->
+                <!--<div class="card-block">-->
+                    <!--&lt;!&ndash;Title&ndash;&gt;-->
+                    <!--<h4 class="card-title">Gym Battles</h4>-->
+                    <!--&lt;!&ndash;Text&ndash;&gt;-->
+                    <!--<p class="card-text">Challenge Gym Masters and get a chance to be a Gym master!</p>-->
+                    <!--<a href="#" class="btn btn-primary">Battle it out!</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="feature-stats col-md-12">-->
+            <!--<div class="col-md-4">-->
+                <!--<h3>Featured Players</h3>-->
+                <!--<ul class="list-group">-->
+                    <!--<li class="list-group-item">Ash</li>-->
+                    <!--<li class="list-group-item">Brock</li>-->
+                    <!--<li class="list-group-item">Joey</li>-->
+                    <!--<li class="list-group-item">Ross</li>-->
+                    <!--<li class="list-group-item">Master Roshi</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+                <!--<h3>Featured Pokemons</h3>-->
+                <!--<ul class="list-group">-->
+                    <!--<li class="list-group-item">Pikachu</li>-->
+                    <!--<li class="list-group-item">Bulbasaur</li>-->
+                    <!--<li class="list-group-item">Gyarados</li>-->
+                    <!--<li class="list-group-item">Mewto</li>-->
+                    <!--<li class="list-group-item">Weedle</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+                <!--<h3>Featured Gyms</h3>-->
+                <!--<ul class="list-group">-->
+                    <!--<li class="list-group-item">Pewter Gym</li>-->
+                    <!--<li class="list-group-item">erulean Gym</li>-->
+                    <!--<li class="list-group-item">Vermilion Gym</li>-->
+                    <!--<li class="list-group-item">Celadon Gym</li>-->
+                    <!--<li class="list-group-item">Saffron Gym</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--<ng-include src="'../views/includes/footer.view.client.html'"></ng-include>-->
+<!--</div>-->
+<script>
+    var theater = theaterJS();
+
+    theater
+        .on('type:start, erase:start', function () {
+            // add a class to actor's dom element when he starts typing/erasing
+            var actor = theater.getCurrentActor()
+            actor.$element.classList.add('is-typing')
+        })
+        .on('type:end, erase:end', function () {
+            // and then remove it when he's done
+            var actor = theater.getCurrentActor()
+            actor.$element.classList.remove('is-typing')
+        })
+
+
+    theater
+        .addActor('vader', 0.8)
+
+    theater
+        .addScene('vader:Pikachu...', 400)
+        .addScene('vader:Bulbasaur...', 400)
+        .addScene('vader:Venusaur...', 400)
+        .addScene('vader:Ivysaur...', 400)
+        .addScene('vader:Charmeleon...', 400)
+        .addScene('vader:Blastoise...', 400)
+        .addScene('vader:Kakuna...', 400)
+        .addScene('vader:caterpie...', 400)
+        .addScene('vader:Pikachu...', 400)
+        .addScene('vader:wartortle...', 400)
+        .addScene('vader:beedrill...', 400)
+        .addScene('vader:rattata...', 400)
+        .addScene(theater.replay);
+</script>
