@@ -7,6 +7,9 @@ body, html {
 	height: 100% !important;
 	font-family: 'Electrolize', sans-serif;
 }
+body{
+	padding-top: 60px;
+}
 h1 {
 	font-weight: 700;
 }
@@ -161,7 +164,7 @@ hr {
 	display: table;
 	width: 100%;
 	height: auto;
-	padding: 280px 0;
+	padding: 150px 0;
 	text-align: center;
 	color: #fff;
 	background: url(../img/all-pokemons-bg.png) no-repeat center center fixed;
@@ -306,7 +309,7 @@ hr {
 	color: black;
 }
 /* Services Section */
-#services {
+#pokemon {
 	padding: 140px 0;
 	background:
 			linear-gradient(
@@ -318,37 +321,37 @@ hr {
 	background-attachment: fixed;
 }
 
-#services .service {
+#pokemon .service {
 	padding: 20px 10px;
 }
-#services h2 {
+#pokemon h2 {
 	color: #f6f6f6;
 }
-#services h3 {
+#pokemon h3 {
 	font-size: 20px;
 	font-weight: 600;
 	color: #f6f6f6;
 }
-#services p {
+#pokemon p {
 	/*color: rgba(255,255,255,0.7);*/
 }
 .space {
 	margin-top: 40px;
 }
-#services i.fa {
+#pokemon i.fa {
 	font-size: 36px;
 	color: #E75926;
 	transition: all 0.5s;
 }
 
-#services i.devicon {
+#pokemon i.devicon {
 	font-size: 36px;
 	color: #E75926;
 	transition: all 0.5s;
 }
 
 /* Gallery Section */
-#works {
+#pokedex {
 	padding: 120px 0;
 	background: #f6f6f6;
 }
@@ -470,7 +473,7 @@ ol.type li a:hover {
 .hover-bg:hover .hover-text {
 	opacity: 1;
 }
-#works i.fa {
+#pokedex i.fa {
 	font-size: 20px;
 	padding: 5px;
 	color: #F4D03F;
@@ -498,7 +501,7 @@ img.img-thumbnail.team-img {
 	color: #777;
 }
 /* Testimonials Section */
-#testimonials {
+#gym {
 	/*background: url(../img/gym-battles.jpg);*/
 	background:
 		/* top, transparent red, faked with gradient */
@@ -513,52 +516,52 @@ img.img-thumbnail.team-img {
 	color: #ddd;
 	padding: 140px 0;
 }
-#testimonials h2 {
+#gym h2 {
 	color: #f6f6f6;
 }
-#testimonials blockquote {
+#gym blockquote {
 	position: relative;
 	margin-top: 20px;
 	border: 0;
 	text-align: center;
 	color: rgba(255,255,255,0.8);
 }
-#testimonials i {
+#gym i {
 	font-size: 24px;
 	color: rgba(255,255,255,0.3);
 	margin-bottom: 14px;
 }
-#testimonials .clients-name {
+#gym .clients-name {
 	display: inline-block;
 	border-top: 1px solid rgba(255,255,255,0.3);
 	padding: 20px 0;
 	margin-top: 10px;
 }
 /* Contact Section */
-#contact {
+#leaderboard {
 	padding: 120px 0 40px 0;
 	background: #f6f6f6;
 }
-#contact .contact-item {
+#leaderboard .contact-item {
 	padding: 10px;
 	margin: 10px;
 	height: 100px;
 	border-radius: 4px;
 }
-#contact h3 {
+#leaderboard h3 {
 	font-size: 20px;
 	font-weight: 400;
 	margin-top: 40px;
 }
-#contact form {
+#leaderboard form {
 	padding: 30px 0;
 }
-#contact i.fa {
+#leaderboard i.fa {
 	font-size: 22px;
 	color: #e75926;
 	margin-bottom: 10px;
 }
-#contact .text-danger {
+#leaderboard .text-danger {
 	color: #ff3333;
 	text-align: left;
 }
@@ -569,7 +572,7 @@ label {
 	font-family: 'Electrolize', sans-serif;
 	float: left;
 }
-#contact .form-control {
+#leaderboard .form-control {
 	display: block;
 	width: 100%;
 	padding: 6px 12px;
@@ -586,13 +589,13 @@ label {
 	-o-transition: none;
 	transition: none;
 }
-#contact .form-control:focus {
+#leaderboard .form-control:focus {
 	border-color: inherit;
 	outline: 0;
 	-webkit-box-shadow: transparent;
 	box-shadow: transparent;
 }
-#contact .btn-default {
+#leaderboard .btn-default {
 	background: #cf5022;
 	border: 0;
 	border-radius: 4px;
@@ -601,7 +604,7 @@ label {
 	margin-top: 15px;
 	font-size: 15px;
 }
-#contact .btn-default:hover, #contact .btn-default:focus {
+#leaderboard .btn-default:hover, #leaderboard .btn-default:focus {
 	color: #f6f6f6;
 	background: #a13e1a;
 }
@@ -615,21 +618,21 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	outline: none;
 	outline-offset: none;
 }
-#contact .social ul {
+#leaderboard .social ul {
 	margin-top: 30px;
 }
-#contact .social ul li {
+#leaderboard .social ul li {
 	display: inline-block;
 	margin: 0 20px;
 }
-#contact .social i.fa {
+#leaderboard .social i.fa {
 	font-size: 24px;
 	padding-top: 8px;
 	color: #cf5022;
 	border-radius: 4px;
 	transition: all 0.3s;
 }
-#contact .social i.fa:hover {
+#leaderboard .social i.fa:hover {
 	color: #a13e1a;
 }
 /* Footer Section*/
