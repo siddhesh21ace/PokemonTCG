@@ -15,7 +15,7 @@
         return api;
 
         function createGame(userID, game) {
-            delete game.player1Turn;
+            //delete game.player1Turn;
             return $http.post("/api/user/" + userID + "/game", game);
         }
 
