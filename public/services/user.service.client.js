@@ -20,7 +20,8 @@
             "isAdmin": isAdmin,
             "findAllUsers": findAllUsers,
             "updateUserByAdmin": updateUserByAdmin,
-            "deleteUserByAdmin": deleteUserByAdmin
+            "deleteUserByAdmin": deleteUserByAdmin,
+            "getAllPlayers": getAllPlayers
         };
         return api;
 
@@ -49,7 +50,7 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/admin/user", user);
+            return $http.post("/api/user", user);
         }
 
         function findUserByUsername(username) {
@@ -93,6 +94,10 @@
 
         function findAllUsers() {
             return $http.get('/api/admin/user');
+        }
+
+        function getAllPlayers() {
+            return $http.get('/api/player');
         }
     }
 })();

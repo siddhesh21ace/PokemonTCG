@@ -140,13 +140,11 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <ul class="list-group">
-                    <li class="list-group-item">Ash Ketchum (10)</li>
-                    <li class="list-group-item">Gary (7)</li>
-                    <li class="list-group-item">Brock (5)</li>
-                    <li class="list-group-item">Nitin (4)</li>
-                    <li class="list-group-item">ZYX (1)</li>
+                    <li class="list-group-item"
+                        ng-repeat="score in model.scores | limitTo:5 | orderBy:'-winPercentage'">
+                        {{score.username}}({{score.won}}/{{score.played}})
+                    </li>
                 </ul>
-
                 <div class="clearfix"></div>
             </div>
         </div>

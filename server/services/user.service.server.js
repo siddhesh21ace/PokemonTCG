@@ -41,6 +41,8 @@ module.exports = function (app, models) {
     app.put('/api/admin/user/:userID', checkAdmin, updateUser);
     app.delete('/api/admin/user/:userID', checkAdmin, deleteUser);
 
+    app.get('/api/player', getAllPlayers);
+
     app.post('/api/login', function (req, res, next) {
         passport.authenticate('local', function (err, user, info) {
             if (err) {
@@ -395,7 +397,7 @@ module.exports = function (app, models) {
             req.user.roles.indexOf('ADMIN') > -1) {
             next();
         } else {
-            res.send(401);
+            res.status(401).send({});
         }
     }
 
