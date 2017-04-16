@@ -94,9 +94,9 @@
                         }
                     }
                 }, function (error) {
-                    vm.error = "Result Not found"
+                    vm.error = "Result Not found";
                     console.log("Error" + error);
-                })
+                });
             vm.matches = matches;
         }
 
@@ -129,9 +129,9 @@
                         });
                     }
                 }, function (error) {
-                    vm.error = "Result Not found"
+                    vm.error = "Result Not found";
                     console.log("Error" + error);
-                })
+                });
 
             vm.matches = matches;
         }

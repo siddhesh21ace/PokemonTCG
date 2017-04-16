@@ -31,6 +31,14 @@
         vm.isPokemonLiked = isPokemonLiked;
 
         vm.avgRating = 0;
+        vm.totalLikes = 0;
+
+        function totalLikes() {
+            LikeService.getPokemonLikes(vm.pokemon._id)
+                .then(function (response) {
+                    vm.totalLikes = response.data.length;
+                });
+        }
 
         function pokemonAvgRating(reviews) {
             var avgRating = 0;
@@ -113,14 +121,15 @@
                     vm.pokemon.img = imgUrl;
                     return PokemonService.findPokemonFromDBByName(pokemon);
                 }, function (error) {
-                    vm.error = "Result Not found"
+                    vm.error = "Result Not found";
                     console.log("Error" + error);
                 })
                 .then(function (response) {
                     vm.pokemon._id = response.data._id;
                     setReviews(vm.pokemon);
                     isPokemonLiked();
-                })
+                    totalLikes();
+                });
 
 
             UserService.findCurrentUser()
@@ -194,6 +203,7 @@
                 .then(function (response) {
                     console.log(response.data);
                     vm.isLiked = true;
+                    totalLikes();
                 }, function (error) {
                     console.log(error);
                 });
@@ -204,6 +214,7 @@
                 .then(function (response) {
                     console.log(response);
                     vm.isLiked = false;
+                    totalLikes();
                 }, function (error) {
                     console.log(error);
                 })

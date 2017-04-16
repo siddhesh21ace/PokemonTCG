@@ -22,9 +22,10 @@ module.exports = function (app, models) {
     }
 
     /*function findAllPokemons(req, res) {
+        var off_set = req.query.offset;
         var interval = {
             limit: 19,
-            offset: 81
+            offset: off_set
         };
         P.getPokemonsList(interval)
             .then(function (response) {
@@ -46,6 +47,22 @@ module.exports = function (app, models) {
             }, function (error) {
                 res.json(error);
             });
+    }*/
+
+/*    function findAllPokemons(req, res) {
+        P.getPokemonByName(req.query.id)
+            .then(function (response) {
+                res.json(response);
+                var pokemon = {
+                    "name": response.name
+                };
+                pokemon.pokedex_number = response.id;
+                setPokemonTypes(pokemon, response);
+                models.pokemonModel.createPokemon(pokemon)
+                    .then(function (response) {
+                        console.log(response);
+                    });
+            })
     }*/
 
     function findPokemonByIDorName(req, res) {

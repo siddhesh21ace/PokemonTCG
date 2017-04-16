@@ -10,7 +10,8 @@
             "findLikedPokemonsByUser": findLikedPokemonsByUser,
             "addLike": addLike,
             "undoLike": undoLike,
-            "isPokemonLiked": isPokemonLiked
+            "isPokemonLiked": isPokemonLiked,
+            "getPokemonLikes": getPokemonLikes
         };
         return api;
 
@@ -29,5 +30,10 @@
         function isPokemonLiked(userID, pokemonID) {
             return $http.get("/api/like?user_id=" + userID + "&pokemon_id=" + pokemonID);
         }
+
+        function getPokemonLikes(pokemonID) {
+            return $http.get("/api/like?pokemon_id=" + pokemonID);
+        }
+
     }
 })();

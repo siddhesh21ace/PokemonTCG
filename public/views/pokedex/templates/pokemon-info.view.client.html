@@ -24,9 +24,13 @@
                 </span>
                 <span ng-show="!model.user._id">
                     <a data-toggle="tooltip" data-placement="top" title=""
-                       ng-disabled="!model.user._id" data-original-title="Please login to like!" disabled="disabled">
+                       ng-disabled="!model.user._id"
+                       data-original-title="Please login to like!" disabled="disabled">
                         <span class="glyphicon glyphicon-heart-empty"></span>
                     </a>
+                </span>
+                <span ng-show="model.totalLikes > 0">
+                    {{model.totalLikes}}
                 </span>
             </div>
         </div>
