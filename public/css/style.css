@@ -6,7 +6,6 @@ body, html {
 	width: 100% !important;
 	height: 100% !important;
 	font-family: 'Electrolize', sans-serif;
-	overflow-x: hidden;
 }
 h1 {
 	font-weight: 700;
@@ -171,7 +170,6 @@ hr {
 	-moz-background-size: cover;
 	background-size: cover;
 	-o-background-size: cover;
-	/*font-family: 'Nunito', sans-serif;*/
 
 }
 #intro .intro-body {
@@ -211,8 +209,8 @@ hr {
 }
 @media(min-width:768px) {
 #intro {
-	height: 100%;
-	padding: 0;
+	/*height: 100%;*/
+	/*padding: 0;*/
 }
 #intro .intro-body .intro-text {
 	font-size: 18px;
@@ -668,23 +666,9 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 	font-size: 5em;
 }
 }
-/*div.gym:before {*/
-	/*content: '';*/
-	/*position: absolute;*/
-	/*top: 0;*/
-	/*right: 0;*/
-	/*bottom: 0;*/
-	/*left: 0;*/
-	/*background-image: linear-gradient(to bottom right, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.5) 100%);*/
-	/*opacity: .6;*/
-/*}*/
 
-/*.gym:after{*/
-	/*background-image: linear-gradient(to bottom right, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.5) 100%);*/
-/*}*/
-
-.gym {
-	background-blend-mode: screen;
+.testimonials p{
+	font-size: 16px;
 }
 
 
