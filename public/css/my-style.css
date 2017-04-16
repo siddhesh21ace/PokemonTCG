@@ -130,7 +130,8 @@
 .playing-mat{
     position: static;
     background-color: transparent;
-    height: 75px;
+    /*height: 75px;*/
+    height:55px;
 }
 
 .center-pokeball{
@@ -150,7 +151,7 @@ hr.center-line{
 }
 
 .player-area{
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     text-align: center;
 }
 
@@ -700,4 +701,8 @@ h6{
 
 .non-active-card{
     opacity: 0.3;
+}
+
+.players-details{
+    margin-top:0;
 }

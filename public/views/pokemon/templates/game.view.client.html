@@ -39,13 +39,22 @@
     </div>
 
     <div class="container playing-mat text-center">
-        <h3 class="text-center" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
-            {{ model.activeCard1.details.name }}  v/s  <span ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
-            | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn" style="color: indianred">Computer's Turn</span>
-        </h3>
-        <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
-        <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">{{model.activeCard2.details.name}} & Computer Win !!</h3>
-        <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">{{model.computerMessage}}</h3>
+        <div>
+            <div class="col-md-4">
+                <button ng-show="model.playingAudio == false " ng-click="model.playAudio()" class="btn btn-success" style="display: inline"> Get Some Inspiration</button>
+                <button ng-show="model.playingAudio == true "  ng-click="model.stopAudio()"class="btn btn-warning" style="display: inline"> Stop Playing</button>
+            </div>
+            <div class="col-md-8">
+                <h3 class="text-center players-details" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
+                    {{ model.activeCard1.details.name }}  v/s  <span ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
+                    | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn" style="color: indianred">Computer's Turn</span>
+                </h3>
+                <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
+                <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">{{model.activeCard2.details.name}} & Computer Win !!</h3>
+                <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">{{model.computerMessage}}</h3>
+            </div>
+        </div>
+
     </div>
 
     <div class="container player-area text-center">
