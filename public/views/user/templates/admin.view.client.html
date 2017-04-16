@@ -1,0 +1,86 @@
+<div ng-controller="AdminController as model" class="container-fluid">
+    <h2>Admin</h2>
+    <h1>User Managemenet</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input ng-model="model.user.firstName" class="form-control" type="text" placeholder="First Name">
+                </td>
+                <td>
+                    <input ng-model="model.user.lastName" class="form-control" type="text" placeholder="Last Name">
+                </td>
+                <td>
+                    <input ng-model="model.user.username" class="form-control" type="text" placeholder="Username">
+                </td>
+                <td>
+                    <input ng-model="model.user.password" class="form-control" type="password" placeholder="Password">
+                </td>
+                <td>
+                    <input ng-model="model.user.email" class="form-control" type="email" placeholder="Email">
+                </td>
+                <td>
+                    <input ng-model="model.user.roles" class="form-control" type="text" placeholder="Roles">
+                </td>
+                <td>
+                    <button ng-click="model.createUser(model.user)" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="model.updateUser(model.user)" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>git
+                </td>
+            </tr>
+            <tr ng-repeat="user in model.users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.roles}}</td>
+                <td>
+                    <button ng-click="model.deleteUser(user._id)" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+                <td>
+                    <button ng-click="model.selectUser(user)" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--
+<h1>Admin</h1>
+
+<ul class="list-group">
+    <li class="list-group-item active">
+        Users
+    </li>
+    <li ng-repeat="user in model.users" class="list-group-item">
+        {{user.username}}
+        <span ng-click="model.updateUser(user)" class="glyphicon glyphicon-ok pull-right"></span>
+        <span ng-click="model.deleteUser(user)" class="glyphicon glyphicon-remove pull-right"></span>
+        <input ng-model="user.role" class="pull-right"/>
+    </li>
+</ul>
+
+{{model.users}}-->

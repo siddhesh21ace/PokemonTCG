@@ -6,14 +6,19 @@
         console.log("inside index controller.")
         var vm = this;
 
+        vm.user = {};
         vm.logout = logout;
+        vm.isAdmin = isAdmin;
+
+        function isAdmin() {
+            return (vm.user.roles && vm.user.roles.indexOf('ADMIN') > -1);
+        }
 
         function init() {
             UserService.findCurrentUser()
                 .then(function (response) {
                     vm.user = response.data;
                 });
-
         }
 
         init();

@@ -23,7 +23,7 @@
                     </a>
                 </span>
                 <span ng-show="!model.user._id">
-                    <a data-toggle="tooltip" data-placement="top" title=""
+                    <a data-toggle="tooltip" data-placement="left" title=""
                        ng-disabled="!model.user._id"
                        data-original-title="Please login to like!" disabled="disabled">
                         <span class="glyphicon glyphicon-heart-empty"></span>
@@ -183,7 +183,13 @@
                         {{model.message}}
                     </div>
 
-                    <a class="btn btn-success" role="button" ng-click="model.addReview(review)">
+                    <a href="" class="btn btn-success ng-hide" ng-show="model.user._id"
+                       ng-click="model.addReview(review)"
+                       role="button">
+                        Submit
+                    </a>
+                    <a href="" class="btn btn-warning" ng-show="!model.user._id" ng-disabled="!model.user._id"
+                       role="button" disabled="disabled" data-toggle="tooltip" data-placement="right" title="Please login to review!">
                         Submit
                     </a>
                 </form>

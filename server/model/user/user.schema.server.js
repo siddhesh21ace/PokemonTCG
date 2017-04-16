@@ -16,7 +16,7 @@ var projectUserSchema = mongoose.Schema({
         id: String,
         token: String
     },
-    roles: {type: String, enum: ['ADMIN', 'PLAYER', 'GYM-LEADER'], default: 'PLAYER'},
+    roles: [{type: String, enum: ['ADMIN', 'PLAYER', 'GYM-LEADER'], default: ['PLAYER']}],
     dateCreated: {type: Date, default: Date.now()},
     games: [{type: mongoose.Schema.Types.ObjectId, ref: 'GameModel'}],
     cards: [{type: mongoose.Schema.Types.ObjectId, ref: 'CardModel'}]

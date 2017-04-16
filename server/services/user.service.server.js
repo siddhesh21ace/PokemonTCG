@@ -5,6 +5,23 @@ module.exports = function (app, models) {
     var FacebookStrategy = require('passport-facebook').Strategy;
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+    /* Image Upload Starts*/
+    var multer = require('multer');
+
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname+'/../../public/uploads')
+        },
+        filename: function (req, file, cb) {
+            cb(null, Date.now() +"."+ file.mimetype.split("/")[1]) //Appending .jpg
+        }
+    })
+
+    var upload = multer({ storage: storage });
+    app.post("/api/user/upload", upload.single('file'), uploadImage);
+
+    /* Image Upload ends */
+
     passport.use(new LocalStrategy({}, localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -18,22 +35,11 @@ module.exports = function (app, models) {
     app.post("/api/logout", logout);
     app.post("/api/register", register);
 
-    /*Image Upload Starts*/
-    var multer = require('multer');
-
-    var storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, __dirname+'/../../public/uploads')
-        },
-        filename: function (req, file, cb) {
-            cb(null, Date.now() +"."+ file.mimetype.split("/")[1]) //Appending .jpg
-        }
-    })
-
-    //var upload = multer({ dest: __dirname+'/../../public/uploads'});
-    var upload = multer({ storage: storage });
-    app.post("/api/user/upload", upload.single('file'), uploadImage);
-    /*Image Upload Ends*/
+    app.post('/api/isAdmin', isAdmin);
+    app.post('/api/admin/user', checkAdmin, createUser);
+    app.get('/api/admin/user', checkAdmin, getAllPlayers);
+    app.put('/api/admin/user/:userID', checkAdmin, updateUser);
+    app.delete('/api/admin/user/:userID', checkAdmin, deleteUser);
 
     app.post('/api/login', function (req, res, next) {
         passport.authenticate('local', function (err, user, info) {
@@ -229,6 +235,7 @@ module.exports = function (app, models) {
     function register(req, res) {
         var newUser = req.body;
         newUser.password = bcrypt.hashSync(newUser.password);
+        newUser.roles = ["PLAYER"];
 
         models.userModel
             .findUserbyUsername(newUser.username)
@@ -335,7 +342,10 @@ module.exports = function (app, models) {
     function deleteUser(req, res) {
         var userID = req.params['userID'];
 
-        req.logout();
+        if (!(req.user.roles.indexOf('ADMIN') > -1)) {
+            req.logout();
+        }
+
         models.userModel
             .deleteUser(userID)
             .then(function (response) {
@@ -357,7 +367,6 @@ module.exports = function (app, models) {
         }
     }
 
-
     function uploadImage(req, res){
         var myFile = req.file;
 
@@ -370,6 +379,53 @@ module.exports = function (app, models) {
 
         //console.log(myFile);
         res.send(myFile);
+    }
+
+    /* Admin Functions */
+
+    function isAdmin(req, res) {
+        res.send(req.isAuthenticated() &&
+        req.user.roles &&
+        req.user.roles.indexOf('ADMIN') > -1 ? req.user : '0');
+    }
+
+    function checkAdmin(req, res, next) {
+        if(req.isAuthenticated() &&
+            req.user.roles &&
+            req.user.roles.indexOf('ADMIN') > -1) {
+            next();
+        } else {
+            res.send(401);
+        }
+    }
+
+    function createUser(req, res) {
+        models.userModel
+            .createUser(req.body)
+            .then(function (response) {
+                res.json(response)
+            }, function (error) {
+                res.status(500).send(error);
+            });
+    }
+
+    function findAllUsers(req, res) {
+        models.userModel
+            .findAllUsers()
+            .then(function (response) {
+                res.json(response);
+            }, function (error) {
+                res.status(500).send(error);
+            });
+    }
+
+    function getAllPlayers(req, res) {
+        return models.userModel.getAllPlayers()
+            .then(function (response) {
+                res.json(response);
+            }, function (error) {
+                res.status(500).send(error);
+            });
     }
 
 };

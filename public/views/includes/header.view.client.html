@@ -26,6 +26,9 @@
                     <li ng-show="model.user">
                         <a ng-click="model.logout()">Logout</a>
                     </li>
+                    <li ng-show="model.isAdmin()">
+                        <a href="/#!/admin">Admin</a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

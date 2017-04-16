@@ -16,7 +16,11 @@
             "logout": logout,
             "findCurrentUser": findCurrentUser,
             "register": register,
-            "uploadImage": uploadImage
+            "uploadImage": uploadImage,
+            "isAdmin": isAdmin,
+            "findAllUsers": findAllUsers,
+            "updateUserByAdmin": updateUserByAdmin,
+            "deleteUserByAdmin": deleteUserByAdmin
         };
         return api;
 
@@ -45,7 +49,7 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/user", user);
+            return $http.post("/api/admin/user", user);
         }
 
         function findUserByUsername(username) {
@@ -64,16 +68,31 @@
             return $http.get("/api/user/" + userID);
         }
 
-        function uploadImage(file){
+        function uploadImage(file) {
             var fd = new FormData();
             fd.append("file", file)
             console.log(fd, file);
             return $http.post('/api/user/upload', fd, {
                 withCredentials: true,
-                headers: {'Content-Type': undefined },
+                headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             });
+        }
 
+        function isAdmin() {
+            return $http.post("/api/isAdmin");
+        }
+
+        function updateUserByAdmin(user) {
+            return $http.put("/api/admin/user/" + user._id, user);
+        }
+
+        function deleteUserByAdmin(userID) {
+            return $http.delete('/api/admin/user/' + userID);
+        }
+
+        function findAllUsers() {
+            return $http.get('/api/admin/user');
         }
     }
 })();

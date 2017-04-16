@@ -63,18 +63,34 @@
                 controller: "PokemonInfoController",
                 title: 'Pokémon Details'
             })
-            .when("/rating", {
-                templateUrl: 'views/pokemon/templates/rating.view.client.html',
-                controller: 'RatingController',
-                title: 'Game'
+            .when("/admin", {
+                templateUrl: 'views/user/templates/admin.view.client.html',
+                controller: 'AdminController',
+                resolve: {
+                    checkAdmin: checkAdmin
+                },
+                title: 'Admin'
             })
-            // .when("/", {
-            //     redirectTo: "/login"
-            // })
             .otherwise({
                 redirectTo: "/"
             });
 
+    }
+
+    function checkAdmin($q, UserService, $location) {
+        var deferred = $q.defer();
+        UserService
+            .isAdmin()
+            .then(function (response) {
+                var user = response.data;
+                if(user !== '0' && user.roles.indexOf('ADMIN') > -1) {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/user');
+                }
+            });
+        return deferred.promise;
     }
 
     function isLoggedIn($q, UserService, $location, $rootScope) {

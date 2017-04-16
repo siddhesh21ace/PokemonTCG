@@ -27,6 +27,9 @@ module.exports = function () {
     }
 
     function createUser(user) {
+        if(!user.roles) {
+            user.roles = ["PLAYER"];
+        }
         delete user._id;
         return UserModel.create(user);
     }
@@ -57,7 +60,7 @@ module.exports = function () {
     }
 
     function getAllPlayers() {
-        return UserModel.find({"role": "PLAYER"});
+        return UserModel.find({"roles": {$all: ["PLAYER"]}});
     }
 
 };
