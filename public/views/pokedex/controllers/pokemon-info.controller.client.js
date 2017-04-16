@@ -2,8 +2,7 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService) {
-        //   function pokemonInfoController(PokeDexService, UserService, $routeParams, $rootScope, $location) {
+    function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService, PokemonService) {
         var vm = this;
         vm.like = {};
         vm.like.votes = 100;
@@ -13,33 +12,46 @@
         vm.activeReview = {};
         vm.likeId = "";
         vm.user = {};
-
+        vm.pokemon = {};
+        vm.isLiked = false;
         vm.getColorClass = getColorClass;
         vm.getMaxStat = getMaxStat;
         vm.getIndicator = getIndicator;
         vm.likePokemon = likePokemon;
         vm.unlikePokemon = unlikePokemon;
 
-        vm.deleteComment = deleteComment;
-        vm.editComment = editComment;
-        vm.setActiveReview = setActiveReview;
         vm.isLoggedInUser = isLoggedInUser;
         vm.getMoreInfo = getMoreInfo;
 
         vm.addReview = addReview;
         vm.isPokemonLiked = isPokemonLiked;
 
+        vm.likePuokemon = likePokemon;
+        vm.unlikePokemon = unlikePokemon;
+        vm.isPokemonLiked = isPokemonLiked;
+
+        vm.avgRating = 0;
+
+        function pokemonAvgRating(reviews) {
+            var avgRating = 0;
+            for (var i = 0; i < reviews.length; i++) {
+                avgRating += parseInt(reviews[i].rating);
+            }
+            vm.avgRating = (avgRating / reviews.length);
+            if (isNaN(vm.avgRating)) {
+                vm.avgRating = 0;
+            }
+        }
+
         function addReview(review) {
             if (review) {
-                /*                review.user_id = vm.userID;
-                 review.pokemon_id = vm.pokemon_id;*/
-
-                review.user_id = "58eff76012f53118b4c1d6a3";
-                review.pokemon_id = "58e91532d398239caad8e4af";
+                review.user_id = vm.user._id;
+                review.pokemon_id = vm.pokemon._id;
 
                 ReviewService.addReview(review)
                     .then(function (response) {
-                        vm.reviews = setReviews($routeParams.pokemon);
+                        setReviews(vm.pokemon);
+                        review.rating = 0;
                         review.title = "";
                         review.description = "";
                     }, function (error) {
@@ -51,10 +63,12 @@
         }
 
         function init() {
-            var pokemon = $routeParams.pokemon;
-            console.log("In Pokemon Info controller" + vm.pokemon);
+            $('[data-toggle="tooltip"]').tooltip();
 
-            PokeDexService.fetchPokemonDetails(pokemon)
+            var pokemon = $routeParams.pokemon;
+            console.log("In Pokemon Info controller" + pokemon);
+
+            PokemonService.findPokemonByPokeId(pokemon)
                 .then(function (response) {
                     console.log(response);
                     vm.pokemon = response.data;
@@ -97,10 +111,15 @@
                     }
 
                     vm.pokemon.img = imgUrl;
-                    setReviews(vm.pokemon);
+                    return PokemonService.findPokemonFromDBByName(pokemon);
                 }, function (error) {
                     vm.error = "Result Not found"
                     console.log("Error" + error);
+                })
+                .then(function (response) {
+                    vm.pokemon._id = response.data._id;
+                    setReviews(vm.pokemon);
+                    isPokemonLiked();
                 })
 
 
@@ -113,9 +132,10 @@
         init();
 
         function setReviews(pokemon) {
-            ReviewService.findReviewsByPokemonID("58e91532d398239caad8e4af")
+            ReviewService.findReviewsByPokemonID(pokemon._id)
                 .then(function (response) {
                     vm.reviews = response.data;
+                    pokemonAvgRating(vm.reviews);
                 });
         }
 
@@ -130,30 +150,6 @@
             console.log(data);
             $location.url('/pokemon-info/' + data);
 
-        }
-
-        function deleteComment(review) {
-            vm.reviews.splice(review, 1);
-        }
-
-        function deleteComment(review) {
-            vm.reviews.splice(review, 1);
-        }
-
-        function setActiveReview(review) {
-            vm.review = review;
-        }
-
-        function editComment(review) {
-            vm.review = review;
-            vm.activeReview = review;
-            console.log("review ", review, vm.review);
-
-            for (r in vm.reviews) {
-                if (vm.reviews[r]._id === vm.review._id) {
-                    vm.reviews[r] = vm.review;
-                }
-            }
         }
 
         /* Extras */
@@ -191,7 +187,7 @@
         function likePokemon() {
             var like = {
                 "user_id": vm.user._id,
-                "pokemon_id": "58e91532d398239caad8e4af"
+                "pokemon_id": vm.pokemon._id
             };
 
             LikeService.addLike(like)
@@ -218,7 +214,7 @@
                 .isPokemonLiked(vm.user._id, vm.pokemon._id)
                 .then(function (response) {
                     var liked = response.data;
-                    if (liked) {
+                    if (liked.length > 0) {
                         console.log(liked);
                         vm.isLiked = true;
                     }

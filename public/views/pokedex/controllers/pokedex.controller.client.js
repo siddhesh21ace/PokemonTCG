@@ -2,7 +2,7 @@
     angular.module('PokemonWorld')
         .controller("PokedexController", pokedexController);
 
-    function pokedexController(PokeDexService, UserService, $location) {
+    function pokedexController(PokeDexService, UserService, $location, PokemonService) {
         var vm = this;
 
         vm.getResults = getResults;
@@ -36,9 +36,11 @@
             var pokemons = [];
             var display = [];
 
-            PokeDexService.getPokemonsThumbs()
+            // hits rest URL
+
+            PokemonService.getAllPokemons()
                 .then(function (allPokemons) {
-                    pokemons = allPokemons.data;
+                    pokemons = allPokemons.data.results;
 
                     for (var i = 0; i < 721; i++) {
                         var pokemon = {}
@@ -71,7 +73,7 @@
                     vm.user = response.data;
                 });
 
-            PokeDexService.fetchAllPokemons()
+            PokemonService.findAllPokemons()
                 .then(function (response) {
                     vm.pokemons = response;
 
@@ -81,7 +83,11 @@
                     for (var p in allPokemons) {
                         var pokemon = {};
                         pokemon.name = allPokemons[p].name;
-                        pokemon.url = allPokemons[p].url;
+                        pokemon.pokedex_number = allPokemons[p].pokedex_number;
+                        pokemon._id = allPokemons[p]._id;
+                        pokemon.url = "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/" +
+                            String(padToThree(pokemon.pokedex_number)) + ".png";
+
                         if (j < 721) {
                             matches.push(pokemon);
                             j++;
@@ -94,12 +100,19 @@
             vm.matches = matches;
         }
 
+        function padToThree(number) {
+            if (number <= 999) {
+                number = ("00" + number).slice(-3);
+            }
+            return number;
+        }
+
         init();
 
         function selectPokemon(pokemon) {
             if (pokemon) {
                 vm.pokemon = pokemon;
-                getResults(pokemon, "pokemon");
+                getResults(pokemon);
             }
         }
 
@@ -107,38 +120,33 @@
             var matches = [];
             console.log("str .." + str)
 
-            PokeDexService.fetchPokemons(str)
+            PokemonService.findPokemonFromDBByName(str)
                 .then(function (response) {
                     vm.pokemons = response;
                     for (r in response) {
-                        matches.push({"name": response[r].name, "url": response[r].url});
+                        matches.push({
+                            "name": response[r].name,
+                        });
                     }
                 }, function (error) {
                     vm.error = "Result Not found"
                     console.log("Error" + error);
                 })
 
-            console.log(matches);
             vm.matches = matches;
         }
 
-        function getResults(searchTerm, category) {
-            console.log(searchTerm, category);
-            PokeDexService.getPokedexSearchResults(searchTerm.title, category)
+        function getResults(searchTerm) {
+            PokemonService.findPokemonFromDBByName(searchTerm.title)
                 .then(function (response) {
                     console.log("Pokemon Found" + response);
                     vm.searchResults = response.data;
                     var imageUrlA = "http://assets.pokemon.com//assets/cms2/img/pokedex/detail/";
-                    var id = response.data.id;
+                    var id = response.data.pokedex_number;
 
-                    if (id.toString().length == 1) {
-                        id = "00" + id;
-                    } else if (id.toString().length == 2) {
-                        id = "0" + id;
-                    }
-                    vm.searchResults.img = imageUrlA + id + ".png";
+                    vm.searchResults.img = imageUrlA + String(padToThree(id)) + ".png";
                 }, function (error) {
-                    vm.error = "Result Not found"
+                    vm.error = "Result Not found";
                     console.log("Error" + error);
                 })
         }
@@ -146,7 +154,6 @@
         function getMoreInfo(data) {
             console.log(data);
             $location.url('/pokemon-info/' + data.name);
-
         }
 
         function loadMore() {
@@ -154,7 +161,7 @@
             for (var i = 1; i <= vm.pokemonThumbs.length; i++) {
                 vm.pokemonThumbs.push(last + i);
             }
-        };
+        }
     }
 
 })();

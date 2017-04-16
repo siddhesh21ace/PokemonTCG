@@ -4,9 +4,9 @@
 var mongoose = require("mongoose");
 
 var projectPokemonSchema = mongoose.Schema({
-    poke_id: String,
+    pokedex_number: Number,
     name: String,
-    type: [String]
+    types: [String]
 }, {collection: "project.pokemon"});
 
 // projectPokemonSchema.index({id:1},{unique:true});

@@ -5,13 +5,8 @@
     function HeaderController($routeParams, $location, UserService){
         console.log("inside index controller.")
         var vm = this;
-        vm.userID = $routeParams['uid'];
-        console.log('model', vm);
 
         vm.logout = logout;
-
-
-        console.log(vm.userID, vm.user);
 
         function init() {
             UserService.findCurrentUser()

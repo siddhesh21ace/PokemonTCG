@@ -2,10 +2,9 @@
     angular.module("PokemonWorld")
         .controller("GameController", gameController);
 
-    function gameController(CardService, $rootScope, $timeout, $routeParams, GameService) {
+    function gameController(CardService, $rootScope, $timeout, $routeParams, GameService, UserService,$route ) {
  //   function gameController(PokemonTCGService, $timeout, $location, $route) {
         var vm = this;
-        vm.userID = $routeParams['uid'];
 
         vm.player1 = {};
         vm.player2 = {};
@@ -22,7 +21,7 @@
         vm.game.userWon = false;
 
         vm.gameID = 0;
-
+        vm.user = {};
         vm.attack1 = attack1;
         //vm.attack2 = attack2;
         vm.isNumber = isNumber;
@@ -57,6 +56,11 @@
         }
 
         function init() {
+            UserService.findCurrentUser()
+                .then(function (response) {
+                    vm.user = response.data;
+                });
+
             CardService.getAllPokemons().then(function (response) {
             $('#myModal').modal({ show: false});
             $('#myModal1').modal({ show: false});
@@ -93,10 +97,10 @@
                 vm.player2.current = vm.player2.cards[0];
                 showActiveCardDetails2(vm.player2.current);
 
-                GameService.createGame(vm.userID, vm.game)
+                GameService.createGame(vm.user._id, vm.game)
                     .then(function (response) {
                         vm.gameID = response.data._id;
-                    })
+                    });
 
                 $('#myModal').modal('show');
             }, function (error) {
@@ -144,7 +148,7 @@
             var card = {
                 "tcgID" : vm.cards[50].id
             }
-            CardService.addCard(vm.userID, card)
+            CardService.addCard(vm.user._id, card)
                 .then(function (response) {
                     console.log(response.data);
                 })

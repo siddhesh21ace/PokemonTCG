@@ -1,5 +1,6 @@
 <div ng-controller="PokedexController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+
     <div class="container">
         <div class="alert alert-danger text-center" ng-if="model.error">
             <p>{{model.error}}</p>
@@ -22,14 +23,11 @@
                     match-class="highlight"
                     required
                     class="col-md-12 form-control"
-                    style="color: #9CDC18;"></angucomplete-alt>
+                    style="color: #9CDC18;">
+            </angucomplete-alt>
         </div>
-
-
     </div>
-    <!--<div ng-show="model.pokemonThumbs.length == 0"><img src="../../../images/Pokeball-1-loader.gif"></div>-->
     <div class="details col-md-12 col-md-offset-1 text-center">
-        <!-- <div infinite-scroll="model.loadMore()" infinite-scroll-distance="20" ng-repeat="pokemon in model.pokemonThumbs" class="col-xs-4">-->
         <figure ng-repeat="pokemon in model.pokemonThumbs"
                 ng-show="model.searchResults.name == '' || model.searchResults.name == pokemon.name || searchStr.$valid"
                 class="col-md-3 text-center pokemon-thumb" ng-click="model.getMoreInfo(pokemon)">
@@ -39,6 +37,7 @@
             </figcaption>
         </figure>
     </div>
+
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 

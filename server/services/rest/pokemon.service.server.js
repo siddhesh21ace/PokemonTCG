@@ -11,6 +11,7 @@ module.exports = function (app, models) {
     app.get("/rest/api/type/:typeID", findTypeByIDorName);
     app.get("/rest/api/type/:typeID/pokemon", findPokemonsByTypeIDorName);
 
+    //getAllPokemons
     function findAllPokemons(req, res) {
         P.getPokemonsList()
             .then(function (response) {
@@ -19,6 +20,33 @@ module.exports = function (app, models) {
                 res.json(error);
             });
     }
+
+    /*function findAllPokemons(req, res) {
+        var interval = {
+            limit: 19,
+            offset: 81
+        };
+        P.getPokemonsList(interval)
+            .then(function (response) {
+                res.json(response);
+                response.results.forEach(function (obj) {
+                    var pokemon = {
+                        "name": obj.name
+                    };
+                    P.getPokemonByName(obj.name)
+                        .then(function (response) {
+                            pokemon.pokedex_number = response.id;
+                            setPokemonTypes(pokemon, response);
+                            models.pokemonModel.createPokemon(pokemon)
+                                .then(function (response) {
+                                    console.log(response);
+                                });
+                        })
+                });
+            }, function (error) {
+                res.json(error);
+            });
+    }*/
 
     function findPokemonByIDorName(req, res) {
         var pokemonID = req.params.pokemonID;
@@ -30,7 +58,6 @@ module.exports = function (app, models) {
                 pokemon.height = response.height;
                 pokemon.id = response.id;
                 pokemon.order = response.order;
-                pokemon.name = response.name;
                 pokemon.base_experience = response.base_experience;
                 setPokemonTypes(pokemon, response);
                 setPokemonWeaknesses(pokemon, response);

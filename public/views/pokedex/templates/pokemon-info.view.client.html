@@ -13,46 +13,20 @@
 
             <div class="social" style="text-align:center">
                 <span ng-show="model.user._id">
-                    <a ng-click="detailsControllerModel.likeMovie()"
-                       ng-hide="detailsControllerModel.isLiked">
-                        <i class="fa fa-thumbs-o-up orange"></i>
-                    </a>
-                    <a href="" ng-click="detailsControllerModel.undoLikeMovie()"
-                       ng-show="detailsControllerModel.isLiked" class="ng-hide">
-                        <i class="fa fa-thumbs-up green"></i>
-                    </a>
-                </span>
-                <span ng-show="!user._id">
-                    <a data-toggle="tooltip" data-placement="top" title=""
-                       ng-disabled="!user._id" data-original-title="Please login to like!" disabled="disabled">
-                        <i class="fa fa-thumbs-o-up orange"></i>
-                    </a>
-                </span>
-
-
-                <span>
                     <a ng-click="model.likePokemon()"
-                       title="Like Pokemon"
-                       ng-disabled="model.isLoggedInUser()==false"
-                       class="likeButton like">
-                        <i class="glyphicon"
-                           ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
-                           aria-hidden="true"
-                        ></i>
-                        <span class="tooltiptext">Like Pokemon
-                        <span ng-show="model.isLoggedInUser()==false"> | Login Required</span></span>
+                       ng-hide="model.isLiked">
+                        <span class="glyphicon glyphicon-heart-empty"></span>
                     </a>
-                    <a ng-if="model.likeId !== ''" ng-click="model.unlikePokemon(model.likeId)">
-                        <i class="glyphicon"
-                           ng-class="(model.like.userVotes==1) ? 'glyphicon-heart': 'glyphicon-heart-empty'"
-                           aria-hidden="true"
-                        ></i>
+                    <a ng-click="model.unlikePokemon()"
+                       ng-show="model.isLiked">
+                        <span class="glyphicon glyphicon-heart"></span>
                     </a>
-                     <!--<span ng-model="like.votes"
-                           ng-if="model.like.votes > 0"
-                           class="pokemon-info-likes">
-                         <h5 style="display: inline">{{model.like.votes}} users like this Pokemon</h5>
-                     </span>-->
+                </span>
+                <span ng-show="!model.user._id">
+                    <a data-toggle="tooltip" data-placement="top" title=""
+                       ng-disabled="!model.user._id" data-original-title="Please login to like!" disabled="disabled">
+                        <span class="glyphicon glyphicon-heart-empty"></span>
+                    </a>
                 </span>
             </div>
         </div>
@@ -76,6 +50,16 @@
                                 <span class="tooltipabilities">{{ability.description}}</span>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <h1>{{ rating.title }}</h1>
+                        <span class="h5" ng-show="model.avgRating != 0">
+                                <ng-rating ng-model="model.avgRating"
+                                           editable="false"
+                                           show-grade="true"
+                                           starsCount="5">
+                                    </ng-rating>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -152,6 +136,12 @@
             <hr>
             <div class="comments" ng-repeat="review in model.reviews">
                 <h3>{{review.rating}}</h3>
+                <span class="h5">
+                    <ng-rating ng-model="review.rating"
+                               editable="false"
+                               starsCount="5">
+                    </ng-rating>
+                </span>
                 <h3>{{review.title}}</h3>
                 <p>{{review.description}}</p>
             </div>
@@ -160,6 +150,10 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Write a Review:</h3>
+                <ng-rating ng-model="review.rating"
+                           editable="true"
+                           stars-count="5">
+                </ng-rating>
             </div>
             <div class="panel-body">
                 <form>

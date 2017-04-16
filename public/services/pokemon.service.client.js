@@ -17,8 +17,14 @@
             "findPokemonById": findPokemonById,
             "getAllPokemons": getAllPokemons,
             "findPokemonByName": findPokemonByName,
+            "findPokemonFromDBByName": findPokemonFromDBByName,
+            "findAllPokemons": findAllPokemons
         }
         return api;
+
+        function findPokemonFromDBByName(pokemonName) {
+            return $http.get("/api/pokemon?name=" + pokemonName);
+        }
 
         function findPokemonByPokeId(pokemonID) {
             return $http.get("/rest/api/pokemon/" + pokemonID);
@@ -34,6 +40,10 @@
 
         function findPokemonByName(name) {
             return $http.get("/rest/api/pokemon?name=" + name);
+        }
+        
+        function findAllPokemons() {
+            return $http.get("/api/pokemon");
         }
 
         /* Testing Purpose for now */

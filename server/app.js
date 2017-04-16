@@ -1,8 +1,6 @@
 module.exports = function (app) {
     var models = require("./model/models.server.js")();
 
-    require("./services/pokedex/pokedex.service.server")(app, models);
-
     require("./services/rest/card.service.server")(app, models);
     require("./services/rest/pokemon.service.server")(app, models);
 
