@@ -1,5 +1,5 @@
 <div ng-controller="PokedexController as model">
-    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
+    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
 
     <div class="container">
         <div class="alert alert-danger text-center" ng-if="model.error">
@@ -23,11 +23,12 @@
                     match-class="highlight"
                     required
                     class="col-md-12 form-control"
-                    style="color: #9CDC18;">
+                    style="color: #9CDC18;height: 60px;">
             </angucomplete-alt>
         </div>
     </div>
-    <div class="details col-md-12 col-md-offset-1 text-center">
+    <hr class="separator">
+    <div class="details col-md-10 col-md-offset-2 text-center">
         <figure ng-repeat="pokemon in model.pokemonThumbs"
                 ng-show="model.searchResults.name == '' || model.searchResults.name == pokemon.name || searchStr.$valid"
                 class="col-md-3 text-center pokemon-thumb" ng-click="model.getMoreInfo(pokemon)">

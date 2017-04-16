@@ -49,6 +49,11 @@
                             });
                     });
                 })
+
+            // $("#myModal1").modal('hide');
+            // $('body').removeClass('modal-open');
+            // $('.modal-backdrop').remove();
+
         }
 
         init();

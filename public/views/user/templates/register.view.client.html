@@ -1,20 +1,21 @@
 <div class="register-form" ng-controller="RegisterController as model">
-    <ng-include src="'../views/includes/header-login.view.client.html'"></ng-include>
+    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
+    <br>
+    <br>
+    <br>
+    <br><br>
         <form name="registerForm" novalidate class="container col-md-8 col-md-offset-2 registerForm">
-            <h2 class="text-center">Create Trainer Account</h2>
-            <hr>
-            <div class="form-group userImage col-md-4 text-center">
+            <h2 class="text-center" style="color: white;">Create Trainer Account</h2>
+            <hr class="separator">
+            <div class="userImage col-md-4 text-center">
                 <img ng-show="model.user.image != ''" ng-src="{{model.user.image}}" height="250" width="200" alt="Upload Profile Image"/>
                 <div class="form-group">
                     <input type="hidden"
                            ng-model="model.user.url"
                            class="form-control" id="url" name="url"
                            placeholder="Enter URL"
-                           value="model.user.url"
-                    >
-
-                    <div class="error"
-                         ng-if="newWidgetForm.$submitted && newWidgetForm.url.$invalid">Enter URL</div>
+                           value="model.user.url">
+                    <div class="error" ng-if="newWidgetForm.$submitted && newWidgetForm.url.$invalid">Enter URL</div>
                 </div>
 
                 <div class="form-group">
@@ -22,8 +23,7 @@
                     <input name="file"
                            type="file"
                            id="upload"
-                           onchange="angular.element(this).scope().model.selectFile(this.files)"
-                    >
+                           onchange="angular.element(this).scope().model.selectFile(this.files)">
                     <div class="alert alert-success" ng-show="model.message">
                         {{model.message}}
                     </div>
@@ -33,8 +33,7 @@
 
                 </div>
                 <div class="form-group">
-                    <a ng-click="model.uploadFile()"
-                       class="btn btn-primary btn-block">Upload Image</a>
+                    <a ng-click="model.uploadFile()" class="btn btn-primary btn-block">Upload Image</a>
                 </div>
             </div>
             <div class="col-md-8">
@@ -82,13 +81,11 @@
                 <div ng-show="model.error" class="alert alert-danger" role="alert">
                     {{model.error}}
                 </div>
-
-                <div ng-show="registerForm.$submitted && registerForm.password.$valid && registerForm['conf-password'].$valid &&
-            (user.password !== user.confPassword)"
+                <div ng-show="registerForm.$submitted && registerForm.password.$valid && registerForm['conf-password'].$valid && (user.password !== user.confPassword)"
                      class="alert alert-danger" role="alert">
                     Password and Conf. Password are different!
                 </div>
-                <hr>
+                <hr class="separator">
                 <div class="form-group">
                     <button type="submit" class="btn btn-block btn-success"
                             ng-click="registerForm.$valid && model.register(model.user)">
@@ -102,5 +99,5 @@
                 </div>
             </div>
         </form>
-    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
-    </div>
+    <!--<ng-include src="'../views/includes/footer.view.client.html'"></ng-include>-->
+</div>

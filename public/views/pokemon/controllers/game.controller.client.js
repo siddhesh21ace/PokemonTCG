@@ -32,10 +32,14 @@
         vm.getHp = getHp;
         vm.startGame = startGame;
         vm.startNewGame = startNewGame;
+        vm.playAudio = playAudio;
+        vm.stopAudio = stopAudio;
 
         vm.activeCard={};
         vm.winner={};
         vm.goku = false;
+        vm.themeSong="";
+        vm.playingAudio = false;
 
         function isNumber(damage) {
             if (damage === '') {
@@ -55,7 +59,20 @@
             vm.activeCard2 = card;
         }
 
+        function playAudio(){
+            vm.themeSong = new Audio("../../../audio/pokemon-theme.mp3");
+            vm.themeSong.play();
+            vm.playingAudio = true;
+        }
+
+        function stopAudio(){
+            vm.themeSong.pause();
+            vm.themeSong.currentTime = 0;
+            vm.playingAudio = false;
+        }
+
         function init() {
+
             UserService.findCurrentUser()
                 .then(function (response) {
                     vm.user = response.data;
@@ -64,10 +81,6 @@
             CardService.getAllPokemons().then(function (response) {
             $('#myModal').modal({ show: false});
             $('#myModal1').modal({ show: false});
-            $('#myModal').modal({
-                backdrop: 'static',
-                keyboard: false
-            })
                 vm.cards = response.data;
 
                 var total = vm.cards.length;
@@ -103,6 +116,10 @@
                     });
 
                 $('#myModal').modal('show');
+                $('#myModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
             }, function (error) {
                 vm.error = error.data;
                 console.log(error);
@@ -123,6 +140,7 @@
             vm.game.state = 1;
             console.log('After state change', vm.game.state);
             $("#myModal").modal('hide');
+            //playAudio();
         }
 
         function startNewGame(){
@@ -148,6 +166,9 @@
             var card = {
                 "tcgID" : vm.cards[50].id
             }
+            console.log(vm.cards[50]);
+            vm.url = vm.cards[50].imageUrlHiRes;
+
             CardService.addCard(vm.user._id, card)
                 .then(function (response) {
                     console.log(response.data);
