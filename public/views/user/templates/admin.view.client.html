@@ -1,6 +1,7 @@
-<div ng-controller="AdminController as model" class="container-fluid">
+<div ng-controller="AdminController as model">
+    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
     <h2>Admin</h2>
-    <h1>User Managemenet</h1>
+    <h1>User Management</h1>
 
     <table class="table table-striped">
         <thead>
@@ -36,13 +37,13 @@
                 </td>
                 <td>
                     <button ng-click="model.createUser(model.user)" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-plus"></span>
+                        <i class="fa fa-plus-square-o"></i>
                     </button>
                 </td>
                 <td>
-                    <button ng-click="model.updateUser(model.user)" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </button>git
+                    <button ng-click="model.updateUser(model.user)" class="btn btn-success">
+                        <i class="fa fa-floppy-o"></i>
+                    </button>
                 </td>
             </tr>
             <tr ng-repeat="user in model.users">
@@ -54,17 +55,18 @@
                 <td>{{user.roles}}</td>
                 <td>
                     <button ng-click="model.deleteUser(user._id)" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
+                        <i class="fa fa-trash-o"></i>
                     </button>
                 </td>
                 <td>
-                    <button ng-click="model.selectUser(user)" class="btn btn-default">
-                        <span class="glyphicon glyphicon-pencil"></span>
+                    <button ng-click="model.selectUser(user)" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
                     </button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 
 
