@@ -161,11 +161,10 @@ hr {
 	display: table;
 	width: 100%;
 	height: auto;
-	padding: 100px 0;
+	padding: 280px 0;
 	text-align: center;
 	color: #fff;
 	background: url(../img/all-pokemons-bg.png) no-repeat center center fixed;
-	background-color: #000;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;

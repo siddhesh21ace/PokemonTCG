@@ -28,7 +28,7 @@
         </div>
     </div>
     <hr class="separator">
-    <div class="details col-md-12 col-md-offset-1 text-center">
+    <div class="details col-md-10 col-md-offset-2 text-center">
         <figure ng-repeat="pokemon in model.pokemonThumbs"
                 ng-show="model.searchResults.name == '' || model.searchResults.name == pokemon.name || searchStr.$valid"
                 class="col-md-3 text-center pokemon-thumb" ng-click="model.getMoreInfo(pokemon)">

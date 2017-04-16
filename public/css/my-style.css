@@ -1,8 +1,3 @@
-body{
-    color: white;
-    background: #424242 url("/images/body_bg.png");
-    font-family: Roboto,sans-serif;
-}
 .angucomplete-dropdown {
     overflow-y: auto;
     max-height: 200px;
@@ -124,19 +119,10 @@ body{
     box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
 }
 
-/*.progressContainer{*/
-    /*height: 150px;*/
-    /*margin-top: 40px;*/
-    /*padding-top: 20px;*/
-    /*width: 100%;*/
-/*}*/
-
 .progress{
     height: 15px;
 }
 .progressContainer{
-    /*height: 150px;*/
-    /*margin-top: 40px;*/
     padding-top: 5px;
     width: 100%;
 }
@@ -639,10 +625,22 @@ h4{
     color: #9CDC18;
 }
 
-a{
+a.abilities{
     color: #0ce3ac;
 }
 
 .warning{
     color: red;
+}
+
+ul li {
+    color: white;
+}
+
+.gym{
+    background-blend-mode: screen;
+}
+
+h6{
+    color: white;
 }

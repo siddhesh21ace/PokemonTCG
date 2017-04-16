@@ -1,6 +1,6 @@
 <div ng-controller="HomeController as model">
     <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
-    <div id="intro">
+    <div id="intro" class="gym">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -22,7 +22,7 @@
                 <hr>
             </div>
             <div class="row">
-                <div class="col-md-4"><img src="img/pika-card.png" class="img-responsive"></div>
+                <div class="col-md-4 col-sm-12 col-xs-12"><img src="img/pika-card.png" class="img-responsive"></div>
                 <div class="col-md-4">
                     <div class="about-text">
                         <h4>What is Pokémon World ?</h4>
@@ -93,9 +93,10 @@
                     <div class="about-text">
                         <h4>What is Pokédex?</h4>
                         <p><b><i>Pokédex</i></b> The Pokédex is an electronic device designed to catalogue and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series.
-                            The name Pokédex is a neologism including "Pokémon" (which itself is a portmanteau of "pocket" and "monster") and "index". The Japanese name is simply "Pokémon Encyclopedia", and it can feature every Pokémon on it,
+                            </p>
+                        <p>The name Pokédex is a neologism including "Pokémon" (which itself is a portmanteau of "pocket" and "monster") and "index". The Japanese name is simply "Pokémon Encyclopedia", and it can feature every Pokémon on it,
                             depending on the Pokédex.</p>
-                        <p>Every Pokémon trainer has a Pokédex inorder to identify Pokémon they come across in their quest to cath 'em all.</p>
+                        <p>Every Pokémon trainer has a Pokédex for identifying Pokémons they come across in their quest to catch 'em all.</p>
                     </div>
                     <a href="/#!/pokedex" class="btn btn-default">Explore Pokédex</a>
                 </div>
@@ -119,7 +120,7 @@
                                 <p>The most powerful Trainer in a given Gym is called the Gym Leader, who is revered by both the lower-ranking members of the Gym and local fans.</p>
                                 <p>We are working on bringing this feature to Pokémon World very soon.</p>
                                 <div class="clients-name">
-                                    <h4><strong>Coming Soon..</strong></h4>
+                                    <h3 style="color: black;"><strong>Coming Soon..</strong></h3>
                                 </div>
                             </blockquote>
                         </div>
@@ -131,109 +132,8 @@
 
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
-    <!--<ng-include src="'../views/includes/header.view.client.html'"></ng-include>-->
-    <!--<div class="content">-->
-        <!--<div class="jumbotron">-->
-            <!--<h1>Pokémon TCG</h1>-->
-            <!--<p>Pokémon TCG can be played after you log in.</p>-->
-            <!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>-->
-        <!--</div>-->
-        <!--<div class="feature-cards col-md-12">-->
-            <!--&lt;!&ndash;Card&ndash;&gt;-->
-            <!--<div class="card col-md-4">-->
 
-                <!--&lt;!&ndash;Card image&ndash;&gt;-->
-                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
-                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
-
-                <!--&lt;!&ndash;Card content&ndash;&gt;-->
-                <!--<div class="card-block">-->
-                    <!--&lt;!&ndash;Title&ndash;&gt;-->
-                    <!--<h4 class="card-title">Pokémon TCG</h4>-->
-                    <!--&lt;!&ndash;Text&ndash;&gt;-->
-                    <!--<p class="card-text">Play the popular trading card game based on your favorite series - Pokémon.</p>-->
-                    <!--<a href="#" class="btn btn-primary">Play</a>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
-
-            <!--</div>-->
-            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
-
-            <!--&lt;!&ndash;Card&ndash;&gt;-->
-            <!--<div class="card col-md-4">-->
-
-                <!--&lt;!&ndash;Card image&ndash;&gt;-->
-                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
-                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
-
-                <!--&lt;!&ndash;Card content&ndash;&gt;-->
-                <!--<div class="card-block">-->
-                    <!--&lt;!&ndash;Title&ndash;&gt;-->
-                    <!--<h4 class="card-title">Pokédex</h4>-->
-                    <!--&lt;!&ndash;Text&ndash;&gt;-->
-                    <!--<p class="card-text">Know about every Pokémon you come across. Be a better Pokémon Trainer</p>-->
-                    <!--<a href="#" class="btn btn-primary">Open Pokédex</a>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
-
-            <!--</div>-->
-            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
-
-            <!--&lt;!&ndash;Card&ndash;&gt;-->
-            <!--<div class="card col-md-4">-->
-
-                <!--&lt;!&ndash;Card image&ndash;&gt;-->
-                <!--<img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg" alt="Card image cap">-->
-                <!--&lt;!&ndash;/.Card image&ndash;&gt;-->
-
-                <!--&lt;!&ndash;Card content&ndash;&gt;-->
-                <!--<div class="card-block">-->
-                    <!--&lt;!&ndash;Title&ndash;&gt;-->
-                    <!--<h4 class="card-title">Gym Battles</h4>-->
-                    <!--&lt;!&ndash;Text&ndash;&gt;-->
-                    <!--<p class="card-text">Challenge Gym Masters and get a chance to be a Gym master!</p>-->
-                    <!--<a href="#" class="btn btn-primary">Battle it out!</a>-->
-                <!--</div>-->
-                <!--&lt;!&ndash;/.Card content&ndash;&gt;-->
-
-            <!--</div>-->
-            <!--&lt;!&ndash;/.Card&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="feature-stats col-md-12">-->
-            <!--<div class="col-md-4">-->
-                <!--<h3>Featured Players</h3>-->
-                <!--<ul class="list-group">-->
-                    <!--<li class="list-group-item">Ash</li>-->
-                    <!--<li class="list-group-item">Brock</li>-->
-                    <!--<li class="list-group-item">Joey</li>-->
-                    <!--<li class="list-group-item">Ross</li>-->
-                    <!--<li class="list-group-item">Master Roshi</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="col-md-4">-->
-                <!--<h3>Featured Pokemons</h3>-->
-                <!--<ul class="list-group">-->
-                    <!--<li class="list-group-item">Pikachu</li>-->
-                    <!--<li class="list-group-item">Bulbasaur</li>-->
-                    <!--<li class="list-group-item">Gyarados</li>-->
-                    <!--<li class="list-group-item">Mewto</li>-->
-                    <!--<li class="list-group-item">Weedle</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="col-md-4">-->
-                <!--<h3>Featured Gyms</h3>-->
-                <!--<ul class="list-group">-->
-                    <!--<li class="list-group-item">Pewter Gym</li>-->
-                    <!--<li class="list-group-item">erulean Gym</li>-->
-                    <!--<li class="list-group-item">Vermilion Gym</li>-->
-                    <!--<li class="list-group-item">Celadon Gym</li>-->
-                    <!--<li class="list-group-item">Saffron Gym</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--<ng-include src="'../views/includes/footer.view.client.html'"></ng-include>-->
-<!--</div>-->
+<!-- Javascript Ends================================================== -->
 <script>
     var theater = theaterJS();
 
