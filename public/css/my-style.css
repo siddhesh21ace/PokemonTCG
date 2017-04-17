@@ -736,3 +736,7 @@ h6{
     margin: -32px 0 0 -32px;
     padding: 0;
 }
+
+.leaderboard-line{
+    height: 55px;
+}

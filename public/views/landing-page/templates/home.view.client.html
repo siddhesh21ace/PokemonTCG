@@ -140,9 +140,15 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <ul class="list-group">
-                    <li class="list-group-item"
+                    <li class="list-group-item leaderboard-line" style="background:gray">
+                        <span class="col-xs-4">Trainer</span>
+                        <span class="col-xs-4">Games Played</span>
+                        <span class="col-xs-4">Games Won</span></li>
+                    <li class="list-group-item leaderboard-line"
                         ng-repeat="score in model.scores | limitTo:5 | orderBy:'-winPercentage'">
-                        {{score.username}}({{score.won}}/{{score.played}})
+                        <span class="col-xs-4">{{score.username}}</span>
+                        <span class="col-xs-4">{{score.played}}</span>
+                        <span class="col-xs-4">{{score.won}}</span></li>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -193,44 +199,44 @@
         <!--/.Content-->
     </div>
 </div>
-
+<script type="text/javascript" src="//cdn.jsdelivr.net/theaterjs/latest/theater.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.6/SmoothScroll.js"></script>
 <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="js/jquery.isotope.js"></script>
 <script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-<script>
-    var theater = theaterJS();
+<!--<script>-->
+    <!--var theater = theaterJS();-->
 
-    theater
-        .on('type:start, erase:start', function () {
-            // add a class to actor's dom element when he starts typing/erasing
-            var actor = theater.getCurrentActor()
-            actor.$element.classList.add('is-typing')
-        })
-        .on('type:end, erase:end', function () {
-            // and then remove it when he's done
-            var actor = theater.getCurrentActor()
-            actor.$element.classList.remove('is-typing')
-        })
+    <!--theater-->
+        <!--.on('type:start, erase:start', function () {-->
+            <!--// add a class to actor's dom element when he starts typing/erasing-->
+            <!--var actor = theater.getCurrentActor()-->
+            <!--actor.$element.classList.add('is-typing')-->
+        <!--})-->
+        <!--.on('type:end, erase:end', function () {-->
+            <!--// and then remove it when he's done-->
+            <!--var actor = theater.getCurrentActor()-->
+            <!--actor.$element.classList.remove('is-typing')-->
+        <!--})-->
 
 
-    theater
-        .addActor('vader', 0.8)
+    <!--theater-->
+        <!--.addActor('vader', 0.8)-->
 
-    theater
-        .addScene('vader:Pikachu...', 400)
-        .addScene('vader:Bulbasaur...', 400)
-        .addScene('vader:Venusaur...', 400)
-        .addScene('vader:Ivysaur...', 400)
-        .addScene('vader:Charmeleon...', 400)
-        .addScene('vader:Blastoise...', 400)
-        .addScene('vader:Kakuna...', 400)
-        .addScene('vader:caterpie...', 400)
-        .addScene('vader:Pikachu...', 400)
-        .addScene('vader:wartortle...', 400)
-        .addScene('vader:beedrill...', 400)
-        .addScene('vader:rattata...', 400)
-        .addScene(theater.replay);
-</script>
+    <!--theater-->
+        <!--.addScene('vader:Pikachu...', 400)-->
+        <!--.addScene('vader:Bulbasaur...', 400)-->
+        <!--.addScene('vader:Venusaur...', 400)-->
+        <!--.addScene('vader:Ivysaur...', 400)-->
+        <!--.addScene('vader:Charmeleon...', 400)-->
+        <!--.addScene('vader:Blastoise...', 400)-->
+        <!--.addScene('vader:Kakuna...', 400)-->
+        <!--.addScene('vader:caterpie...', 400)-->
+        <!--.addScene('vader:Pikachu...', 400)-->
+        <!--.addScene('vader:wartortle...', 400)-->
+        <!--.addScene('vader:beedrill...', 400)-->
+        <!--.addScene('vader:rattata...', 400)-->
+        <!--.addScene(theater.replay);-->
+<!--</script>-->
