@@ -46,6 +46,8 @@
                                 var pokemon = response.data;
                                 pokemon.img_id = padToThree(pokemon.id);
                                 vm.likedPokemons.push(pokemon);
+                                $("#profile").fadeOut("slow");
+                                $("#loading").delay(200).fadeOut("slow").remove();
                             });
                     });
                 })

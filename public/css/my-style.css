@@ -706,3 +706,33 @@ h6{
 .players-details{
     margin-top:0;
 }
+
+.upper{
+    overflow:hidden;
+}
+
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+    height: 100%;
+}
+#pokeball {
+    position: absolute;
+    left: 46%;
+    top: 40%;
+    margin: -32px 0 0 -32px;
+    padding: 0;
+}
+
+#profile {
+    position: absolute;
+    left: 41%;
+    top: 19%;
+    margin: -32px 0 0 -32px;
+    padding: 0;
+}

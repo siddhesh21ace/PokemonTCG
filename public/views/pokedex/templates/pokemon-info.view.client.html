@@ -1,5 +1,13 @@
+
 <div class="container"
      ng-controller="PokemonInfoController as model">
+    <div id="loading">
+        <div id="pokeball" style="width: 200px;">
+            <img src="../../../images/pichu.gif" alt="Pokeball">
+            <h3>Pokemon Arriving......</h3>
+        </div>
+    </div>
+    <!--<img id="spinner" src="../../../images/pokeball_loading.gif" ng-show="model.loading == true">-->
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
 
     <div class="pokeName">
@@ -34,6 +42,7 @@
                 </span>
             </div>
         </div>
+
         <div class="col-md-8">
             <h4 class="description">
                 {{model.pokemon.species.description}}
@@ -196,5 +205,6 @@
             </div>
         </div>
     </div>
+
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>

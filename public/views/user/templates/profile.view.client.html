@@ -1,6 +1,12 @@
 <div ng-controller="ProfileController as model">
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
     <div class="userProfile container">
+        <div id="loading">
+            <div id="profile" style="width: 300px;">
+                <img src="../../../images/profile-ash-loading.png" alt="Pokeball">
+                <h3>Loading Trainer Profile.....</h3>
+            </div>
+        </div>
 
             <div class="userImage col-md-4">
                 <img src="{{model.user.url}}" height="200" width="200" style="margin-top:20px"/>

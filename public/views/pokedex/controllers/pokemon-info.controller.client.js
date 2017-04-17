@@ -2,7 +2,12 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
+
     function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService, PokemonService) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        // will first fade out the loading animation
+        //$("#pokeball").fadeOut("slow");
+
         var vm = this;
         vm.like = {};
         vm.like.votes = 100;
@@ -13,7 +18,9 @@
         vm.likeId = "";
         vm.user = {};
         vm.pokemon = {};
+        vm.loading= true;
         vm.isLiked = false;
+
         vm.getColorClass = getColorClass;
         vm.getMaxStat = getMaxStat;
         vm.getIndicator = getIndicator;
@@ -73,6 +80,8 @@
         function init() {
             $('[data-toggle="tooltip"]').tooltip();
 
+            console.log($("#spinner"));
+
             var pokemon = $routeParams.pokemon;
             console.log("In Pokemon Info controller" + pokemon);
 
@@ -120,15 +129,23 @@
 
                     vm.pokemon.img = imgUrl;
                     return PokemonService.findPokemonFromDBByName(pokemon);
+
                 }, function (error) {
                     vm.error = "Result Not found";
                     console.log("Error" + error);
+                    vm.loading = false;
+                    // will fade out the whole DIV that covers the website.
+                    $("#pokeball").fadeOut("slow");
+                    $("#loading").delay(200).fadeOut("slow").remove();
                 })
                 .then(function (response) {
                     vm.pokemon._id = response.data._id;
                     setReviews(vm.pokemon);
                     isPokemonLiked();
                     totalLikes();
+                    vm.loading = false;
+                    $("#pokeball").fadeOut("slow");
+                    $("#loading").delay(200).fadeOut("slow").remove();
                 });
 
 
@@ -139,6 +156,7 @@
         }
 
         init();
+
 
         function setReviews(pokemon) {
             ReviewService.findReviewsByPokemonID(pokemon._id)
