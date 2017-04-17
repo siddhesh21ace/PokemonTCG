@@ -2,11 +2,8 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-
     function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService, PokemonService) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
-        // will first fade out the loading animation
-        //$("#pokeball").fadeOut("slow");
 
         var vm = this;
         vm.like = {};
@@ -24,16 +21,13 @@
         vm.getColorClass = getColorClass;
         vm.getMaxStat = getMaxStat;
         vm.getIndicator = getIndicator;
-        vm.likePokemon = likePokemon;
-        vm.unlikePokemon = unlikePokemon;
 
         vm.isLoggedInUser = isLoggedInUser;
         vm.getMoreInfo = getMoreInfo;
 
         vm.addReview = addReview;
-        vm.isPokemonLiked = isPokemonLiked;
 
-        vm.likePuokemon = likePokemon;
+        vm.likePokemon = likePokemon;
         vm.unlikePokemon = unlikePokemon;
         vm.isPokemonLiked = isPokemonLiked;
 
@@ -141,7 +135,9 @@
                 .then(function (response) {
                     vm.pokemon._id = response.data._id;
                     setReviews(vm.pokemon);
-                    isPokemonLiked();
+                    if(vm.user._id) {
+                        isPokemonLiked();
+                    }
                     totalLikes();
                     vm.loading = false;
                     $("#pokeball").fadeOut("slow");
@@ -176,7 +172,6 @@
         function getMoreInfo(data) {
             console.log(data);
             $location.url('/pokemon-info/' + data);
-
         }
 
         /* Extras */
