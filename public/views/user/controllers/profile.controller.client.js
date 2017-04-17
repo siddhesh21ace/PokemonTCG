@@ -32,7 +32,10 @@
                                 vm.collectedCards.push(response.data.card);
                             })
                     });
+                    $("#profile").fadeOut("slow");
+                    $("#loading").delay(200).fadeOut("slow").remove();
                     return LikeService.findLikedPokemonsByUser(vm.user._id);
+
                 })
                 .then(function (response) {
                     var likeMapping = response.data;
@@ -41,6 +44,8 @@
                             .then(function (response) {
                                 var poke = response.data;
                                 return PokemonService.findPokemonByPokeId(poke.pokedex_number);
+                                $("#profile").fadeOut("slow");
+                                $("#loading").delay(200).fadeOut("slow").remove();
                             })
                             .then(function (response) {
                                 var pokemon = response.data;
@@ -52,9 +57,9 @@
                     });
                 })
 
-            // $("#myModal1").modal('hide');
-            // $('body').removeClass('modal-open');
-            // $('.modal-backdrop').remove();
+            $("#myModal1").modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
 
         }
 
