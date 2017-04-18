@@ -12,7 +12,7 @@ module.exports = function () {
         "updateReview": updateReview,
         "deleteReview": deleteReview,
         "findReviewByID": findReviewByID
-    }
+    };
 
     return api;
 

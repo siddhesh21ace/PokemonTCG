@@ -11,59 +11,14 @@ module.exports = function (app, models) {
     app.get("/rest/api/type/:typeID", findTypeByIDorName);
     app.get("/rest/api/type/:typeID/pokemon", findPokemonsByTypeIDorName);
 
-    //getAllPokemons
     function findAllPokemons(req, res) {
         P.getPokemonsList()
             .then(function (response) {
                 res.json(response);
             }, function (error) {
-                res.json(error);
+                res.send(503).send(error);
             });
     }
-
-    /*function findAllPokemons(req, res) {
-        var off_set = req.query.offset;
-        var interval = {
-            limit: 19,
-            offset: off_set
-        };
-        P.getPokemonsList(interval)
-            .then(function (response) {
-                res.json(response);
-                response.results.forEach(function (obj) {
-                    var pokemon = {
-                        "name": obj.name
-                    };
-                    P.getPokemonByName(obj.name)
-                        .then(function (response) {
-                            pokemon.pokedex_number = response.id;
-                            setPokemonTypes(pokemon, response);
-                            models.pokemonModel.createPokemon(pokemon)
-                                .then(function (response) {
-                                    console.log(response);
-                                });
-                        })
-                });
-            }, function (error) {
-                res.json(error);
-            });
-    }*/
-
-/*    function findAllPokemons(req, res) {
-        P.getPokemonByName(req.query.id)
-            .then(function (response) {
-                res.json(response);
-                var pokemon = {
-                    "name": response.name
-                };
-                pokemon.pokedex_number = response.id;
-                setPokemonTypes(pokemon, response);
-                models.pokemonModel.createPokemon(pokemon)
-                    .then(function (response) {
-                        console.log(response);
-                    });
-            })
-    }*/
 
     function findPokemonByIDorName(req, res) {
         var pokemonID = req.params.pokemonID;
@@ -136,7 +91,7 @@ module.exports = function (app, models) {
                         pokemon.weaknesses.push(double_damages[i].name);
                     }
                 }, function (error) {
-                    console.log(error);
+                    return error;
                 })
         });
     }
@@ -186,7 +141,7 @@ module.exports = function (app, models) {
                         }
                     }
                 }, function (error) {
-                    console.log(error);
+                    return error;
                 })
         });
     }
@@ -216,7 +171,7 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response);
             }, function (error) {
-                res.json(error);
+                res.status(503).send(error);
             });
     }
 
@@ -225,9 +180,8 @@ module.exports = function (app, models) {
         P.getTypeByName(typeID)
             .then(function (response) {
                 res.json(response);
-            })
-            .catch(function (error) {
-                res.json(error);
+            }, function (error) {
+                res.status(503).send(error);
             });
     }
 
@@ -238,7 +192,7 @@ module.exports = function (app, models) {
                 res.json(response.pokemon);
             })
             .catch(function (error) {
-                res.json(error);
+                res.status(503).send(error);
             });
     }
-}
+};

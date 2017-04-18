@@ -10,14 +10,14 @@ module.exports = function (app, models) {
 
     var storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname+'/../../public/uploads')
+            cb(null, __dirname + '/../../public/uploads')
         },
         filename: function (req, file, cb) {
-            cb(null, Date.now() +"."+ file.mimetype.split("/")[1]) //Appending .jpg
+            cb(null, Date.now() + "." + file.mimetype.split("/")[1]) //Appending .jpg
         }
     })
 
-    var upload = multer({ storage: storage });
+    var upload = multer({storage: storage});
     app.post("/api/user/upload", upload.single('file'), uploadImage);
 
     /* Image Upload ends */
@@ -175,7 +175,7 @@ module.exports = function (app, models) {
     function selfLoggedIn(req, res, next) {
         var loggedIn = req.isAuthenticated();
         var userId = req.params.userID;
-        var self = (userId == req.user._id);
+        var self = (userId === req.user._id);
         if (self && loggedIn) {
             next();
         } else {
@@ -249,7 +249,6 @@ module.exports = function (app, models) {
                                     req.login(user, function (error) {
                                         if (error) {
                                             res.status(400).send("Error occured. Please try again!");
-                                            console.log(error);
                                         } else {
                                             res.json(user);
                                         }
@@ -257,7 +256,6 @@ module.exports = function (app, models) {
                                 }
                             }, function (error) {
                                 res.status(400).send("Error occured. Please try again!");
-                                console.log(error);
                             });
                     } else {
                         res.status(401).send("User already exists!");
@@ -265,7 +263,6 @@ module.exports = function (app, models) {
                 },
                 function (err) {
                     res.status(400).send("Error occured. Please try again!");
-                    console.log(err);
                 }
             )
     }
@@ -309,10 +306,12 @@ module.exports = function (app, models) {
                     res.json(users[0]);
                 }
                 else {
-                    res.status(404).send('User not found for username: ' + username + ' and password: ' + password);
+                    res.status(404).send('User not found for username: ' +
+                        username + ' and password: ' + password);
                 }
             }, function (error) {
-                res.status(404).send('User not found for username: ' + username + ' and password: ' + password +
+                res.status(404).send('User not found for username: ' + username +
+                    ' and password: ' + password +
                     " with error: " + error);
             });
     }
@@ -369,7 +368,7 @@ module.exports = function (app, models) {
         }
     }
 
-    function uploadImage(req, res){
+    function uploadImage(req, res) {
         var myFile = req.file;
 
         var originalname = myFile.originalname;
@@ -379,7 +378,6 @@ module.exports = function (app, models) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        //console.log(myFile);
         res.send(myFile);
     }
 
@@ -392,7 +390,7 @@ module.exports = function (app, models) {
     }
 
     function checkAdmin(req, res, next) {
-        if(req.isAuthenticated() &&
+        if (req.isAuthenticated() &&
             req.user.roles &&
             req.user.roles.indexOf('ADMIN') > -1) {
             next();
@@ -406,16 +404,6 @@ module.exports = function (app, models) {
             .createUser(req.body)
             .then(function (response) {
                 res.json(response)
-            }, function (error) {
-                res.status(500).send(error);
-            });
-    }
-
-    function findAllUsers(req, res) {
-        models.userModel
-            .findAllUsers()
-            .then(function (response) {
-                res.json(response);
             }, function (error) {
                 res.status(500).send(error);
             });

@@ -36,4 +36,4 @@ module.exports = function () {
     function deleteCard(cardID) {
         return CardModel.remove({"_id": cardID});
     }
-}
+};

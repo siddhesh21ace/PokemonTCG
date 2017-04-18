@@ -9,6 +9,4 @@ var projectPokemonSchema = mongoose.Schema({
     types: [String]
 }, {collection: "project.pokemon"});
 
-// projectPokemonSchema.index({id:1},{unique:true});
-
 module.exports = projectPokemonSchema;

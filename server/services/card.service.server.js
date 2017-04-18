@@ -8,25 +8,6 @@ module.exports = function (app, models) {
     app.put("/api/card/:cardID", updateCard);
     app.delete("/api/card/:cardID", deleteCard);
 
-/*    var card = {
-        "tcgID": "xyp-XY46"
-    };
-
-    models.cardModel.addCard("58eff76012f53118b4c1d6a3", card)
-        .then(function (card) {
-            models.userModel
-                .findUserById("58eff76012f53118b4c1d6a3")
-                .then(function (user) {
-                    user.cards.push(card._id);
-                    user.save();
-                    console.log("Success");
-                }, function (error) {
-                    console.log("Error");
-                })
-        }, function (error) {
-            console.log("Error");
-        });*/
-
     function addCard(req, res) {
         var userID = req.params['userID'];
         var newCard = req.body;
