@@ -145,7 +145,7 @@
                         <span class="col-xs-4">Games Played</span>
                         <span class="col-xs-4">Games Won</span></li>
                     <li class="list-group-item leaderboard-line"
-                        ng-repeat="score in model.scores | limitTo:5 | orderBy:'-winPercentage'">
+                        ng-repeat="score in model.scores | orderBy:'-winPercentage' | limitTo:5">
                         <span class="col-xs-4">{{score.username}}</span>
                         <span class="col-xs-4">{{score.played}}</span>
                         <span class="col-xs-4">{{score.won}}</span></li>
