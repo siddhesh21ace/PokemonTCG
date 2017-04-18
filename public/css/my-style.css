@@ -9,12 +9,14 @@
     list-style: none;
     overflow: hidden;
 }
+
 .tagcloud ul li {
     float: left;
     width: 120px;
     margin: 0 10px 10px 0;
     padding: 0;
 }
+
 .tagcloud ul li a {
     display: block;
     width: 100%;
@@ -36,7 +38,7 @@
     box-sizing: border-box;
 }
 
-.tagcloud ul li a.moves{
+.tagcloud ul li a.moves {
     background-color: #98ccff;
     color: black;
 }
@@ -47,63 +49,70 @@
     color: #fff;
 }
 
-.grass{
+.grass {
     background-color: green;
     color: white;
 }
 
-.poison{
+.poison {
     background-color: mediumpurple;
     color: white;
 }
-.ground{
+
+.ground {
     background-color: sandybrown;
     color: white;
 }
-.psychic{
+
+.psychic {
     background-color: rebeccapurple;
     color: white;
 }
-.flying{
+
+.flying {
     background-color: deepskyblue;
     color: white;
- }
-.bug{
+}
+
+.bug {
     background-color: maroon;
     color: white;
 }
-.fire{
+
+.fire {
     background-color: orange;
     color: white;
 }
-.ice{
+
+.ice {
     background-color: whitesmoke;
     color: black;
 }
 
-.fighting{
+.fighting {
     background-color: saddlebrown;
     color: white;
 }
-.rock{
+
+.rock {
     background-color: tomato;
     color: black;
 }
-.electric{
+
+.electric {
     background-color: darkorange;
     color: black;
 }
-.normal{
+
+.normal {
     background-color: blanchedalmond;
     color: black;
 }
-.water{
+
+.water {
     background-color: dodgerblue;
     color: white;
 }
-
-
-
 
 .vertical {
     display: inline-block;
@@ -112,50 +121,53 @@
     -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
     transform: rotate(-90deg);
 }
+
 .vertical {
     box-shadow: inset 0px 4px 6px #ccc;
 }
+
 .progress-bar {
-    box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+    box-shadow: inset 0px 4px 6px rgba(100, 100, 100, 0.6);
 }
 
-.progress{
+.progress {
     height: 15px;
 }
-.progressContainer{
+
+.progressContainer {
     padding-top: 5px;
     width: 100%;
 }
 
-.playing-mat{
+.playing-mat {
     position: static;
     background-color: transparent;
     /*height: 75px;*/
-    height:55px;
+    height: 55px;
 }
 
-.center-pokeball{
+.center-pokeball {
     position: relative;
     z-index: 1000;
 }
 
-hr.center-line{
+hr.center-line {
     width: 100%;
     margin-top: -5%;
     z-index: 100;
 }
 
-.card-deck-player{
+.card-deck-player {
     align: center;
 
 }
 
-.player-area{
+.player-area {
     /*margin-top: 20px;*/
     text-align: center;
 }
 
-.opponent-area{
+.opponent-area {
     margin-top: 10px;
     text-align: center;
     position: relative;
@@ -168,36 +180,36 @@ a .glyphicon {
     transition: all .5s;
     font-size: 25px;
 }
-a .glyphicon-heart{
-     color: #e74c3c;
-    /*font-size: 50px;*/
- }
 
-a .glyphicon-heart-empty:hover{
-     transform:scale(1.1);
- }
+a .glyphicon-heart {
+    color: #e74c3c;
+    /*font-size: 50px;*/
+}
+
+a .glyphicon-heart-empty:hover {
+    transform: scale(1.1);
+}
 
 .comments-pane {
     margin-top: 20px;
 }
 
 .active1 {
-    background : magenta;
+    background: magenta;
     border-color: magenta;
-    padding : 5px;
+    padding: 5px;
 }
 
-.active2{
-    background : orangered;
+.active2 {
+    background: orangered;
     border-color: orange;
-    padding : 5px;
+    padding: 5px;
 }
-
 
 /*Thumbnail*/
 
 img {
-    max-width : 100%;
+    max-width: 100%;
     display: inline;
 }
 
@@ -208,14 +220,14 @@ img {
     left: 50%;
     width: 320px;
     height: 240px;
-    -webkit-transform: translate(-50%,-50%); /* Safari and Chrome */
-    -moz-transform: translate(-50%,-50%); /* Firefox */
-    -ms-transform: translate(-50%,-50%); /* IE 9 */
-    -o-transform: translate(-50%,-50%); /* Opera */
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%); /* Safari and Chrome */
+    -moz-transform: translate(-50%, -50%); /* Firefox */
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -o-transform: translate(-50%, -50%); /* Opera */
+    transform: translate(-50%, -50%);
 }
 
-.thumbnail>img {
+.thumbnail > img {
     display: inline;
 }
 
@@ -234,14 +246,13 @@ img {
 }
 
 .image:hover img.active2 {
-    -webkit-transform:scale(2.00); /* Safari and Chrome */
-    -moz-transform:scale(2.00); /* Firefox */
-    -ms-transform:scale(2.00); /* IE 9 */
-    -o-transform:scale(2.00); /* Opera */
-    transform:scale(2.00);
+    -webkit-transform: scale(2.00); /* Safari and Chrome */
+    -moz-transform: scale(2.00); /* Firefox */
+    -ms-transform: scale(2.00); /* IE 9 */
+    -o-transform: scale(2.00); /* Opera */
+    transform: scale(2.00);
     z-index: 1050;
 }
-
 
 .image img.active1 {
     -webkit-transition: all 1s ease; /* Safari and Chrome */
@@ -253,78 +264,77 @@ img {
 }
 
 .image:hover img.active1 {
-    -webkit-transform:scale(2.00); /* Safari and Chrome */
-    -moz-transform:scale(2.00); /* Firefox */
-    -ms-transform:scale(2.00); /* IE 9 */
-    -o-transform:scale(2.00); /* Opera */
-    transform:scale(2.00);
+    -webkit-transform: scale(2.00); /* Safari and Chrome */
+    -moz-transform: scale(2.00); /* Firefox */
+    -ms-transform: scale(2.00); /* IE 9 */
+    -o-transform: scale(2.00); /* Opera */
+    transform: scale(2.00);
     z-index: 1050;
 }
 
 /*Thumbnails end*/
 
-.game{
+.game {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-.score-opponent{
+.score-opponent {
     margin-top: 80px;
 }
 
-.player-cards{
+.player-cards {
     position: relative;
     /*z-index: 1000;*/
 }
 
-.score-player{
+.score-player {
     margin-top: 21px;
 }
 
-.register-btn{
+.register-btn {
     background: #009688;
     border-color: #009688;
     color: white;
 }
 
-.login-btn{
+.login-btn {
     background: #03A9F4;
     border-color: #03A9F4;
     color: white;
     /*height: 58px;*/
 }
 
-.form-control{
+.form-control {
     color: black;
 }
 
-.loginForm{
+.loginForm {
     margin-top: 50px;
     height: auto;
     margin-bottom: 20px;
 }
 
-
-.pokemon-thumb{
+.pokemon-thumb {
     background-color: white;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(255, 255, 255, .2);
     /*padding:2px;*/
     /*margin: 10px 20px;*/
 }
 
-.pokemon-thumb:hover{
+.pokemon-thumb:hover {
     transform: matrix(1.0, 0, 0, 1, 0, 0);
 }
 
-.pokemon-thumb-name{
+.pokemon-thumb-name {
     text-transform: capitalize;
 }
 
-.details{
+.details {
     margin-top: 40px;
 }
 
-*, *::before, *::after{
+*, *::before, *::after {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 
@@ -332,7 +342,7 @@ img {
     transition: all 0.3s ease-in-out;
 }
 
-figure{
+figure {
     width: 400px;
     height: 300px;
     overflow: hidden;
@@ -344,10 +354,12 @@ figure{
     margin: 1em;
 }
 
-figcaption{
+figcaption {
     position: absolute;
-    left: 0; right: 0;
-    top: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     text-align: center;
     font-weight: bold;
     width: 100%;
@@ -357,7 +369,7 @@ figcaption{
     font-color: white;
 }
 
-figcaption div{
+figcaption div {
     display: table-cell;
     vertical-align: middle;
     position: relative;
@@ -367,10 +379,11 @@ figcaption div{
     text-transform: uppercase;
 }
 
-figcaption div:after{
+figcaption div:after {
     position: absolute;
     content: "";
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     bottom: 40%;
     text-align: center;
     margin: auto;
@@ -379,32 +392,32 @@ figcaption div:after{
     background: #2c3e50;
 }
 
-figure img{
+figure img {
     -webkit-transition: all 0.5s linear;
     transition: all 0.5s linear;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
 }
 
-figure:hover figcaption{
-    background: rgba(255,255,255,0.3);
+figure:hover figcaption {
+    background: rgba(255, 255, 255, 0.3);
 }
 
-figcaption:hover div{
+figcaption:hover div {
     opacity: 1;
     top: 0;
 }
 
-figcaption:hover div:after{
+figcaption:hover div:after {
     width: 50%;
 }
 
-figure:hover img{
+figure:hover img {
     -webkit-transform: scale3d(1.2, 1.2, 1);
     transform: scale3d(1.2, 1.2, 1);
 }
 
-#searchPokemon_value{
+#searchPokemon_value {
     color: #9CDC18;
 }
 
@@ -419,14 +432,14 @@ figure:hover img{
     color: #9CDC18;
 }
 
-.angucomplete-input-not-empty{
+.angucomplete-input-not-empty {
     color: #9CDC18;
 }
 
-.angucomplete-row{
-    background: rgba(255,255,255,0.2);
+.angucomplete-row {
+    background: rgba(255, 255, 255, 0.2);
     padding: 5px;
-    margin:1px;
+    margin: 1px;
     color: #9CDC18;
     font-size: 16px;
 }
@@ -493,7 +506,6 @@ figure:hover img{
     left: 100%;
 }
 
-
 .like:hover .tooltiptextComment {
     visibility: visible;
 }
@@ -506,12 +518,12 @@ figure:hover img{
     visibility: visible;
 }
 
-.pokemon-info-image{
+.pokemon-info-image {
     border: 1px;
-    background-color: rgba(50,50,50,.2);
+    background-color: rgba(50, 50, 50, .2);
 }
 
-.pokemon-info-likes{
+.pokemon-info-likes {
     color: white;
 }
 
@@ -522,57 +534,58 @@ header,
     height: 100%;
 }
 
-.card{
-    background-color: rgba(50,50,50,.2);
+.card {
+    background-color: rgba(50, 50, 50, .2);
 }
 
 .jumbotron {
-    background-color: rgba(50,50,50,.2);
+    background-color: rgba(50, 50, 50, .2);
 }
 
-.footer-links{
+.footer-links {
 
 }
 
-.footer{
+.footer {
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
 }
 
-.registerForm{
+.registerForm {
     padding-bottom: 50px;
 }
 
-.register-form{
+.register-form {
     height: inherit;
 }
 
-.userProfile{
+.userProfile {
     margin-top: 60px;
 }
 
-body{
+body {
     height: inherit;
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 768px) {
+@media only screen and (max-width: 768px) {
 
-    .navbar{
+    .navbar {
         z-index: 1030;
     }
 
-    body,html{
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    .game{
+    body, html {
         max-width: 100%;
         overflow-x: hidden;
     }
 
-    .modal-backdrop{
+    .game {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .modal-backdrop {
         max-width: 100%;
     }
 
@@ -580,11 +593,11 @@ body{
         margin-top: 10px;
     }
 
-    .know-more-footer{
-        display:none;
+    .know-more-footer {
+        display: none;
     }
 
-    figure{
+    figure {
         width: 100%;
         height: 300px;
         overflow: hidden;
@@ -596,10 +609,12 @@ body{
         margin: 1em 0em;
     }
 
-    figcaption{
+    figcaption {
         position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         text-align: center;
         font-weight: bold;
         width: 100%;
@@ -624,9 +639,10 @@ body{
         top: 0px;
     }
 
-    figcaption div:after{
+    figcaption div:after {
         position: absolute;
-        left: 0; right: 0;
+        left: 0;
+        right: 0;
         bottom: 40%;
         text-align: center;
         margin: auto;
@@ -634,24 +650,23 @@ body{
         height: 2px;
     }
 
-    figcaption:hover div:after{
-        display:none;
+    figcaption:hover div:after {
+        display: none;
         background: transparent;
     }
 
-    figure:hover img{
+    figure:hover img {
         -webkit-transform: scale3d(1.2, 1.2, 1);
         transform: scale3d(1.2, 1.2, 1);
     }
 
-
 }
 
-.userDetails h1,h3{
+.userDetails h1, h3 {
     color: #9CDC18;
 }
 
-hr.separator{
+hr.separator {
 
     border: 0;
     border-top: 1px solid #464545;
@@ -666,15 +681,15 @@ hr.separator{
 
 }
 
-h4{
+h4 {
     color: #9CDC18;
 }
 
-a.abilities{
+a.abilities {
     color: #0ce3ac;
 }
 
-.warning{
+.warning {
     color: red;
 }
 
@@ -682,33 +697,32 @@ ul li {
     color: white;
 }
 
-.gym{
+.gym {
     background-blend-mode: screen;
 }
 
-h6{
+h6 {
     color: white;
 }
 
-
-.ps-info-game{
+.ps-info-game {
     color: #9CDC18;
 }
 
-.hp-remaining{
+.hp-remaining {
     color: yellow;
 }
 
-.non-active-card{
+.non-active-card {
     opacity: 0.3;
 }
 
-.players-details{
-    margin-top:0;
+.players-details {
+    margin-top: 0;
 }
 
-.upper{
-    overflow:hidden;
+.upper {
+    overflow: hidden;
 }
 
 #loading {
@@ -717,10 +731,11 @@ h6{
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.9);
     z-index: 9999;
     height: 100%;
 }
+
 #pokeball {
     position: absolute;
     left: 46%;
@@ -737,6 +752,6 @@ h6{
     padding: 0;
 }
 
-.leaderboard-line{
+.leaderboard-line {
     height: 55px;
 }

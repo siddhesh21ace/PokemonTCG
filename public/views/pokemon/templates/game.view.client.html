@@ -1,7 +1,7 @@
-<div class="game" ng-controller="GameController as model">
+<div class="game">
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
     <div class="container opponent-area">
-        <div class="card-deck-opponent text-center thumbnail" >
+        <div class="card-deck-opponent text-center thumbnail">
             <div class="image" ng-repeat="card in model.player2.cards">
                 <img ng-src="{{card.details.imageUrl}}"
                      width="150"
@@ -15,7 +15,8 @@
         <div class="attacks col-md-12" style="display: inline">
             <div class="col-md-4"><h4 style="color: Red">Computer's Cards</h4></div>
             <div class="col-md-8">
-                <h4 style="display: inline"><span ng-class="{'warning': model.activeCard2.details.name}">Attacks</span></h4>
+                <h4 style="display: inline"><span ng-class="{'warning': model.activeCard2.details.name}">Attacks</span>
+                </h4>
                 <div ng-repeat="attack in model.activeCard2.details.attacks" style="display: inline">
                     <button class="btn btn-sm btn-danger" style="display:inline"
                             ng-show="model.isNumber(attack.damage)"
@@ -41,17 +42,27 @@
     <div class="container playing-mat text-center">
         <div>
             <div class="col-md-4">
-                <button ng-show="model.playingAudio == false " ng-click="model.playAudio()" class="btn btn-success" style="display: inline"> Get Some Inspiration</button>
-                <button ng-show="model.playingAudio == true "  ng-click="model.stopAudio()"class="btn btn-warning" style="display: inline"> Stop Playing</button>
+                <button ng-show="model.playingAudio == false " ng-click="model.playAudio()" class="btn btn-success"
+                        style="display: inline"> Get Some Inspiration
+                </button>
+                <button ng-show="model.playingAudio == true " ng-click="model.stopAudio()" class="btn btn-warning"
+                        style="display: inline"> Stop Playing
+                </button>
             </div>
             <div class="col-md-8">
-                <h3 class="text-center players-details" ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
-                    {{ model.activeCard1.details.name }}  v/s  <span ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
-                    | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn" style="color: indianred">Computer's Turn</span>
+                <h3 class="text-center players-details"
+                    ng-show="(model.activeCard1.details.name && model.activeCard2.details.name)">
+                    {{ model.activeCard1.details.name }} v/s <span
+                        ng-class="{'warning': model.activeCard2.details.name}">{{ model.activeCard2.details.name }}</span>
+                    | <span ng-show="model.game.player1Turn"> Your Turn </span> <span ng-show="!model.game.player1Turn"
+                                                                                      style="color: indianred">Computer's Turn</span>
                 </h3>
-                <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win !!</h3>
-                <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">{{model.activeCard2.details.name}} & Computer Win !!</h3>
-                <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">{{model.computerMessage}}</h3>
+                <h3 ng-show="model.winner==1" class="text-center">{{model.activeCard1.details.name}} & Trainer 1 Win
+                    !!</h3>
+                <h3 ng-show="model.winner==2" class="text-center" style="color: indianred">
+                    {{model.activeCard2.details.name}} & Computer Win !!</h3>
+                <h3 ng-show="model.goku==true" ng-class="{'warning': model.activeCard2.details.name}">
+                    {{model.computerMessage}}</h3>
             </div>
         </div>
 
@@ -61,18 +72,18 @@
         <div class="score-player text-center">
             <!--<div class="activeCard2">-->
             <div class="col-md-3 hp-remaining">Remaining HP ({{ model.activeCard1.details.hp }})</div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
-                         ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
-                         aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
-                         style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
-                    </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success col-md-9" role="progressbar"
+                     ng-class="{'progress-bar-danger' : (model.getHp(model.activeCard1.details.hp) <= 10)};"
+                     aria-valuenow="{{ model.activeCard1.details.hp }}" aria-valuemin="0" aria-valuemax="300"
+                     style="width:  {{model.getHp(model.activeCard1.details.hp)}}%; height: 20px;">
                 </div>
-                <!--<br>-->
+            </div>
+            <!--<br>-->
             <!--</div>-->
             <div class="col-md-4"><h4 style="color: #9CDC18;">Your Cards</h4></div>
             <div class="attacks col-md-8" style="display: inline">
-                <h4 style="display: inline">Attacks   </h4>
+                <h4 style="display: inline">Attacks </h4>
                 <div ng-repeat="attack in model.activeCard1.details.attacks" style="display: inline">
                     <button ng-show="model.isNumber(attack.damage)"
                             ng-click="model.attack1(attack.damage)"
@@ -87,14 +98,14 @@
         <div class="card-deck-player text-center thumbnail">
             <div class="image" ng-repeat="card in model.player1.cards">
                 <img ng-src="{{card.details.imageUrl}}" width="150" height="180" class="image"
-                ng-class="{ 'active1' : card == model.player1.current, 'non-active-card': card != model.player1.current}"
-                ng-disabled="!model.game.player1Turn || card != model.player1.current">
+                     ng-class="{ 'active1' : card == model.player1.current, 'non-active-card': card != model.player1.current}"
+                     ng-disabled="!model.game.player1Turn || card != model.player1.current">
             </div>
         </div>
     </div>
     <!-- Button trigger modal -->
     <!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal1">-->
-        <!--Launch demo modal-->
+    <!--Launch demo modal-->
     <!--</button>-->
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

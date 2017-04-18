@@ -1,8 +1,8 @@
-(function(){
+(function () {
     angular.module("PokemonWorld")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($routeParams, $location, UserService){
+    function HeaderController($location, UserService) {
         console.log("inside index controller.")
         var vm = this;
 

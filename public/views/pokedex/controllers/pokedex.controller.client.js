@@ -2,7 +2,7 @@
     angular.module('PokemonWorld')
         .controller("PokedexController", pokedexController);
 
-    function pokedexController(PokeDexService, UserService, $location, PokemonService) {
+    function pokedexController(UserService, $location, PokemonService) {
         var vm = this;
 
         vm.getResults = getResults;

@@ -12,21 +12,25 @@
             .when("/", {
                 templateUrl: 'views/landing-page/templates/home.view.client.html',
                 controller: 'HomeController',
+                controllerAs: 'model',
                 title: 'Home'
             })
             .when("/login", {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'LoginController',
+                controllerAs: 'model',
                 title: 'Login'
             })
             .when("/register", {
                 templateUrl: 'views/user/templates/register.view.client.html',
                 controller: 'RegisterController',
+                controllerAs: 'model',
                 title: 'Register'
             })
             .when("/user", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: "ProfileController",
+                controllerAs: 'model',
                 title: 'Profile',
                 resolve: {
                     isLoggedIn: isLoggedIn
@@ -35,6 +39,7 @@
             .when("/user/:uid", {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
+                controllerAs: 'model',
                 title: 'Profile',
                 resolve: {
                     isLoggedIn: isLoggedIn
@@ -43,11 +48,13 @@
             .when("/pokemon", {
                 templateUrl: 'views/pokemon/templates/card.view.client.html',
                 controller: 'PokemonController',
+                controllerAs: 'model',
                 title: 'Pokémon'
             })
             .when("/game", {
                 templateUrl: 'views/pokemon/templates/game.view.client.html',
                 controller: 'GameController',
+                controllerAs: 'model',
                 title: 'Game',
                 resolve: {
                     isLoggedIn: isLoggedIn
@@ -56,16 +63,19 @@
             .when("/pokedex", {
                 templateUrl: 'views/pokedex/templates/pokedex.view.client.html',
                 controller: 'PokedexController',
+                controllerAs: 'model',
                 title: 'Pokédex'
             })
             .when("/pokemon-info/:pokemon", {
                 templateUrl: 'views/pokedex/templates/pokemon-info.view.client.html',
                 controller: "PokemonInfoController",
+                controllerAs: 'model',
                 title: 'Pokémon Details'
             })
             .when("/admin", {
                 templateUrl: 'views/user/templates/admin.view.client.html',
                 controller: 'AdminController',
+                controllerAs: 'model',
                 resolve: {
                     checkAdmin: checkAdmin
                 },
@@ -101,7 +111,6 @@
                     $rootScope.errorMessage = null;
                     var user = response.data;
                     if (user !== '0') {
-                        $rootScope.currentUser = user;
                         deferred.resolve();
                     } else {
                         deferred.reject();

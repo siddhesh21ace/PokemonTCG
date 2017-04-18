@@ -1,6 +1,4 @@
-
-<div class="container"
-     ng-controller="PokemonInfoController as model">
+<div class="container">
     <div id="loading">
         <div id="pokeball" style="width: 200px;">
             <img src="../../../images/pichu.gif" alt="Pokeball">
@@ -69,9 +67,7 @@
                         <span class="h5" ng-show="model.avgRating != 0">
                                 <ng-rating ng-model="model.avgRating"
                                            editable="false"
-                                           show-grade="true"
-                                           starsCount="5"
-                                style="color: #9CDC18;">
+                                           show-grade="true">
                                     </ng-rating>
                         </span>
                     </li>
@@ -82,7 +78,8 @@
                 <ul class="list-group">
                     <li class="list-group-item"
                         ng-repeat="type in model.pokemon.types">
-                        <a href="#" class="{{model.getColorClass(type)}}">{{type}}</a></li>
+                        <a href="#" class="{{model.getColorClass(type)}}">{{type}}</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -198,7 +195,8 @@
                         Submit
                     </a>
                     <a href="" class="btn btn-warning" ng-show="!model.user._id" ng-disabled="!model.user._id"
-                       role="button" disabled="disabled" data-toggle="tooltip" data-placement="right" title="Please login to review!">
+                       role="button" disabled="disabled" data-toggle="tooltip" data-placement="right"
+                       title="Please login to review!">
                         Submit
                     </a>
                 </form>

@@ -2,7 +2,7 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController(PokeDexService, $routeParams, $rootScope, ReviewService, LikeService, UserService, PokemonService) {
+    function pokemonInfoController($routeParams, ReviewService, LikeService, UserService, PokemonService) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
 
         var vm = this;
@@ -15,7 +15,7 @@
         vm.likeId = "";
         vm.user = {};
         vm.pokemon = {};
-        vm.loading= true;
+        vm.loading = true;
         vm.isLiked = false;
 
         vm.getColorClass = getColorClass;
@@ -135,7 +135,7 @@
                 .then(function (response) {
                     vm.pokemon._id = response.data._id;
                     setReviews(vm.pokemon);
-                    if(vm.user._id) {
+                    if (vm.user._id) {
                         isPokemonLiked();
                     }
                     totalLikes();
