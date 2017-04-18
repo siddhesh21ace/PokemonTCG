@@ -17,6 +17,42 @@
 
             UserService.getAllPlayers()
                 .then(function (response) {
+
+                    /*Initialize Theater for pokemon names*/
+                    var theater = theaterJS();
+
+                    theater
+                        .on('type:start, erase:start', function () {
+                            // add a class to actor's dom element
+                            var actor = theater.getCurrentActor();
+                            actor.$element.classList.add('is-typing')
+                        })
+                        .on('type:end, erase:end', function () {
+                            // and then remove it when he's done
+                            var actor = theater.getCurrentActor()
+                            actor.$element.classList.remove('is-typing')
+                        })
+
+
+                    theater.addActor('vader', 0.8)
+
+                    theater
+                        .addScene('vader:Pikachu...', 400)
+                        .addScene('vader:Bulbasaur...', 400)
+                        .addScene('vader:Venusaur...', 400)
+                        .addScene('vader:Ivysaur...', 400)
+                        .addScene('vader:Charmeleon...', 400)
+                        .addScene('vader:Blastoise...', 400)
+                        .addScene('vader:Kakuna...', 400)
+                        .addScene('vader:caterpie...', 400)
+                        .addScene('vader:Pikachu...', 400)
+                        .addScene('vader:wartortle...', 400)
+                        .addScene('vader:beedrill...', 400)
+                        .addScene('vader:rattata...', 400)
+                        .addScene(theater.replay);
+
+
+
                     vm.players = response.data;
                     vm.players.forEach(function (player) {
                         GameService.findGamesByUser(player._id)

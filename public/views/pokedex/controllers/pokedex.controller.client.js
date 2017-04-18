@@ -18,10 +18,6 @@
         vm.selectedPokemon = "";
         vm.pokemonThumbs = [];
 
-        var start = 0;
-        var ending = start + 20;
-        var lastElement = 811;
-        var reachLast = false;
         vm.testData = [];
 
         vm.loadMore = "Loading More Data .....";
@@ -63,6 +59,9 @@
                         pokemon.image = imgUrl;
                         pokemon.id = id;
                         display.push(pokemon);
+
+                        $("#loading").delay(200).fadeOut("slow").remove();
+                        $("#pokedex-gif").fadeOut("slow");
                     }
                 });
 

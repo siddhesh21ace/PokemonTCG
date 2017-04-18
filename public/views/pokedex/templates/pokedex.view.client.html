@@ -1,11 +1,17 @@
 <div>
+    <div id="loading">
+        <div id="pokedex-gif" style="width: 200px;">
+            <img src="../../../images/pokedex.gif" alt="Pokeball">
+            <h3>Loading Pokedex......</h3>
+        </div>
+    </div>
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
 
     <div class="container">
         <div class="alert alert-danger text-center" ng-if="model.error">
             <p>{{model.error}}</p>
         </div>
-        <h1 class="text-center">Pokedex | Search Pokemon</h1>
+        <h1 class="text-center">Pokédex | Search Pokemon</h1>
         <div class="md-form">
             <angucomplete-alt
                     id="searchPokemon"

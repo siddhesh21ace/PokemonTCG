@@ -196,7 +196,6 @@ hr {
 
 .intro-text{
 	color: black;
-	background-image: url(../img/puff.gif);
 }
 
 .theatre-text{
@@ -247,7 +246,7 @@ hr {
 }
 /* About Section */
 #about {
-	padding: 140px 0;
+	padding: 87px 0;
 	background: #f6f6f6;
 }
 #about .about-text {
@@ -352,7 +351,7 @@ hr {
 
 /* Gallery Section */
 #pokedex {
-	padding: 120px 0;
+	padding: 140px 0;
 	background: #f6f6f6;
 }
 .categories {
@@ -500,17 +499,9 @@ img.img-thumbnail.team-img {
 	padding: 9px;
 	color: #777;
 }
-/* Testimonials Section */
+/* gym Section */
 #gym {
-	/*background: url(../img/gym-battles.jpg);*/
-	background:
-		/* top, transparent red, faked with gradient */
-	linear-gradient(
-			rgba(255, 255, 255, 0.45),
-			rgba(255, 255, 255, 0.45)
-	),
-		/* bottom, image */
-	url(../img/gym-battles.jpg);
+	background: linear-gradient( rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(../img/gym-battles.jpg);
 	background-size: cover;
 	background-attachment: fixed;
 	color: #ddd;
@@ -539,28 +530,18 @@ img.img-thumbnail.team-img {
 }
 /* Contact Section */
 #leaderboard {
-	padding: 120px 0 40px 0;
+	padding: 140px 0;
 	background: #f6f6f6;
+	background-size: cover;
+	background-attachment: fixed;
 }
-#leaderboard .contact-item {
-	padding: 10px;
-	margin: 10px;
-	height: 100px;
-	border-radius: 4px;
-}
+
 #leaderboard h3 {
 	font-size: 20px;
 	font-weight: 400;
 	margin-top: 40px;
 }
-#leaderboard form {
-	padding: 30px 0;
-}
-#leaderboard i.fa {
-	font-size: 22px;
-	color: #e75926;
-	margin-bottom: 10px;
-}
+
 #leaderboard .text-danger {
 	color: #ff3333;
 	text-align: left;
@@ -662,14 +643,18 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 
 	.hover-bg .hover-text {
 	padding: 20%;
-}
+	}
 
-#intro .btn-default{
-	margin-top: 80px;
-}
+	#intro .btn-default{
+		margin-top: 80px;
+	}
 
 	.navbar-fixed-top, .navbar-fixed-bottom{
 		z-index:2000;
+	}
+
+	.intro-text{
+		margin-top: 75px;
 	}
 
 

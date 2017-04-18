@@ -577,7 +577,6 @@ body {
 
     body, html {
         max-width: 100%;
-        overflow-x: hidden;
     }
 
     .game {
@@ -742,6 +741,15 @@ h6 {
     top: 40%;
     margin: -32px 0 0 -32px;
     padding: 0;
+}
+
+#pokedex-gif {
+    position: absolute;
+    left: 46%;
+    top: 40%;
+    margin: -32px 0 0 -32px;
+    padding: 0;
+    /*background: transparent;*/
 }
 
 #profile {
