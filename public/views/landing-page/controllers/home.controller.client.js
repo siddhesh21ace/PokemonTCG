@@ -48,18 +48,8 @@
 
         init();
 
-        /* function compare(a, b) {
-         if (a.winPercentage < b.winPercentage)
-         return -1;
-         if (a.winPercentage > b.winPercentage)
-         return 1;
-         return 0;
-         }
-
-         vm.scores.sort(compare);*/
-
         function logout() {
-            UserService.logout
+            UserService.logout()
                 .then(function (response) {
                     $location.url("/login");
                 });
