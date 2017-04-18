@@ -1,5 +1,6 @@
 <!-- Navigation -->
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="width:100%">
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="width:100%"
+     ng-controller="HeaderController as model">
     <div class="container col-md-12">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"><i
@@ -17,7 +18,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/#!/game">Pokémon TCG</a></li>
                 <li><a href="/#!/pokedex">Pokédex</a></li>
-                <li ng-show="model.isAdmin()">
+                <li ng-show="model.user && model.isAdmin()">
                     <a href="/#!/admin">Admin</a>
                 </li>
                 <!--<li ng-show="model.user == ''"> <a class="page-scroll" href="#testimonials">Gym Battles</a> </li>-->

@@ -3,7 +3,6 @@
         .controller("HeaderController", HeaderController);
 
     function HeaderController($location, UserService) {
-        console.log("inside index controller.")
         var vm = this;
 
         vm.user = {};
@@ -11,7 +10,7 @@
         vm.isAdmin = isAdmin;
 
         function isAdmin() {
-            return (vm.user.roles && vm.user.roles.indexOf('ADMIN') > -1);
+            return (vm.user && vm.user.roles && vm.user.roles.indexOf('ADMIN') > -1);
         }
 
         function init() {
@@ -24,10 +23,8 @@
         init();
 
         function logout() {
-            console.log("In logout");
             UserService.logout()
                 .then(function (response) {
-                    console.log("In logout" + response);
                     $location.url("/login");
                 });
         }

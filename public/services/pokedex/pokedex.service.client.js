@@ -9,7 +9,6 @@
         var api = {
             "getPokemonDetails": getPokemonDetails,
             "getPokedexSearchResults": getPokedexSearchResults,
-            "insertData": insertData,
             "fetchPokemons": fetchPokemons,
             "fetchAllPokemons": fetchAllPokemons,
             "getPokemonsThumbs": getPokemonsThumbs,
@@ -34,12 +33,7 @@
             return $http.get('/api/pokedex/fetchAllPokemons/');
         }
 
-        function insertData() {
-            return $http.post('/api/pokedex/insertData/');
-        }
-
         function getPokedexSearchResults(query, category) {
-
             var pokedex = {
                 query: query,
                 category: category
@@ -52,7 +46,5 @@
 
             return $http.get('/api/pokedex/getPokemonDetails/' + pokemon);
         }
-
-
     }
 })();

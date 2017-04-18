@@ -45,12 +45,6 @@
                     isLoggedIn: isLoggedIn
                 }
             })
-            .when("/pokemon", {
-                templateUrl: 'views/pokemon/templates/card.view.client.html',
-                controller: 'PokemonController',
-                controllerAs: 'model',
-                title: 'Pokémon'
-            })
             .when("/game", {
                 templateUrl: 'views/pokemon/templates/game.view.client.html',
                 controller: 'GameController',
@@ -87,6 +81,8 @@
 
     }
 
+    /*Check if logged in user is admin or not*/
+
     function checkAdmin($q, UserService, $location) {
         var deferred = $q.defer();
         UserService
@@ -103,6 +99,7 @@
         return deferred.promise;
     }
 
+    /*Check if user is logged in or not*/
     function isLoggedIn($q, UserService, $location, $rootScope) {
         var deferred = $q.defer();
         UserService
@@ -121,6 +118,7 @@
         return deferred.promise;
     }
 
+    /*Set Page Title*/
     function setPageTitle($rootScope) {
         $rootScope.$on('$routeChangeSuccess', function (event, current) {
             $rootScope.title = current.$$route.title;
