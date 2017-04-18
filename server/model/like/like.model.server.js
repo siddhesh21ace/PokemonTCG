@@ -13,7 +13,7 @@ module.exports = function () {
     };
 
     return api;
-    
+
     function addLike(like) {
         delete like._id;
         return LikeModel.create(like);
@@ -25,7 +25,7 @@ module.exports = function () {
 
     function findLikes(pokemon_id, user_id) {
         var like = {};
-        if(pokemon_id) {
+        if (pokemon_id) {
             like.pokemon_id = pokemon_id;
         }
         if (user_id) {

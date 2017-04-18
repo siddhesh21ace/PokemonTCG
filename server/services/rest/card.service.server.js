@@ -7,21 +7,6 @@ module.exports = function (app, models) {
     app.get("/rest/api/card", findCards);
     app.get("/rest/api/card/:cardID", findCardById);
 
-    var types = [
-        "Colorless",
-        "Dark",
-        "Darkness",
-        "Dragon",
-        "Fairy",
-        "Fighting",
-        "Fire",
-        "Grass",
-        "Lightning",
-        "Metal",
-        "Psychic",
-        "Water"
-    ];
-
     function findCards(req, res) {
         var criteria = {
             pageSize: 1000,
@@ -41,10 +26,8 @@ module.exports = function (app, models) {
         pokemon.card.where(criteria)
             .then(function (response) {
                 cleanUpData(response);
-                console.log(response);
                 res.json(response);
             }, function (error) {
-                console.log(error);
             });
     }
 
@@ -74,7 +57,7 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response);
             }, function (error) {
-                console.log(error);
+                res.send(503).send({});
             });
     }
 };

@@ -27,7 +27,7 @@ module.exports = function () {
     }
 
     function createUser(user) {
-        if(!user.roles) {
+        if (!user.roles) {
             user.roles = ["PLAYER"];
         }
         delete user._id;

@@ -8,53 +8,6 @@ module.exports = function (app, models) {
     app.put("/api/review/:reviewID", updateReview);
     app.delete("/api/review/:reviewID", deleteReview);
 
-    /*
-     models.pokemonUserRelationModel.addLike("58e92426b3d69d0d98b35c4b", "58e91532d398239caad8e4af");
-     models.pokemonUserRelationModel.addLike("58e92426b3d69d0d98b35c4b", "58e91532d398239caad8e4b0");
-     */
-
-    /*
-     models.pokemonUserRelationModel.updateLike({
-     "user_id": "58e92426b3d69d0d98b35c4b",
-     "pokemon_id": "58e91532d398239caad8e4af",
-     "liked": true,
-     "rating": 5
-     })
-     */
-
-/*    models.reviewModel.addReview({
-        "user_id": "58eff76012f53118b4c1d6a3",
-        "pokemon_id": "58e91532d398239caad8e4af",
-        "title": "Review 1",
-        "description": "Review 1 is great!",
-        "rating": 4
-    })
-        .then(function (response) {
-            console.log(response)
-        });
-
-    models.reviewModel.addReview({
-        "user_id": "58eff76012f53118b4c1d6a3",
-        "pokemon_id": "58e91532d398239caad8e4af",
-        "title": "Review 2",
-        "description": "Review 2 sucks!",
-        "rating": 1
-    })
-        .then(function (response) {
-            console.log(response)
-        });
-
-    models.reviewModel.addReview({
-        "user_id": "58eff76012f53118b4c1d6a3",
-        "pokemon_id": "58e91532d398239caad8e4af",
-        "title": "Review 3",
-        "description": "Review 3 is average!",
-        "rating": 2.5
-    })
-        .then(function (response) {
-            console.log(response)
-        });*/
-
     function findReviewByID(req, res) {
         var reviewID = req.params['reviewID'];
 
@@ -109,7 +62,6 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response)
             }, function (error) {
-                console.log(error);
                 res.status(404).send(error);
             })
     }
@@ -121,9 +73,8 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response);
             }, function (error) {
-                console.log(error);
                 res.status(404).send(error);
             })
     }
 
-}
+};

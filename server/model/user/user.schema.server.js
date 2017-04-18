@@ -22,6 +22,4 @@ var projectUserSchema = mongoose.Schema({
     cards: [{type: mongoose.Schema.Types.ObjectId, ref: 'CardModel'}]
 }, {collection: "project.user"});
 
-// projectUserSchema.index({username:1},{unique:true});
-
 module.exports = projectUserSchema;
