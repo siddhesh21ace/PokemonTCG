@@ -1,6 +1,5 @@
-<div ng-controller="AdminController as model">
+<div class="container-fluid" ng-controller="AdminController as model">
     <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
-    <h2>Admin</h2>
     <h1>User Management</h1>
 
     <table class="table table-striped">
@@ -37,12 +36,12 @@
                 </td>
                 <td>
                     <button ng-click="model.createUser(model.user)" class="btn btn-primary">
-                        <i class="fa fa-plus-square-o"></i>
+                        <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </td>
                 <td>
                     <button ng-click="model.updateUser(model.user)" class="btn btn-success">
-                        <i class="fa fa-floppy-o"></i>
+                        <span class="glyphicon glyphicon-ok"></span>
                     </button>
                 </td>
             </tr>
@@ -50,17 +49,17 @@
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>{{user.username}}</td>
-                <td>{{user.password}}</td>
+                <td>&nbsp;</td>
                 <td>{{user.email}}</td>
                 <td>{{user.roles}}</td>
                 <td>
                     <button ng-click="model.deleteUser(user._id)" class="btn btn-danger">
-                        <i class="fa fa-trash-o"></i>
+                        <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </td>
                 <td>
-                    <button ng-click="model.selectUser(user)" class="btn btn-success">
-                        <i class="fa fa-pencil"></i>
+                    <button ng-click="model.selectUser(user)" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </td>
             </tr>
@@ -68,21 +67,3 @@
     </table>
     <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
-
-
-<!--
-<h1>Admin</h1>
-
-<ul class="list-group">
-    <li class="list-group-item active">
-        Users
-    </li>
-    <li ng-repeat="user in model.users" class="list-group-item">
-        {{user.username}}
-        <span ng-click="model.updateUser(user)" class="glyphicon glyphicon-ok pull-right"></span>
-        <span ng-click="model.deleteUser(user)" class="glyphicon glyphicon-remove pull-right"></span>
-        <input ng-model="user.role" class="pull-right"/>
-    </li>
-</ul>
-
-{{model.users}}-->

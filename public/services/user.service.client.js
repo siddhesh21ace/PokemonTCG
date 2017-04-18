@@ -50,7 +50,7 @@
         }
 
         function createUser(user) {
-            return $http.post("/api/user", user);
+            return $http.post("/api/admin/user", user);
         }
 
         function findUserByUsername(username) {

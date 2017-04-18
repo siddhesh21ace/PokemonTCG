@@ -44,7 +44,7 @@
                 .deleteUserByAdmin(userID)
                 .then(findAllUsers, errorHandler);
         }
-        
+
         function selectUser(user) {
             UserService.findUserById(user._id)
                 .then(function (response) {
@@ -54,6 +54,7 @@
 
         function renderUsers(response) {
             vm.users = response.data;
+            vm.user = {}; // form reset
         }
 
         function errorHandler(error) {
