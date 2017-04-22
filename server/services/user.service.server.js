@@ -175,7 +175,7 @@ module.exports = function (app, models) {
     function selfLoggedIn(req, res, next) {
         var loggedIn = req.isAuthenticated();
         var userId = req.params.userID;
-        var self = (userId === req.user._id);
+        var self = (userId == req.user._id);
         if (self && loggedIn) {
             next();
         } else {
