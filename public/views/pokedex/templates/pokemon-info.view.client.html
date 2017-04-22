@@ -166,19 +166,23 @@
                 </ng-rating>
             </div>
             <div class="panel-body">
-                <form>
+                <form name="reviewForm" novalidate>
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input ng-model="review.title" type="text"
                                class="form-control" id="title" name="title"
-                               placeholder="Enter Title"/>
+                               placeholder="Enter Title" required/>
+                        <div ng-show="reviewForm.$submitted && reviewForm.title.$invalid"
+                             class="error">Title is required</div>
                     </div>
                     <div class="form-group">
                         <label for="description">Review</label>
                         <textarea ng-model="review.description"
                                   class="form-control" id="description" name="description"
-                                  placeholder="Enter Description">
+                                  placeholder="Enter Description" required>
                         </textarea>
+                        <div ng-show="reviewForm.description.$invalid && reviewForm.$submitted"
+                             class="error">Description is required</div>
                     </div>
 
                     <div class="alert alert-danger" ng-show="model.error">
@@ -189,16 +193,18 @@
                         {{model.message}}
                     </div>
 
-                    <a href="" class="btn btn-success ng-hide" ng-show="model.user._id"
-                       ng-click="model.addReview(review)"
+                    <button type="submit" class="btn btn-success ng-hide"
+                            ng-show="model.user._id"
+                            ng-click="reviewForm.$valid && model.addReview(review)"
                        role="button">
                         Submit
-                    </a>
-                    <a href="" class="btn btn-warning" ng-show="!model.user._id" ng-disabled="!model.user._id"
+                    </button>
+                    <button type="submit" class="btn btn-warning"
+                            ng-show="!model.user._id" ng-disabled="!model.user._id"
                        role="button" disabled="disabled" data-toggle="tooltip" data-placement="right"
                        title="Please login to review!">
                         Submit
-                    </a>
+                    </button>
                 </form>
             </div>
         </div>

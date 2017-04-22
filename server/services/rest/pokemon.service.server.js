@@ -16,7 +16,7 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response);
             }, function (error) {
-                res.send(503).send(error);
+                res.status(503).send(error);
             });
     }
 
