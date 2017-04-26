@@ -2,7 +2,7 @@
     angular.module("PokemonWorld")
         .controller("PokemonInfoController", pokemonInfoController);
 
-    function pokemonInfoController($routeParams, ReviewService, LikeService, UserService, PokemonService) {
+    function pokemonInfoController($routeParams, ReviewService, LikeService, UserService, PokemonService, $location) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
 
         var vm = this;
