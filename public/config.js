@@ -78,7 +78,6 @@
             .otherwise({
                 redirectTo: "/"
             });
-
     }
 
     /*Check if logged in user is admin or not*/
@@ -119,9 +118,11 @@
     }
 
     /*Set Page Title*/
-    function setPageTitle($rootScope) {
+    function setPageTitle($rootScope, $location) {
+        $rootScope._ = _;
         $rootScope.$on('$routeChangeSuccess', function (event, current) {
             $rootScope.title = current.$$route.title;
+            $rootScope.isLocal = $location.$$absUrl.indexOf('localhost') > -1;
         });
     }
 

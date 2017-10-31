@@ -112,6 +112,18 @@
         </div>
     </div>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-xs-6" ng-repeat="stat in model.pokemon.stats">
+                <select name="rating" autocomplete="off" stats-bar="" data-current-rating="{{stat.base_stat/20}}">
+                    <option ng-repeat="item in _.range(1, 11).reverse()" value="{{item}}">
+                        {{item}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <div class="moves col-md-12">
         <h3>Moves</h3>
         <div class="tagcloud">
@@ -173,7 +185,8 @@
                                class="form-control" id="title" name="title"
                                placeholder="Enter Title" required/>
                         <div ng-show="reviewForm.$submitted && reviewForm.title.$invalid"
-                             class="error">Title is required</div>
+                             class="error">Title is required
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Review</label>
@@ -182,7 +195,8 @@
                                   placeholder="Enter Description" required>
                         </textarea>
                         <div ng-show="reviewForm.description.$invalid && reviewForm.$submitted"
-                             class="error">Description is required</div>
+                             class="error">Description is required
+                        </div>
                     </div>
 
                     <div class="alert alert-danger" ng-show="model.error">
@@ -196,13 +210,13 @@
                     <button type="submit" class="btn btn-success ng-hide"
                             ng-show="model.user._id"
                             ng-click="reviewForm.$valid && model.addReview(review)"
-                       role="button">
+                            role="button">
                         Submit
                     </button>
                     <button type="submit" class="btn btn-warning"
                             ng-show="!model.user._id" ng-disabled="!model.user._id"
-                       role="button" disabled="disabled" data-toggle="tooltip" data-placement="right"
-                       title="Please login to review!">
+                            role="button" disabled="disabled" data-toggle="tooltip" data-placement="right"
+                            title="Please login to review!">
                         Submit
                     </button>
                 </form>

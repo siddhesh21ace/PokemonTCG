@@ -1,144 +1,173 @@
-<div>
-    <ng-include src="'../views/includes/header-internal.view.client.html'"></ng-include>
-    <div class="userProfile container">
-        <div id="loading">
-            <div id="profile" style="width: 300px;">
-                <img src="../../../images/profile-ash-loading.png" alt="Pokeball">
-                <h3>Loading Trainer Profile.....</h3>
-            </div>
-        </div>
+<div ng-include="'views/includes/header.view.client.html'"></div>
 
-            <div class="userImage col-md-4">
-                <img src="{{model.user.url}}" height="200" width="200" style="margin-top:20px"/>
-            </div>
-            <div class="userDetails col-md-8">
-                <h1>{{model.user.firstName}} {{model.user.lastName}} </h1>
-                <h3>Username: {{model.user.username}}</h3>
-                <h3>Email: {{model.user.email}}</h3>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
-                    Edit Profile
-                </button>
-                <button type="button" class="btn btn-danger btn-md" data-toggle="modal" ng-click="model.deleteUser()">
-                    Unregister
-                </button>
-                <button type="button" class="btn btn-md btn-warning" ng-click="model.logout()">
-                    Logout
-                </button>
-            </div>
-    </div>
-
-    <hr class="separator">
-
-    <div class="container">
-        <div class="userLikes col-md-12">
-            <h1>Liked Pokemons</h1>
-            <a ng-click="model.getMoreInfo(pokemon)"
-               ng-repeat="pokemon in model.likedPokemons" class="col-md-3 text-center">
-                <img ng-src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.img_id}}.png">
-                <h4 class="text-center">{{pokemon.name}}#{{pokemon.id}}</h4>
-
-            </a>
+<div class="wrapper userProfile container profile-page">
+    <div id="loading">
+        <div id="profile" style="width: 300px;">
+            <img src="../../../images/profile-ash-loading.png" alt="Pokeball">
+            <h3>Loading Trainer Profile.....</h3>
         </div>
     </div>
 
-    <hr class="separator">
-
-    <div class="container">
-        <div class="userLikes col-md-12">
-            <h1>Cards Collected</h1>
-            <br>
-            <a ng-click="" ng-repeat="card in model.collectedCards" class="col-md-3 text-center">
-                <img ng-src="{{card.imageUrl}}" style="width:90%">
-                <h4 class="text-center">{{card.name}} | HP - {{card.hp}}</h4>
-            </a>
-        </div>
+    <div class="userImage col-md-4">
+        <img src="{{model.user.url}}" height="200" width="200" style="margin-top:20px"/>
     </div>
+    <div class="userDetails col-md-8">
+        <h1>{{model.user.firstName}} {{model.user.lastName}} </h1>
+        <h3>Username: {{model.user.username}}</h3>
+        <h3>Email: {{model.user.email}}</h3>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+            Edit Profile
+        </button>
+        <button type="button" class="btn btn-danger btn-md" data-toggle="modal" ng-click="model.deleteUser()">
+            Unregister
+        </button>
+        <button type="button" class="btn btn-md btn-warning" ng-click="model.logout()">
+            Logout
+        </button>
+    </div>
+</div>
 
-    <!-- Modal -->
-    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <form>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input ng-model="model.user.username" type="text"
-                                       class="form-control" id="username" name="username"
-                                       placeholder="Username"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input ng-model="model.user.email" type="email"
-                                       class="form-control" id="email" name="email"
-                                       placeholder="Email"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="first-name">First Name</label>
-                                <input ng-model="model.user.firstName" type="text"
-                                       class="form-control" id="first-name"
-                                       name="first-name" placeholder="First Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="last-name">Last Name</label>
-                                <input ng-model="model.user.lastName" type="text"
-                                       class="form-control" id="last-name" name="last-name"
-                                       placeholder="Last Name"/>
-                            </div>
-                            <div class="form-group">
-                                <!--<label for="url">URL</label>-->
-                                <input type="hidden"
-                                       ng-model="model.user.url"
-                                       class="form-control" id="url" name="url"
-                                       placeholder="Enter URL"
-                                       value="model.user.url">
+<hr class="separator">
 
-                                <div class="error"
-                                     ng-if="newWidgetForm.$submitted && newWidgetForm.url.$invalid">Enter URL</div>
+<div class="container">
+    <div class="userLikes col-md-12">
+        <h1>Liked Pokemons</h1>
+        <a ng-click="model.getMoreInfo(pokemon)"
+           ng-repeat="pokemon in model.likedPokemons" class="col-md-3 text-center">
+            <img ng-src="http://assets.pokemon.com/assets/cms2/img/pokedex/full/{{pokemon.img_id}}.png">
+            <h4 class="text-center">{{pokemon.name}}#{{pokemon.id}}</h4>
+
+        </a>
+    </div>
+</div>
+
+<hr class="separator">
+
+<div class="container">
+    <div class="userLikes col-md-12">
+        <h1>Cards Collected</h1>
+        <br>
+        <a ng-click="" ng-repeat="card in model.collectedCards" class="col-md-3 text-center">
+            <img ng-src="{{card.imageUrl}}" style="width:90%">
+            <h4 class="text-center">{{card.name}} | HP - {{card.hp}}</h4>
+        </a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form name="profileForm" novalidate>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input ng-model="model.user.username" type="text"
+                                   class="form-control" id="username" name="username"
+                                   placeholder="Username" required/>
+                            <div ng-show="profileForm.$submitted && profileForm.username.$invalid"
+                                 class="error">Username is required
                             </div>
-                            <div class="form-group">
-                                <label for="upload">Upload</label>
-                                <input name="file"
-                                       type="file"
-                                       id="upload"
-                                       onchange="angular.element(this).scope().model.selectFile(this.files)"
-                                >
-                                <div class="alert alert-success" ng-show="model.message">
-                                    {{model.message}}
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input ng-model="model.user.email" type="email"
+                                   class="form-control" id="email" name="email"
+                                   placeholder="Email" required/>
+                            <div ng-show="profileForm.$submitted && profileForm.email.$invalid"
+                                 class="error">Email is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input ng-model="model.user.firstName" type="text"
+                                   class="form-control" id="first-name"
+                                   name="first-name" placeholder="First Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input ng-model="model.user.lastName" type="text"
+                                   class="form-control" id="last-name" name="last-name"
+                                   placeholder="Last Name"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imageFile">Profile Picture</label>
+                            <span>{{model.user.url}}</span>
+                            <input class="form-control" type="file" ngf-select ng-model="model.imageFile" name="imageFile" id="imageFile"
+                                   accept="image/*" ngf-max-size="2MB"
+                                   ngf-model-invalid="errorFile"/>
+                            <i ng-show="profileForm.imageFile.$error.maxSize">File too large
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                            <div class="">
+                                <img ng-show="profileForm.imageFile.$valid" ngf-thumbnail="model.imageFile"
+                                     class="img-responsive img-thumbnail pull-left thumb"/>
+                                <button class="btn btn-sm" ng-click="model.imageFile = null" ng-show="model.imageFile">Remove</button>
+                            </div>
+                            <br>
+                            <span class="progress" ng-show="model.imageFile.progress >= 0">
+                                <div style="width:{{model.imageFile.progress}}%"
+                                     ng-bind="model.imageFile.progress + '%'">
                                 </div>
-                                <div class="alert alert-danger" ng-show="model.error">
-                                    {{model.error}}
-                                </div>
+                            </span>
+                            <span ng-show="model.imageFile.result">Upload Successful</span>
+                        </div>
 
+                        <!--<div class="form-group">
+                            &lt;!&ndash;<label for="url">URL</label>&ndash;&gt;
+                            <input type="hidden"
+                                   ng-model="model.user.url"
+                                   class="form-control" id="url" name="url"
+                                   placeholder="Enter URL"
+                                   value="model.user.url">
+
+                            <div class="error"
+                                 ng-if="newWidgetForm.$submitted && newWidgetForm.url.$invalid">Enter URL
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <!--<label for="upload">Upload</label>
+                            <input name="file"
+                                   type="file"
+                                   id="upload"
+                                   onchange="angular.element(this).scope().model.selectFile(this.files)"
+                            >-->
+                            <div class="alert alert-success" ng-show="model.message">
+                                {{model.message}}
+                            </div>
+                            <div class="alert alert-danger" ng-show="model.error">
+                                {{model.error}}
                             </div>
 
-                        </form>
-                    </div>
+                        </div>
+
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                    <div class="form-group">
-                        <a ng-click="model.uploadFile()"
-                           class="btn btn-primary btn-block">Upload Image</a>
-                    </div>
-                    <div class="form-group">
-                        <a class="btn btn-block btn-success" ng-click="model.update(model.user)">
-                            Update
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <a class="btn btn-block btn-default" ng-click="model.update(model.user)" data-dismiss="modal">
-                            Close
-                        </a>
-                    </div>
+            </div>
+            <div class="modal-footer">
+                <!--<div class="form-group">
+                    <a ng-click="model.uploadFile()"
+                       class="btn btn-primary btn-block">Upload Image</a>
+                </div>-->
+                <div class="form-group">
+                    <a class="btn btn-block btn-success"
+                       ng-click="profileForm.$valid && model.update(model.user)">
+                        Update
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-block btn-default" data-dismiss="modal">
+                        Close
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>

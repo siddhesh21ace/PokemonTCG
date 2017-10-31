@@ -24,6 +24,7 @@ app.use(passport.session());
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
+app.use("/node_modules", express.static(__dirname + '/node_modules'));
 
 var project = require("./server/app.js");
 project(app);

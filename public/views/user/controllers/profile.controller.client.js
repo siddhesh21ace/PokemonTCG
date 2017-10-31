@@ -3,7 +3,7 @@
         .module("PokemonWorld")
         .controller("ProfileController", profileController);
 
-    function profileController($routeParams, UserService, $location, CardService, LikeService, PokemonService) {
+    function profileController($routeParams, UserService, $location, CardService, LikeService, PokemonService, Upload, $timeout) {
         var vm = this;
         vm.user = {};
 
@@ -80,17 +80,50 @@
         }
 
         function update(updatedUser) {
-            UserService.updateUser(vm.user._id, updatedUser)
-                .then(function (response) {
-                    var user = response.data;
-                    if (user === null) {
-                        vm.error = "Unable to update user";
-                    } else {
-                        vm.message = "User successfully updated";
-                    }
-                }, function (error) {
-                    vm.error = "Unable to update user";
+            var file = {};
+
+            if(vm.imageFile) {
+                file.upload = Upload.upload({
+                    url: '/api/user/upload',
+                    data: {'file': vm.imageFile}
                 });
+
+                file.upload.then(function (response) {
+                    updatedUser.url = "/uploads/" + response.data.filename;
+                    vm.imageFile.result = response.data;
+
+                    UserService.updateUser(vm.user._id, updatedUser)
+                        .then(function (response) {
+                            var user = response.data;
+                            if (user === null) {
+                                vm.error = "Unable to update user";
+                            } else {
+                                vm.message = "User successfully updated";
+                            }
+                        }, function (error) {
+                            vm.error = "Unable to update user";
+                        });
+
+                }, function (response) {
+                    if (response.status > 0)
+                        vm.error = response.status + ': ' + response.data;
+                }, function (evt) {
+                    // Math.min is to fix IE which reports 200% sometimes
+                    vm.imageFile.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+            } else {
+                UserService.updateUser(vm.user._id, updatedUser)
+                    .then(function (response) {
+                        var user = response.data;
+                        if (user === null) {
+                            vm.error = "Unable to update user";
+                        } else {
+                            vm.message = "User successfully updated";
+                        }
+                    }, function (error) {
+                        vm.error = "Unable to update user";
+                    });
+            }
         }
 
         function deleteUser() {

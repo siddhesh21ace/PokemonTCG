@@ -1,33 +1,98 @@
 <!-- Navigation -->
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation"
      ng-controller="HeaderController as model">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse"><i
-                    class="fa fa-bars"></i></button>
-            <a class="navbar-brand page-scroll" href="#top-container">
-                <img src="img/pokeball.svg" style="display: inline"/>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a ng-if="model.location.path() == '/'" href="#page-top"
+               class="navbar-brand" page-scroll="">
+                <img src="../../img/pokeball.svg" style="display: inline"/>
                 <span>Pokémon World</span>
-            </a></div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
+            </a>
+            <a ng-if="model.location.path() != '/'" href="/" class="navbar-brand">
+                <img src="../../img/pokeball.svg" style="display: inline"/>
+                <span>Pokémon World</span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-main-collapse">
+            <ul class="nav navbar-nav navbar-right">
                 <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                <li class="hidden"><a href="#top-container"></a></li>
-                <li><a class="page-scroll" href="#top-container">Home</a></li>
-                <li><a class="page-scroll" href="#about">About</a></li>
-                <li><a class="page-scroll" href="#pokemon">Pokémon TCG</a></li>
-                <li><a class="page-scroll" href="#pokedex">Pokédex</a></li>
-                <li><a class="page-scroll" href="#gym">Gym</a></li>
-                <li><a class="page-scroll" href="#leaderboard">LeaderBoard</a></li>
-                <li ng-show="model.user == ''"><a href="/#!/login/">Login</a></li>
-                <li ng-show="model.user == ''"><a href="/#!/register/">Sign Up</a></li>
-                <li ng-show="model.user"><a href="/#!/user/">Profile</a></li>
-                <li ng-show="model.user"><a ng-click="model.logout()">Logout</a></li>
+                <li class="hidden">
+                    <a ng-if="model.location.path() == '/'" href="#page-top">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a ng-if="model.location.path() != '/'" href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a ng-show="model.location.path() == '/'" href="#about" page-scroll="">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a ng-if="model.location.path() == '/'" href="#pokemon" page-scroll="">
+                        Game
+                    </a>
+                    <a ng-if="model.location.path() != '/'" href="/#!/game">
+                        Game
+                    </a>
+                </li>
+                <li>
+                    <a ng-if="model.location.path() == '/'" href="#pokedex" page-scroll="">
+                        Pokédex
+                    </a>
+                    <a ng-if="model.location.path() != '/'" href="/#!/pokedex">
+                        Pokédex
+                    </a>
+                </li>
+                <li>
+                    <a ng-show="model.location.path() == '/'" href="#gym" page-scroll="">
+                        Gym
+                    </a>
+                </li>
+                <li>
+                    <a ng-show="model.location.path() == '/'" href="#leaderboard" page-scroll="">
+                        LeaderBoard
+                    </a>
+                </li>
+                <li ng-show="model.location.path() != '/' && model.user && model.isAdmin()">
+                    <a href="/#!/admin">Admin</a>
+                </li>
+
+                <li ng-show="!model.user" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false">
+                        Play<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#!/login/">Login</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/#!/register/">Sign Up</a></li>
+                    </ul>
+                </li>
+                <li ng-show="model.user" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false">
+                        {{model.user.username}}<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#!/user">Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a ng-click="model.logout()">Logout</a></li>
+                    </ul>
+                </li>
+
+        <!--        <li ng-show="!model.user"><a href="/#!/login/">Login</a></li>
+                <li ng-show="!model.user"><a href="/#!/register/">Sign Up</a></li>-->
+                <!--<li ng-show="model.user"><a href="/#!/user">Profile</a></li>
+                <li ng-show="model.user"><a ng-click="model.logout()">Logout</a></li>-->
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
 </nav>

@@ -1,162 +1,194 @@
-<div>
-    <ng-include src="'../views/includes/header.view.client.html'"></ng-include>
-    <div id="intro" class="gym">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <h1><span class="brand-heading">Pokémon World</span></h1>
-                        <div class="intro-text" style="height: 20px;"><h2 id="vader" class="theatre-text"></h2></div>
-                        <a href="#about" class="btn btn-default page-scroll">Gotta Catch 'Em All</a>
+<div ng-include="'views/includes/header.view.client.html'"></div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About Section -->
-    <div id="about" class="about">
+<div id="intro" class="gym">
+    <div class="intro-body">
         <div class="container">
-            <div class="section-title text-center center">
-                <h2>About Pokémon World</h2>
-                <hr>
-            </div>
             <div class="row">
-                <div class="col-md-4 col-sm-12 col-xs-12"><img src="img/pika-card.png" class="img-responsive"></div>
-                <div class="col-md-4">
-                    <div class="about-text">
-                        <h4>What is Pokémon World ?</h4>
-                        <p><b><i>Pokémon World</i></b> is our attempt to emulate the hugely popular Pokémon Universe on the web. We are fan boys of
-                            the franchise and this is our tribute to it. We created this as a final project for CS5610 course and do not intend to use it
-                            for commercial purposes</p>
-                        <p>Original plan includes creation of the Pokémon Trading Card Game which emulates Pokémon fights between two trainers.
-                            We also created a Pokédex module which emulates the Pokédex from the game.</p>
-                        <p>Future Scope: We intend to implement Gym Battles and two-player mode.</p>
+                <div class="col-md-10 col-md-offset-1">
+                    <h1><span class="brand-heading">Pokémon World</span></h1>
+                    <div class="intro-text" style="height: 20px;">
+                        <span id="vader" class="theatre-text" theater=""></span>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="about-text">
-                        <h4>Inspirations for this project</h4>
-                        <p>We would like to thank <b><i><a href="https://en.wikipedia.org/wiki/Satoshi_Tajiri">Satoshi Tajiri</a></i></b> - creator of the franchise
-                            without which our childhood's would not have been so interesting.</p>
-                        <p>This project could not have been possible without the existence of some amazing API's. We have tremendous gratitude
-                            for creators of these API's and keeping it open for educational purposes.<p>
-
-                        <p><a href="https://pokemontcg.io/">Pokémon TCG API</a> :  Provides information on cards and sets</p>
-
-                        <p><a href="http://pokeapi.co/">Poké API:</a> PokéAPI is primarily an educational tool and is free and open to use.
-                            It provides all data related to the franchise and is well documented.</p>
-                        <p><a href="http://www.pokemon.com/us/">Pokémon website</a>: We were heavily inspired by Pokémon's original website.</p>
-                    </div>
+                    <a href="#about" class="btn btn-default" page-scroll>Gotta Catch 'Em All</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Services Section -->
-    <div id="pokemon" class="text-center services">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Pokémon Trading Card Game (TCG)</h2>
-                <hr>
+</div>
+
+<!-- About Section -->
+<div id="about" class="about">
+    <div class="container">
+        <div class="section-title text-center center">
+            <h2>About Pokémon World</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12 text-center">
+                <img src="../../../img/pika-card.png" class="img-responsive">
             </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="about-text">
+                    <h4>What is Pokémon World ?</h4>
+                    <p><b><i>Pokémon World</i></b> is our attempt to emulate the hugely popular Pokémon Universe on the
+                        web. We are fan boys of the franchise and this is our tribute to it. We created this as a final
+                        project for CS5610 course and do not intend to use it for commercial purposes</p>
+                    <p>Original plan includes creation of the Pokémon Trading Card Game which emulates Pokémon fights
+                        between two trainers. We also created a Pokédex module which emulates the Pokédex from the
+                        game.</p>
+                    <p>Future Scope: We intend to implement Gym Battles and two-player mode.</p>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="about-text">
+                    <h4>Inspirations for this project</h4>
+                    <p>We would like to thank <b><i><a href="https://en.wikipedia.org/wiki/Satoshi_Tajiri">Satoshi
+                        Tajiri</a></i></b> - creator of the franchise
+                        without which our childhood's would not have been so interesting.</p>
+                    <p>This project could not have been possible without the existence of some amazing API's. We have
+                        tremendous gratitude
+                        for creators of these API's and keeping it open for educational purposes.
+                    <p>
+
+                    <p><a href="https://pokemontcg.io/">Pokémon TCG API</a> : Provides information on cards and sets</p>
+
+                    <p><a href="http://pokeapi.co/">Poké API:</a> PokéAPI is primarily an educational tool and is free
+                        and open to use.
+                        It provides all data related to the franchise and is well documented.</p>
+                    <p><a href="http://www.pokemon.com/us/">Pokémon website</a>: We were heavily inspired by Pokémon's
+                        original website.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pokemon" class="text-center pokemon">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Pokémon Trading Card Game (TCG)</h2>
+            <hr>
+        </div>
+        <div class="row">
             <div class="col-md-12">
-                <div class="services-text">
+                <div class="pokemon-text">
                     <h4 style="color: yellow">Play the Game!</h4>
                     <p>
                         <b><i>Pokémon Trading Card Game</i></b>
-                        is our attempt to create a web version of the hugely popular Pokémon Trading Card Game using MEAN Stack.</p>
-                    <p>The basic game play remains similar to the original game. Players assume the role of a Pokémon trainer and use their Pokémon to battle their opponents.
+                        is our attempt to create a web version of the hugely popular Pokémon Trading Card Game using
+                        MEAN
+                        Stack.</p>
+                    <p>The basic game play remains similar to the original game. Players assume the role of a Pokémon
+                        trainer and use their Pokémon to battle their opponents.
                         In our game the opponent is the computer which makes its moves automatically.</p>
-                    <p>To keep the game fair, the cards are assigned at random. Every attack reduces the Hit Points(HP) of the opponents Pokémon.
+                    <p>To keep the game fair, the cards are assigned at random. Every attack reduces the Hit Points(HP)
+                        of
+                        the opponents Pokémon.
                         A Pokémon gets knocked off if it's HP falls below 0.</p>
-                    <p>The player wins when all if the opponents Pokémons are knocked off. A card is gifted to the winner and added to his profile.</p>
+                    <p>The player wins when all if the opponents Pokémons are knocked off. A card is gifted to the
+                        winner
+                        and added to his profile.</p>
                     <div style="margin-top: 50px;">
-                        <a href="#" class="btn btn-default" data-toggle="modal" data-target="#myModal">Rules</a> <a href="/#!/game/" class="btn btn-default">Play Game</a>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#myModal">Rules</a> <a
+                            href="/#!/game/" class="btn btn-default">Play Game</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Portfolio Section -->
-    <div id="pokedex" style="color:black;" class="works">
-        <div class="container"> <!-- Container -->
-            <div class="section-title text-center center">
-                <h2>Pokédex</h2>
-                <hr>
-                <div class="clearfix"></div>
-                <p>Find everything about every Pokemon</p>
-            </div>
-            <div class="row">
-                <div class="col-md-4"><img src="img/pokedex.gif" class="img-responsive"></div>
-                <div class="col-md-6 col-md-offset-1">
-                    <div class="about-text">
-                        <h4>What is Pokédex?</h4>
-                        <p><b><i>Pokédex</i></b> The Pokédex is an electronic device designed to catalogue and provide information regarding the various species of Pokémon featured in the Pokémon video game, anime and manga series.
-                            </p>
-                        <p>The name Pokédex is a neologism including "Pokémon" (which itself is a portmanteau of "pocket" and "monster") and "index". The Japanese name is simply "Pokémon Encyclopedia", and it can feature every Pokémon on it,
-                            depending on the Pokédex.</p>
-                        <p>Every Pokémon trainer has a Pokédex for identifying Pokémons they come across in their quest to catch 'em all.</p>
-                    </div>
-                    <a href="/#!/pokedex" class="btn btn-default">Explore Pokédex</a>
+<div id="pokedex" style="color:black;" class="works">
+    <div class="container"> <!-- Container -->
+        <div class="section-title text-center center">
+            <h2>Pokédex</h2>
+            <hr>
+            <div class="clearfix"></div>
+            <p>Find everything about every Pokemon</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4"><img src="../../../img/pokedex.gif" class="img-responsive"></div>
+            <div class="col-md-6 col-md-offset-1">
+                <div class="about-text">
+                    <h4>What is Pokédex?</h4>
+                    <p><b><i>Pokédex</i></b> The Pokédex is an electronic device designed to catalogue and provide
+                        information regarding the various species of Pokémon featured in the Pokémon video game, anime
+                        and manga series.
+                    </p>
+                    <p>The name Pokédex is a neologism including "Pokémon" (which itself is a portmanteau of "pocket"
+                        and "monster") and "index". The Japanese name is simply "Pokémon Encyclopedia", and it can
+                        feature every Pokémon on it,
+                        depending on the Pokédex.</p>
+                    <p>Every Pokémon trainer has a Pokédex for identifying Pokémons they come across in their quest to
+                        catch 'em all.</p>
                 </div>
+                <a href="/#!/pokedex" class="btn btn-default">Explore Pokédex</a>
             </div>
         </div>
     </div>
-    <!-- Testimonials Section -->
-    <div id="gym" class="text-center testimonials">
-        <div class="container">
-            <div class="section-title center">
-                <h2>Gym & Gym Battles</h2>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="row testimonials" style="font-size: 16px;">
-                        <div class="col-sm-12">
-                            <blockquote><i class="fa fa-quote-left"></i>
-                                <p>A Gym is a place where Pokémon Trainers go to train their Pokémon. Just like real-life gymnasiums, where one can go to work out and build physical strength, Pokémon Gyms are places where Trainers can go to sharpen their battling skills and where their Pokémon can go to gain experience.
-                                    Often specializing in a particular type, Gyms create an environment which allows Trainers to test both their skills and Pokémon against those of others. </p>
-                                <p>The most powerful Trainer in a given Gym is called the Gym Leader, who is revered by both the lower-ranking members of the Gym and local fans.</p>
-                                <p>We are working on bringing this feature to Pokémon World very soon.</p>
-                                <div class="clients-name">
-                                    <h3 style="color: black;"><strong>Coming Soon..</strong></h3>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <!-- Contact Section -->
-    <div id="leaderboard" class="text-center">
-        <div class="container">
-            <div class="section-title center">
-                <h2>LeaderBoard</h2>
-                <hr>
-                <p>See who's on the quest to Catch 'Em All</p>
+<div id="gym" class="text-center gym">
+    <div class="container">
+        <div class="section-title center">
+            <h2>Gym & Gym Battles</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row gym" style="font-size: 16px;">
+                    <div class="col-sm-12">
+                        <blockquote>
+                            <p>A Gym is a place where Pokémon Trainers go to train their Pokémon. Just like real-life
+                                gymnasiums, where one can go to work out and build physical strength, Pokémon Gyms are
+                                places where Trainers can go to sharpen their battling skills and where their Pokémon
+                                can go to gain experience.
+                                Often specializing in a particular type, Gyms create an environment which allows
+                                Trainers to test both their skills and Pokémon against those of others. </p>
+                            <p>The most powerful Trainer in a given Gym is called the Gym Leader, who is revered by both
+                                the lower-ranking members of the Gym and local fans.</p>
+                            <p>We are working on bringing this feature to Pokémon World very soon.</p>
+                            <div class="clients-name">
+                                <h3 style="color: black;"><strong>Coming Soon..</strong></h3>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="leaderboard" class="text-center">
+    <div class="container">
+        <div class="section-title center">
+            <h2>LeaderBoard</h2>
+            <hr>
+            <p>See who's on the quest to Catch 'Em All</p>
+        </div>
+        <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <ul class="list-group">
                     <li class="list-group-item leaderboard-line" style="background:gray">
-                        <span class="col-xs-4">Trainer</span>
-                        <span class="col-xs-4">Games Played</span>
-                        <span class="col-xs-4">Games Won</span></li>
+                        <div class="row">
+                            <div class="col-xs-4">Trainer</div>
+                            <div class="col-xs-4">Games Played</div>
+                            <div class="col-xs-4">Games Won</div>
+                        </div>
+                    </li>
                     <li class="list-group-item leaderboard-line"
                         ng-repeat="score in model.scores | orderBy:'-winPercentage' | limitTo:5">
-                        <span class="col-xs-4">{{score.username}}</span>
-                        <span class="col-xs-4">{{score.played}}</span>
-                        <span class="col-xs-4">{{score.won}}</span></li>
+                        <div class="row">
+                            <div class="col-xs-4">{{score.username}}</div>
+                            <div class="col-xs-4">{{score.played}}</div>
+                            <div class="col-xs-4">{{score.won}}</div>
+                        </div>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
-
-    <ng-include src="'../views/includes/footer.view.client.html'"></ng-include>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -173,8 +205,9 @@
             <!--Body-->
             <div class="modal-body">
                 <h4>The screen is divided into two parts:</h4>
-                <h4>The top most area represents the Computers cards and its attacks. The bottom portion of the screen is
-                 belongs to you and your cards.</h4>
+                <h4>The top most area represents the Computers cards and its attacks. The bottom portion of the screen
+                    is
+                    belongs to you and your cards.</h4>
                 <hr class="separator">
                 <ul type="i" class="text-center">
                     <li><b>Attack!</b> - Select the best possible attack you can</li>
@@ -186,19 +219,17 @@
                     <li>Click "Play Game" to navigate to the game and start playing</li>
                 </ul>
                 <hr class="separator">
-                <h5 class="text-center ps-info-game"><b>BEST VIEWED ON A DESKTOP COMPUTER</b></h5>
-                <h5 class="text-center ps-info-game"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></h5>
-                <h5 class="text-center ps-info-game"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></h5>
+                <ul>
+                    <li class="text-center ps-info-game"><b>BEST VIEWED ON A DESKTOP COMPUTER</b></li>
+                    <li class="text-center ps-info-game"><b>DO NOT REFRESH THE PAGE IN THE MIDDLE OF THE GAME</b></li>
+                    <li class="text-center ps-info-game"><b>CHANGE ZOOM LEVEL TO 80% FOR BETTER EXPERIENCE</b></li>
+                </ul>
             </div>
             <!--Footer-->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-            </div>
         </div>
-        <!--/.Content-->
     </div>
+    <!--/.Content-->
 </div>
-<script>
-
-</script>

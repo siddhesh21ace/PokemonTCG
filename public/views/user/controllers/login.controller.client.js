@@ -6,27 +6,15 @@
     function loginController(UserService, $location) {
         var vm = this;
         vm.login = login;
-        vm.authGoogle = authGoogle;
-        vm.authFb = authFb
 
         function init() {
             UserService.findCurrentUser()
                 .then(function (response) {
                     vm.user = response.data;
                 });
-
         }
 
         init();
-
-        function authGoogle(googlePath){
-            $location.url(googlePath);
-        }
-
-        function authFb(fbPath){
-            $location.url(fbPath);
-        }
-
 
         function login(user) {
             if (user) {
